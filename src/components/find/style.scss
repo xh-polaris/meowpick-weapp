@@ -1,0 +1,49 @@
+.wrapper {
+  @apply
+  bg-green-200
+  ;
+
+  .input-box {
+    @apply
+    flex
+    rounded-lg shadow
+    bg-blue-200
+    ;
+
+    .icon {
+      @apply
+      flex justify-center items-center
+      w-14 h-14
+      text-gray-700
+      ;
+    }
+  }
+
+  .search-text {
+    @apply
+    w-full h-14 px-3 rounded
+    text-gray-700
+    ;
+  }
+
+  .recent {
+    @apply
+    py-2 mt-2
+
+    ;
+
+    .title {
+      @apply
+      font-bold
+      ;
+    }
+
+    .user-list {
+      @apply
+      flex
+      h-20 my-2
+      bg-green-200
+      ;
+    }
+  }
+}

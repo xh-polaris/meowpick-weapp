@@ -1,0 +1,4 @@
+.disable view{
+    color: #c8c9cc !important;
+    text-decoration:line-through;
+}

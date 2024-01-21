@@ -1,0 +1,100 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {}
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "花狮选课猫",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "usingComponents": {
+      "van-icon": "/wxcomponents/vant-weapp/dist/icon/index",
+      "van-tabbar": "/wxcomponents/vant-weapp/dist/tabbar/index",
+      "van-tabbar-item": "/wxcomponents/vant-weapp/dist/tabbar-item/index"
+    }
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/group/index/index",
+        "text": "群组"
+      },
+      {
+        "pagePath": "pages/find/index/index",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/message/index/index",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/user/index/index",
+        "text": "个人"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "path": "pages/index/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/index/post/index",
+      "style": {}
+    },
+    {
+      "path": "pages/error/index/index",
+      "style": {}
+    },
+    {
+      "path": "pages/user/index/index",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/user/Logout/index",
+      "style": {
+        "navigationBarTitleText": "退出"
+      }
+    },
+    {
+      "path": "pages/user/Login/index",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/course/index/index",
+      "style": {}
+    },
+    {
+      "path": "pages/course/comment/index",
+      "style": {}
+    },
+    {
+      "path": "pages/find/index/index",
+      "style": {}
+    },
+    {
+      "path": "pages/find/choose/index",
+      "style": {}
+    },
+    {
+      "path": "pages/group/index/index",
+      "style": {}
+    },
+    {
+      "path": "pages/message/index/index",
+      "style": {}
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+$card: #ffffffb3;
+$main: #191919;
+$second: #818181;
+.title {
+  color: $main;
+  @apply
+  text-sm font-bold
+  ;
+}
+
+.info {
+  .info-wrapper {
+    @apply
+    flex
+    h-32;
+  }
+
+  .img {
+    @apply
+    rounded-lg
+    w-32 mr-4
+    bg-green-200;
+  }
+
+  .title {
+    @apply
+    text-gray-800 font-bold;
+  }
+
+  .des {
+    color: $second;
+  }
+
+  .action {
+    @apply
+    flex justify-around
+    ml-24;
+
+    .action-btn {
+      @apply
+      py-2 px-6
+      rounded-lg
+      bg-white
+      text-sm font-bold;
+    }
+  }
+}
+
+.score {
+  background-color: $card;
+  @apply
+  my-2 p-2
+  rounded-lg
+  text-neutral-400;
+
+  .title {
+    @apply
+    mb-2 ;
+  }
+
+  .star {
+    @apply
+    h-24
+    bg-blue-200;
+  }
+
+  .line {
+    height: 1px;
+    background-color: #8181813b;
+    @apply
+    w-full my-2;
+  }
+
+  .tips {
+    color: $second;
+    @apply
+    flex
+    text-sm;
+
+    .tips-label {
+      @apply
+      mx-2;
+    }
+  }
+
+}
+
+.intro {
+  @apply
+  mt-5 mb-6;
+  .content {
+    @apply
+    my-2;
+  }
+}
+
+.teacher {
+  @apply
+  mb-5;
+  .teacher-list {
+    @apply
+    h-24 my-2
+    bg-green-200;
+  }
+}
+
+.short-comment {
+  background-color: $card;
+  @apply
+  py-3 px-2 my-3
+  rounded-lg
+  text-white;
+
+  .title {
+    @apply font-bold;
+  }
+}
+
+.trend {
+  @apply
+  my-3
+  bg-red-200
+  ;
+
+  .title {
+    @apply my-2;
+  }
+
+  .list {
+    @apply
+    h-24
+    bg-green-200
+    ;
+  }
+}

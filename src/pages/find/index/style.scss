@@ -1,0 +1,12 @@
+.content {
+  @apply
+  relative
+  p-2 min-h-full
+  bg-red-200
+  ;
+
+  .item {
+    @apply
+    bg-green-400;
+  }
+}

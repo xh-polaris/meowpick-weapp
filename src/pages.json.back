@@ -1,0 +1,45 @@
+{
+  "easycom": {
+    "^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Meowpick选课猫",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "pages": [
+    {
+      "path": "pages/index/core/index",
+      "name": "index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/error/index/index",
+      "name": "error",
+      "style": {
+        "navigationBarTitleText": "发生错误"
+      }
+    },
+    {
+      "path": "pages/user/me/index",
+      "style": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/user/Logout/index",
+      "style": {
+        "navigationBarTitleText": "退出"
+      }
+    },
+    {
+      "path": "pages/user/Login/index",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    }
+  ]
+}
