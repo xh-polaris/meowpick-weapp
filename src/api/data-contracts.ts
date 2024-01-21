@@ -22,6 +22,7 @@ export interface CourseCmdUpdateCmd {
   department?: string;
   depart?: string;
   point?: string;
+  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
@@ -32,6 +33,7 @@ export interface CourseVO {
   name?: string;
   category?: string;
   department?: string;
+  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
@@ -45,9 +47,26 @@ export interface CourseCmdCreateCmd {
   department?: string;
   depart?: string;
   point?: string;
+  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
+}
+
+export interface CommentCmdUpdateCmd {
+  id: string;
+  text: string;
+}
+
+export interface CommentVO {
+  id?: string;
+  uid?: string;
+  text?: string;
+}
+
+export interface CommentCmdCreateCmd {
+  target: string;
+  text: string;
 }
 
 export interface PageEntityTagVO {
@@ -66,4 +85,10 @@ export interface PageEntityCourseVO {
   /** @format int64 */
   total?: number;
   rows?: CourseVO[];
+}
+
+export interface PageEntityCommentVO {
+  /** @format int64 */
+  total?: number;
+  rows?: CommentVO[];
 }

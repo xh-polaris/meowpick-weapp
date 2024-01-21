@@ -24,6 +24,20 @@ export class CourseApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags CourseApi
+   * @name Want
+   * @summary 想选
+   * @request POST:/api/course/want/{id}
+   */
+  want = (id: string, params: RequestParams = {}) =>
+    this.http.request<JsonRet<boolean>, any>({
+      path: `/api/course/want/${id}`,
+      method: "POST",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags CourseApi
    * @name Update1
    * @summary 更新课程
    * @request POST:/api/course/update
@@ -34,6 +48,20 @@ export class CourseApi<SecurityDataType = unknown> {
       method: "POST",
       body: data,
       type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags CourseApi
+   * @name Learn
+   * @summary 学过
+   * @request POST:/api/course/learn/{id}
+   */
+  learn = (id: string, params: RequestParams = {}) =>
+    this.http.request<JsonRet<boolean>, any>({
+      path: `/api/course/learn/${id}`,
+      method: "POST",
       ...params,
     });
   /**

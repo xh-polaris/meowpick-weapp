@@ -15,6 +15,7 @@ const api = new HttpRequest({
 
 api.instance.interceptors.request.use(
     config => {
+        config.headers!["token"] = `Berry ${useTokenStore().token}`
         return config
     },
     error => {

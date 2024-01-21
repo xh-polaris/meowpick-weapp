@@ -1,13 +1,11 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
-import {Course} from "./index";
+import {useCourse} from "./index";
 
-const course = reactive(new Course())
+const course = useCourse()
 onLoad((options: { id: string }) => {
     course.setId(options.id)
 })
-
-const data = useCourseStore().course
 
 </script>
 
@@ -20,20 +18,22 @@ const data = useCourseStore().course
                         <div class="img">img</div>
                         <div class="msg">
                             <div class="title">
-                                title
+                                {{ course.data.name }}
                             </div>
                             <div class="des">
-                                {{ course }}
+                                {{ course.data.point }}
+                                {{ course.data.category }}
+                                {{ course.data.campuses }}
                             </div>
 
                         </div>
                     </div>
                     <div class="action">
-                        <div class="action-btn">
-                            ic 学过
+                        <div class="action-btn" @click="course.learn">
+                            i 学过
                         </div>
-                        <div class="action-btn">
-                            ic 想选
+                        <div class="action-btn" @click="course.want">
+                            i 想选
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@ const data = useCourseStore().course
                         课程介绍
                     </div>
                     <div class="content">
-                        {{ course }}
+                        {{ course.data.describe }}
                     </div>
                 </div>
                 <div class="teacher">
@@ -63,23 +63,23 @@ const data = useCourseStore().course
                         任课教师
                     </div>
                     <div class="teacher-list">
-                        {{course}}
+                        {{ course.data.teachers }}
                     </div>
                 </div>
-                <div class="short-comment">
-                    <div class="title">短评</div>
-                </div>
-                <div class="trend">
-                    <div class="title">
-                        选这门课的人也喜欢
-                    </div>
-                    <div class="list">
+                <!--                <div class="short-comment">-->
+                <!--                    <div class="title">短评</div>-->
+                <!--                </div>-->
+                <!--                <div class="trend">-->
+                <!--                    <div class="title">-->
+                <!--                        选这门课的人也喜欢-->
+                <!--                    </div>-->
+                <!--                    <div class="list">-->
 
-                    </div>
-                </div>
+                <!--                    </div>-->
+                <!--                </div>-->
             </div>
             <div>
-                <div class="flex">
+                <div>
                     <div class="bg-red-200">
                         课评
                     </div>

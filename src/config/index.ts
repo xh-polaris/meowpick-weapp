@@ -6,3 +6,7 @@ export {
 export {
     default as useCourseStore
 } from './store/Course'
+
+export {
+    default as useTokenStore
+} from './store/Token'
