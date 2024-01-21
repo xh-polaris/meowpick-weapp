@@ -29,11 +29,18 @@ onLoad((options: { id: string }) => {
                         </div>
                     </div>
                     <div class="action">
-                        <div class="action-btn" @click="course.learn">
-                            i 学过
-                        </div>
-                        <div class="action-btn" @click="course.want">
-                            i 想选
+                        <div class="">
+                            <div class="action-btn" @click="course.learn">
+                                i 学过
+                            </div>
+                            <div class="action-btn" @click="course.want">
+                                <div v-if="!course.course.is_want">
+                                    i 想选
+                                </div>
+                                <div v-else>
+                                    已想选
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,8 +53,8 @@ onLoad((options: { id: string }) => {
                     </div>
                     <div class="line"/>
                     <div class="tips">
-                        <div class="tips-label">2901人学过</div>
-                        <div class="tips-label">792人想选</div>
+                        <div class="tips-label">{{course.course.leaned}}人学过</div>
+                        <div class="tips-label">{{course.course.wanted}}人想选</div>
                     </div>
                 </div>
                 <div class="intro">

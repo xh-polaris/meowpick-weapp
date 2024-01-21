@@ -81,6 +81,16 @@ export interface PageEntityObject {
   rows?: object[];
 }
 
+export interface Course {
+  course?: CourseVO;
+  /** @format int64 */
+  leaned?: number;
+  /** @format int64 */
+  wanted?: number;
+  is_learn?: boolean;
+  is_want?: boolean;
+}
+
 export interface PageEntityCourseVO {
   /** @format int64 */
   total?: number;
