@@ -11,7 +11,6 @@ class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
 
 const api = new HttpRequest({
     // paramsSerializer: (params) => qs.stringify(params, { indices: false }),
-    // 重新设置ip、port
     baseURL: process.env.VITE_SERVER_HOST_PORT,
     adapter: UniAdapter, // 指定适配器
     timeout: 3000
@@ -19,7 +18,7 @@ const api = new HttpRequest({
 
 api.instance.interceptors.request.use(
     config => {
-        config.headers!["token"] = `Berry ${useTokenStore().token}`
+        config.headers![process.env.VITE_TOKEN_NAME] = `Berry ${useTokenStore().token}`
         return config
     },
     error => {
