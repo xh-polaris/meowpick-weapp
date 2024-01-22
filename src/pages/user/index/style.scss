@@ -4,3 +4,89 @@
     bg-green-200
   ;
 }
+
+.user-topbox {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-img {
+  width: 100px;
+  height: 100px;
+  background-color: #eeeeee;
+  border-radius: 50%;
+
+}
+
+.user-img-corner {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  background-color: #ec6d2c;
+  top: -1vw;
+  right: -1vw;
+  border-radius: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.user-name {
+  width: 100px;
+  height: 40px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.container_4 {
+  width: 96%;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  margin: 20px 2% 100px 2%;
+}
+
+.middle-item {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.image_tupian_1 {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  margin: 0px 20px 0px 40px;
+  background-color: #eeeeee;
+}
+
+.image-jiantou {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  /* 要约束所在位置的子元素的位置要设置成绝对 */
+  right: 30px;
+  /* 靠右调节 */
+  margin-right: 35px;
+
+  background-color: #eeeeee;
+}
+
+/* 线 */
+.view_line {
+  width: 90%;
+  height: 5px;
+  background: #f3f3f3;
+  /* margin: 0rxp 5% 0rxp 5%; */
+  margin: 0 auto;
+  text-align: center;
+}

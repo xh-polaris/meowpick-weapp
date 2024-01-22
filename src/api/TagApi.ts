@@ -54,7 +54,7 @@ export class TagApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags TagApi
-   * @name Add
+   * @name Add1
    * @summary 新增标签
    * @request POST:/api/tag/add
    */

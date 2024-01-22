@@ -54,7 +54,7 @@ export class CommentApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags CommentApi
-   * @name Add2
+   * @name Add3
    * @summary 新增评论
    * @request POST:/api/comment/add
    */

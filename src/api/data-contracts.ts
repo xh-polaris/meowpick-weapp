@@ -9,6 +9,11 @@
  * ---------------------------------------------------------------
  */
 
+export interface UserCmdCreateCmd {
+  id?: string;
+  name?: string;
+}
+
 export type TagCmdUpdateCmd = object;
 
 export type TagVO = object;
@@ -22,7 +27,6 @@ export interface CourseCmdUpdateCmd {
   department?: string;
   depart?: string;
   point?: string;
-  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
@@ -33,7 +37,6 @@ export interface CourseVO {
   name?: string;
   category?: string;
   department?: string;
-  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
@@ -47,7 +50,6 @@ export interface CourseCmdCreateCmd {
   department?: string;
   depart?: string;
   point?: string;
-  describe?: string;
   teachers?: string[];
   campuses?: string[];
   tags?: string[];
@@ -79,16 +81,6 @@ export interface PageEntityObject {
   /** @format int64 */
   total?: number;
   rows?: object[];
-}
-
-export interface Course {
-  course?: CourseVO;
-  /** @format int64 */
-  leaned?: number;
-  /** @format int64 */
-  wanted?: number;
-  is_learn?: boolean;
-  is_want?: boolean;
 }
 
 export interface PageEntityCourseVO {

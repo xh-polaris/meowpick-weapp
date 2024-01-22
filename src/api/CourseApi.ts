@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-import type { Course, CourseCmdCreateCmd, CourseCmdUpdateCmd, CourseVO, PageEntityCourseVO } from "./data-contracts";
+import type { CourseCmdCreateCmd, CourseCmdUpdateCmd, CourseVO, PageEntityCourseVO } from "./data-contracts";
 import type { HttpClient, RequestParams } from "./http-client";
 import { ContentType } from "./http-client";
 
@@ -20,20 +20,6 @@ export class CourseApi<SecurityDataType = unknown> {
     this.http = http;
   }
 
-  /**
-   * No description
-   *
-   * @tags CourseApi
-   * @name Want
-   * @summary 想选
-   * @request POST:/api/course/want/{id}
-   */
-  want = (id: string, params: RequestParams = {}) =>
-    this.http.request<JsonRet<boolean>, any>({
-      path: `/api/course/want/${id}`,
-      method: "POST",
-      ...params,
-    });
   /**
    * No description
    *
@@ -54,20 +40,6 @@ export class CourseApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags CourseApi
-   * @name Learn
-   * @summary 学过
-   * @request POST:/api/course/learn/{id}
-   */
-  learn = (id: string, params: RequestParams = {}) =>
-    this.http.request<JsonRet<boolean>, any>({
-      path: `/api/course/learn/${id}`,
-      method: "POST",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags CourseApi
    * @name Del1
    * @summary 删除课程
    * @request POST:/api/course/del/{id}
@@ -82,7 +54,7 @@ export class CourseApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags CourseApi
-   * @name Add1
+   * @name Add2
    * @summary 新增课程
    * @request POST:/api/course/add
    */
@@ -103,7 +75,7 @@ export class CourseApi<SecurityDataType = unknown> {
    * @request GET:/api/course/{id}
    */
   get = (id: string, params: RequestParams = {}) =>
-    this.http.request<JsonRet<Course>, any>({
+    this.http.request<JsonRet<CourseVO>, any>({
       path: `/api/course/${id}`,
       method: "GET",
       ...params,

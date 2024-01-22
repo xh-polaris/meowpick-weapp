@@ -1,14 +1,18 @@
 import {UniAdapter} from "uniapp-axios-adapter";
+import {UserApi} from "@/api/UserApi";
 
 class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
     public CourseController = new CourseApi(this)
     public SearchController = new SearchController(this)
     public TagController = new TagApi(this)
+
+    public UserController = new UserApi(this)
 }
 
 const api = new HttpRequest({
     // paramsSerializer: (params) => qs.stringify(params, { indices: false }),
-    baseURL: "http://192.168.50.42:5508/",
+    // 重新设置ip、port
+    baseURL: process.env.VITE_SERVER_HOST_PORT,
     adapter: UniAdapter, // 指定适配器
     timeout: 3000
 })
