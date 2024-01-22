@@ -1,8 +1,4 @@
 {
-  "easycom": {
-    "autoscan": true,
-    "custom": {}
-  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "花狮选课猫",

@@ -15,6 +15,8 @@ onHide(() => {
 });
 </script>
 <style lang="scss">
+@import 'nutui-uniapp/styles/index';
+
 page {
     width: 100%;
     height: 100%;
