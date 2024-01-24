@@ -1,10 +1,10 @@
 module.exports = {
-    "easycom": {
-        "autoscan": true,
-        "custom": {
-            // "(.*)": "@/components/$1/index.vue",
-        }
-    },
+    // "easycom": {
+    //     "autoscan": true,
+    //     "custom": {
+    //         // "(.*)": "@/components/$1/index.vue",
+    //     }
+    // },
     "globalStyle": {
         "navigationBarTextStyle": "black",
         "navigationBarTitleText": "花狮选课猫",
