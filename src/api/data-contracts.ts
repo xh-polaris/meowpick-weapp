@@ -10,8 +10,14 @@
  */
 
 export interface UserCmdCreateCmd {
+  name?: string;
+  avatar?: string;
+}
+
+export interface UserVO {
   id?: string;
   name?: string;
+  avatar?: string;
 }
 
 export type TagCmdUpdateCmd = object;

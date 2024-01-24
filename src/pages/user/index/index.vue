@@ -19,13 +19,13 @@ const user = reactive(new User())
 
 
 onShow(() => {
-  http.UserController.add({
-    id: "123",
-    name: "jack"
-  }).then(res => {
-    console.log(res.data.payload)
-    console.log(typeof res.data.payload)
-  })
+  // http.UserController.add({
+  //   name: "tom",
+  //   avatar: "123.jpg"
+  // }).then(res => {
+  //   console.log(res.data.payload)
+  //   console.log(typeof res.data.payload)
+  // })
 
     const curPages: any = getCurrentPages()[0] // 获取当前页面实例
     if (typeof curPages.getTabBar === 'function' && curPages.getTabBar()) {
@@ -33,6 +33,24 @@ onShow(() => {
             active: 4, // 表示当前菜单的索引，该值在不同的页面表示不同
         })
     }
+
+    //测试获取用户信息
+  uni.login({
+    provider: 'weixin',
+    success: res => {
+      console.log("user.code: " + user.code)
+      console.log(res)
+      user.code = res.code //获得code
+      console.log("user.code: " + user.code)
+
+      let code = user.code
+      http.UserController.getTokenByCode(code).then(res => {
+        console.log(res.data.payload)
+
+
+      })
+    }
+  })
 
 })
 
@@ -52,7 +70,7 @@ const data = [
 <!--        <view class="user-img-corner">1</view>-->
 <!--        <uni-badge text="8"></uni-badge>-->
 
-        <text class="user-name" >{{user.getUsername()}}</text>
+        <text class="user-name" >{{user.getName()}}</text>
 
       </view>
 

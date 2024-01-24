@@ -41,6 +41,12 @@
   },
   "pages": [
     {
+      "path": "pages/user/Login/index",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
       "path": "pages/index/index/index",
       "style": {
         "navigationBarTitleText": "首页"
@@ -66,12 +72,7 @@
         "navigationBarTitleText": "退出"
       }
     },
-    {
-      "path": "pages/user/Login/index",
-      "style": {
-        "navigationBarTitleText": "登录"
-      }
-    },
+
     {
       "path": "pages/course/index/index",
       "style": {}

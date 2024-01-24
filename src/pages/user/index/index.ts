@@ -1,16 +1,17 @@
 export default class User {
 
-    private username: string
+    private name: string
     private avatar: string
+    code: string
 
     constructor() {
-        this.username = "defaultName"
+        this.name = "defaultName"
         this.avatar = "/img/123.jpg"
-
+        this.code = ""
     }
 
-    getUsername(){
-        return this.username
+    getName(){
+        return this.name
     }
 
     getAvatar(){

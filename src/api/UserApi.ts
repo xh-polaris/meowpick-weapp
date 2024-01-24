@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-import type { UserCmdCreateCmd } from "./data-contracts";
+import type { UserCmdCreateCmd, UserVO } from "./data-contracts";
 import type { HttpClient, RequestParams } from "./http-client";
 import { ContentType } from "./http-client";
 
@@ -24,11 +24,26 @@ export class UserApi<SecurityDataType = unknown> {
    * No description
    *
    * @tags UserApi
+   * @name GetTokenByCode
+   * @request POST:/api/user/token
+   */
+  getTokenByCode = (data: string, params: RequestParams = {}) =>
+    this.http.request<JsonRet<string>, any>({
+      path: `/api/user/token`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags UserApi
    * @name Add
    * @request POST:/api/user/add
    */
   add = (data: UserCmdCreateCmd, params: RequestParams = {}) =>
-    this.http.request<JsonRet<string>, any>({
+    this.http.request<JsonRet<UserVO>, any>({
       path: `/api/user/add`,
       method: "POST",
       body: data,
