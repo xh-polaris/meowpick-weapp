@@ -3,24 +3,106 @@ import User from '../index'
 
 const user = reactive(new User())
 
+function onLogin(){
+  uni.login({
+    provider: 'weixin',
+    success: res => {
+      console.log("user.code: " + user.code)
+      console.log(res)
+      user.code = res.code //获得code
+      console.log("user.code: " + user.code)
+
+      uni.request({
+        url: "https://meowchat.xhpolaris.com/auth/sign_in",
+        method: "POST",
+        data: {
+          "authId": "wxdffc445bde3313aa",
+          "authType": "wechat",
+          "verifyCode": res.code,
+        },
+        success: function (res) {
+          console.log(res)
+
+          if (res.statusCode == 200) {
+            uni.setStorageSync("userId", res.data.userId)
+            //uni.setStorageSync("accessToken", res.data.accessToken)
+            //uni.setStorageSync("accessExpire", res.data.accessExpire)
+
+            useTokenStore().setData(res.data.accessToken)
+
+            uni.switchTab({
+              url: "/pages/index/index/index"
+            })
+          }
+
+        }
+      })
+    }
+  })
+
+}
+
 onShow(() => {
   console.log(user.getName())
 
-  uni.request({
-    url: "",
-    method:"POST",
-    header:{"content-type":"application/json"},
-    data: {
+  // uni.login({
+  //   provider: 'weixin',
+  //   success: res => {
+  //     console.log("user.code: " + user.code)
+  //     console.log(res)
+  //     user.code = res.code //获得code
+  //     console.log("user.code: " + user.code)
+  //
+  //     uni.request({
+  //       url: "https://meowchat.xhpolaris.com/auth/sign_in",
+  //       method:"POST",
+  //       data: {
+  //         "authId": "wxdffc445bde3313aa",
+  //         "authType": "wechat",
+  //         "verifyCode": res.code,
+  //       },
+  //       success: function (res){
+  //         console.log(res)
+  //
+  //         if(res.statusCode == 200){
+  //           uni.setStorageSync("userId", res.data.userId)
+  //           //uni.setStorageSync("accessToken", res.data.accessToken)
+  //           //uni.setStorageSync("accessExpire", res.data.accessExpire)
+  //
+  //           useTokenStore().setData(res.data.accessToken)
+  //
+  //           uni.switchTab({
+  //             url: "/pages/index/index/index"
+  //           })
+  //
+  //           // uni.setStorage({
+  //           //   key: "userId",
+  //           //   data: res.userId,
+  //           // }).then(r => {
+  //           //   uni.setStorage({
+  //           //     key: "accessToken",
+  //           //     data: res.accessToken,
+  //           //   })
+  //           // }).then(r => {
+  //           //   uni.setStorage({
+  //           //     key: "accessExpire",
+  //           //     data: res.accessExpire,
+  //           //   })
+  //           // }).then(r => {
+  //           //   console.log("store success")
+  //           // })
+  //         }
+  //
+  //       }
+  //
+  //     })
+  //
+  //
+  //   }
+  // })
 
-    },
-    success: function (res){
 
-    }
 
-  })
-
-  //设置token
-  //useTokenStore().setData("token")
 })
 
 </script>
@@ -42,10 +124,10 @@ onShow(() => {
 
 <!--      <nut-input-->
 <!--          placeholder="请输入文本"-->
-<!--          v-model="state.text"-->
+<!--          v-model="user.code"-->
 <!--      />-->
 
-      <button class="loginBtn" plain type="info">朴素按钮</button>
+      <nut-button class="loginBtn" plain type="info" @click="onLogin()">登录</nut-button>
     </view>
   </layout>
 </template>

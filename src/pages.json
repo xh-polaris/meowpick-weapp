@@ -42,6 +42,7 @@
         "navigationBarTitleText": "登录"
       }
     },
+
     {
       "path": "pages/index/index/index",
       "style": {
