@@ -9,12 +9,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Course: typeof import('./src/components/course/index.vue')['default']
     Find: typeof import('./src/components/find/index.vue')['default']
+    IconStar: typeof import('./src/components/course/star/IconStar.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     NutButton: typeof import('nutui-uniapp/components/button/button.vue')['default']
-    NutInput: typeof import('nutui-uniapp/components/input/input.vue')['default']
+    NutRate: typeof import('nutui-uniapp/components/rate/rate.vue')['default']
     Recommend: typeof import('./src/components/recommend/index.vue')['default']
+    Star: typeof import('./src/components/course/star/index.vue')['default']
     VirtualList: typeof import('./src/components/virtual-list/index.vue')['default']
   }
 }

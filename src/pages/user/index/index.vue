@@ -1,25 +1,11 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
-// import uniBadge from '@dcloudio/uni-ui/lib/uni-badge/uni-badge.vue'
-// export default {
-//   components: { uniBadge }
-// }
-
-// export default {
-//   data() {
-//     return {
-//       username: "aaa",
-//     };
-//
-//   }
-// }
 import User from './index'
 
 const user = reactive(new User())
 
 
 onShow(() => {
-
     const curPages: any = getCurrentPages()[0] // 获取当前页面实例
     if (typeof curPages.getTabBar === 'function' && curPages.getTabBar()) {
         curPages.getTabBar().setData({

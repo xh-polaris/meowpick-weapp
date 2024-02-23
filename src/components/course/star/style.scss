@@ -1,0 +1,19 @@
+.star-box {
+  @apply
+  flex
+  h-full mx-8
+  bg-blue-200
+  ;
+
+  .star {
+    @apply
+    flex flex-col justify-center items-center
+    bg-red-200
+    ;
+    .number {
+      @apply
+      text-5xl
+      ;
+    }
+  }
+}

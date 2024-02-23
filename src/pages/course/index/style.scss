@@ -33,7 +33,6 @@ $second: #818181;
 
   .action {
     @apply
-    flex justify-around
     ml-24;
 
     .action-btn {
@@ -60,8 +59,7 @@ $second: #818181;
 
   .star {
     @apply
-    h-24
-    bg-blue-200;
+    h-24;
   }
 
   .line {

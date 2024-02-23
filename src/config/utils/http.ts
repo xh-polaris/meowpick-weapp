@@ -1,5 +1,4 @@
 import {UniAdapter} from "uniapp-axios-adapter";
-import {UserApi} from "@/api/UserApi";
 
 class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
     public CourseController = new CourseApi(this)

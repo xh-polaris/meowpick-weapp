@@ -106,6 +106,7 @@ declare global {
   const useCssVars: typeof import('vue')['useCssVars']
   const useRouteStore: typeof import('./src/config/index')['useRouteStore']
   const useSlots: typeof import('vue')['useSlots']
+  const useStar: typeof import('./src/components/course/star/index')['useStar']
   const useTokenStore: typeof import('./src/config/index')['useTokenStore']
   const userCourse: typeof import('./src/pages/course/index/index')['userCourse']
   const watch: typeof import('vue')['watch']
