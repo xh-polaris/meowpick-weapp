@@ -1,0 +1,12 @@
+.index {
+  @apply
+  bg-red-200
+  mt-2
+  min-h-screen
+  ;
+
+  .new-comment {
+    position: sticky;
+    bottom: 30px;
+  }
+}

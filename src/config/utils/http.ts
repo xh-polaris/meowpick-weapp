@@ -4,8 +4,11 @@ class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
     public CourseController = new CourseApi(this)
     public SearchController = new SearchController(this)
     public TagController = new TagApi(this)
-
+    public CoureLearnController = new CourseLearnApi(this)
     public UserController = new UserApi(this)
+    public CommentController = new CommentApi(this)
+    public TeacherController = new TeacherApi(this)
+    public ActionController = new ActionApi(this)
 }
 
 const api = new HttpRequest({

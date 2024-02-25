@@ -52,14 +52,16 @@ $second: #818181;
   rounded-lg
   text-neutral-400;
 
+  .no-score {
+    @apply
+    h-24
+    flex justify-center items-center
+    ;
+  }
+
   .title {
     @apply
     mb-2 ;
-  }
-
-  .star {
-    @apply
-    h-24;
   }
 
   .line {
@@ -97,8 +99,7 @@ $second: #818181;
   mb-5;
   .teacher-list {
     @apply
-    h-24 my-2
-    bg-green-200;
+    min-h-24 my-2;
   }
 }
 

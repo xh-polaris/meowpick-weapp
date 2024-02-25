@@ -1,19 +1,30 @@
 .star-box {
   @apply
   flex
-  h-full mx-8
-  bg-blue-200
+  mx-8
   ;
 
   .star {
     @apply
     flex flex-col justify-center items-center
-    bg-red-200
     ;
     .number {
       @apply
       text-5xl
       ;
     }
+  }
+
+  .rank {
+    @apply
+    flex-1
+    pl-3
+    ;
+  }
+
+  .star-item {
+    @apply
+    flex items-center
+    text-sm;
   }
 }
