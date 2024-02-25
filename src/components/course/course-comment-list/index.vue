@@ -4,18 +4,19 @@ const props = defineProps<{
     id: string
 }>()
 
-let list = computed(() => useCourseComment(props.id))
-// watch(props, () => {
-//     list = useCourseComment(props.id)
-// })
+const {list, like, next} = useCourseComment(props)
 </script>
 
 <template>
     <div class="index">
-        <div class="new-comment">
+        <div class="new-comment" @click="next">
             +{{ id }}
         </div>
         <ul>
+            {{ list }}
+            <li v-for="item in list">
+                {{ item }}
+            </li>
         </ul>
     </div>
 </template>

@@ -1,26 +1,40 @@
 import type {CommentVO} from "@/api/data-contracts";
 
-export function useCourseComment(data: string) {
-    return reactive(new class {
-        fetch() {
-            http.CommentController.query({id: this.id}).then(res => {
-                this.data = res.data.payload.rows!
-            })
-        }
+type Props = {
+    id: string
+}
+type Instance = {
+    data: CommentVO[]
+    page: number
+}
 
-        like(target: string) {
-            http.ActionController.like(target)
-        }
+export function useCourseComment(p: Props) {
+    const instance: Instance = shallowReactive({
+        data: [],
+        page: 0
+    })
 
-        id: string
-        data: CommentVO[]
+    function fetch(id: string) {
+        http.CommentController.query({id, page: instance.page, size: 1}).then(res => {
+            instance.data = [...instance.data, ...res.data.payload.rows!]
+        })
+    }
 
-        constructor(id: string) {
-            console.log('id', id, 'end')
-            this.data = []
-            this.id = id
+    function like(target: string) {
+        http.ActionController.like(target)
+    }
 
-            this.fetch()
-        }
-    }(data))
+    function next() {
+        instance.page++
+    }
+
+    const list = computed(() => instance.data)
+    watch(() => [p.id, instance.page], () => {
+        fetch(p.id);
+    })
+
+    return {
+        list,
+        like, next
+    }
 }
