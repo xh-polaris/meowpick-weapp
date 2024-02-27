@@ -4,7 +4,7 @@ const props = defineProps<{
   score: number[]
 }>()
 
-let en = computed(() => useStar(props.score))
+const en = useStar(props)
 </script>
 
 <template>

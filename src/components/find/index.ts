@@ -35,9 +35,7 @@ export default class InPut implements InitializeComponent {
     }
 
     query() {
-        uni.navigateTo({
-            url: `/pages/find/choose/index?keyword=${getText(this)}`
-        })
+        return getText(this)
     }
 
     suggest() {

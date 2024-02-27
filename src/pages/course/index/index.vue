@@ -1,9 +1,10 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
 import {useCourse} from "./index";
-const course = useCourse()
+
+const {fetch, id, course, score, teachers} = useCourse()
 onLoad((options: { id: string }) => {
-    course.setId(options.id)
+    fetch(options.id)
 })
 
 function render_des(ls: any[]): string {
@@ -17,13 +18,16 @@ function render_des(ls: any[]): string {
             <div>
                 <div class="info">
                     <div class="info-wrapper">
-                        <div class="img">img</div>
+                        <div class="img">
+<!--                            <img v-if="item.avatar != 'avatar'" :src="item.avatar" alt="">-->
+                            <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)" >{{course.data.name[0]}}</nut-avatar>
+                        </div>
                         <div class="msg">
                             <div class="title">
                                 {{ course.data.name }}
                             </div>
                             <div class="des">
-                                {{ render_des([course.data.point, course.data.category, course.data.campuses]) }}
+                                {{render_des([course.data.point, course.data.category, course.data.campuses]) }}
                             </div>
 
                         </div>
@@ -34,16 +38,16 @@ function render_des(ls: any[]): string {
                 </div>
                 <div class="score">
                     <div class="title">
-                        评分 ({{ course.score.length }}人)
+                        评分 ({{ score.length }}人)
                     </div>
                     <div class="star">
-                        <Star :score="course.score" v-if="course.score.length"/>
+                        <Star :score="score" v-if="score.length"/>
                         <div class="no-score" v-else>暂无评分</div>
                     </div>
                     <div class="line"/>
                     <div class="tips">
-                        <div class="tips-label">{{ course.course.leaned }}人学过</div>
-                        <div class="tips-label">{{ course.course.wanted }}人想选</div>
+                        <div class="tips-label">{{ course.leaned }}人学过</div>
+                        <div class="tips-label">{{ course.wanted }}人想选</div>
                     </div>
                 </div>
                 <div class="intro">
@@ -59,7 +63,7 @@ function render_des(ls: any[]): string {
                         任课教师
                     </div>
                     <div class="teacher-list">
-                        <course-teacher-list :teachers="course.teachers"/>
+                        <course-teacher-list :teachers="teachers"/>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,7 @@ function render_des(ls: any[]): string {
                     </div>
                 </div>
                 <div>
-                    <course-comment-list :id="course.id"/>
+                    <course-comment-list :id="id"/>
                 </div>
             </div>
         </div>

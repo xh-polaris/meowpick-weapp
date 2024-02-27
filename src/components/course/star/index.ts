@@ -1,3 +1,12 @@
+export type Props = {
+    score: number[]
+}
+type Instance = {
+    score: number;
+    avg: number;
+    map: { [k: string]: number }
+}
+
 function sum(ls: number[]): number {
     if (ls.length == 0) return 0
     return ls.reduce(function (prev, curr) {
@@ -5,25 +14,24 @@ function sum(ls: number[]): number {
     });
 }
 
-export function useStar(data: number[]) {
-    return reactive(new class {
-        score: number;
-        avg: number;
-        map: { [k: string]: number };
+export function useStar(p: Props) {
+    const instance: Instance = {
+        score: 0, avg: 0, map: {}
+    }
 
-        constructor(data: number[]) {
-            this.avg = sum(data) / data.length;
-            this.score = 2.25 * this.avg - 1.25;
+    instance.avg = sum(p.score) / p.score.length;
 
-            this.map = {};
-            let m = data.reduce((temp: { [k: string]: number }, n) => {
-                temp[Math.floor(n)] = temp[Math.floor(n)] ? temp[Math.floor(n)] + 1 : 1;
-                return temp;
-            }, {});
+    instance.score = 2.25 * instance.avg - 1.25
 
-            for (let k in m) {
-                this.map[k] = Number(((m[k] / data.length) * 100).toFixed(0));
-            }
-        }
-    }(data));
+    let m = p.score.reduce((temp: { [k: string]: number }, n) => {
+        temp[Math.floor(n)] = temp[Math.floor(n)] ? temp[Math.floor(n)] + 1 : 1;
+        return temp;
+    }, {});
+    for (let k in m) {
+        instance.map[k] = Number(((m[k] / p.score.length) * 100).toFixed(0));
+    }
+
+    return {
+        ...instance
+    }
 }

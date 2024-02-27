@@ -5,6 +5,27 @@
   bg-red-200
   ;
 
+  .recent {
+    @apply
+    py-2 mt-2
+
+    ;
+
+    .title {
+      @apply
+      font-bold
+      ;
+    }
+
+    .user-list {
+      @apply
+      flex
+      h-20 my-2
+      bg-green-200
+      ;
+    }
+  }
+
   .item {
     @apply
     bg-green-400;

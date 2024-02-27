@@ -9,6 +9,10 @@ onMounted(() => {
     input.init()
 })
 
+const emit = defineEmits(['confirm'])
+function notify() {
+    emit('confirm', input.query())
+}
 // const placeHolder = computed(() => input.searchText === '' ? input.placeHolder : input.searchText)
 
 </script>
@@ -22,19 +26,8 @@ onMounted(() => {
             </div>
             <input v-model="input.searchText" class="search-text" :placeholder="input.placeHolder"
                    @input="input.suggest"
-                   @confirm="input.query">
+                   @confirm="notify">
         </div>
-        <div class="recent">
-            <div class="title">
-                最近搜索
-            </div>
-            <div class="user-list">
-                用户{{ input.searchText }}
-            </div>
-            <div class="text">
-                词条
-                {{ input.list }}
-            </div>
-        </div>
+
     </div>
 </template>

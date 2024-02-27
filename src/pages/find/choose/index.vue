@@ -1,38 +1,38 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
-import Choose from './index'
+import {useChoose} from './index'
 
-const choose = reactive(new Choose())
+// const choose = reactive(new Choose())
+const {type, keyword, jump, rows} = useChoose()
 onLoad((options: { keyword: string }) => {
-    choose.setKeyWork(options.keyword)
+    keyword.value = options.keyword
 })
-onMounted(() => {
-    choose.init()
-})
+// onMounted(() => {
+//     choose.init()
+// })
 </script>
 
 <template>
     <layout>
+        <div>
+            <find/>
+        </div>
         <div class="wrapper">
-            <div class="category">
-                category
+            <div>
+                <nut-tabs v-model="type" swipeable type="smile">
+                    <nut-tab-pane title="课程" pane-key="course"> Content 1 </nut-tab-pane>
+                    <nut-tab-pane title="教师" pane-key="teacher" disabled>  </nut-tab-pane>
+                    <nut-tab-pane title="小组" pane-key="group" disabled>  </nut-tab-pane>
+                    <nut-tab-pane title="话题" pane-key="post" disabled>  </nut-tab-pane>
+                    <nut-tab-pane title="用户" pane-key="user" disabled>  </nut-tab-pane>
+                </nut-tabs>
             </div>
-            <virtual-list :data="choose.data">
-                <template #row="{data}">
-                    <div @click="choose.info(data)">
-                        {{ data }}
-                    </div>
-                </template>
-            </virtual-list>
-            <div class="item" v-for="i in 20">
-                <div @click="choose.info(i)">
-                    课程名称
-                    分类
-                    院系
-                    教师
-                    学分
-                    校区
-                </div>
+            <div>
+                <ul>
+                    <li v-for="item in rows.course" @click="jump(item.id!)">
+                        {{item}}
+                    </li>
+                </ul>
             </div>
         </div>
     </layout>
