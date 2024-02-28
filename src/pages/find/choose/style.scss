@@ -1,7 +1,21 @@
+.box {
+  @apply
+  h-full
+  flex flex-col
+}
+
 .wrapper {
   @apply
-  min-h-full
-  bg-red-200
+  flex-1
+  ;
+}
+
+.container {
+  height: calc(100vh - 126px - env(safe-area-inset-bottom));
+  max-height: calc(100vh - 126px - env(safe-area-inset-bottom));
+  @apply
+  overflow-y-scroll
+  pt-2
   ;
 }
 

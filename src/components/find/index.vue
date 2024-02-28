@@ -1,19 +1,25 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
-import InPut from "./index";
+import {useInput} from "./index";
 
-const props = defineProps<{}>()
+const props = defineProps<{
+}>()
+const emit = defineEmits<{
+    onKeydown: string
+}>()
 
-const input = reactive(new InPut())
-onMounted(() => {
-    input.init()
-})
+const {
+    searchText, placeHolder, list, searchHistory,
+    text
+} = useInput()
 
-const emit = defineEmits(['confirm'])
 function notify() {
-    emit('confirm', input.query())
+    emit('onKeydown', text.value)
 }
-// const placeHolder = computed(() => input.searchText === '' ? input.placeHolder : input.searchText)
+
+function suggest() {
+    console.log(text.value)
+}
 
 </script>
 
@@ -21,11 +27,11 @@ function notify() {
     <div class="wrapper">
         <!--        -->
         <div class="input-box">
-            <div class="icon" @click="input.query">
+            <div class="icon" @click="notify">
                 icon
             </div>
-            <input v-model="input.searchText" class="search-text" :placeholder="input.placeHolder"
-                   @input="input.suggest"
+            <input v-model="searchText" class="search-text" :placeholder="placeHolder"
+                   @input="suggest"
                    @confirm="notify">
         </div>
 

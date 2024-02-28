@@ -9,7 +9,7 @@ onShow(() => {
     }
 })
 
-function jump(keyword: string) {
+function jump2search(keyword: string) {
     uni.navigateTo({
         url: `/pages/find/choose/index?keyword=${keyword}`
     })
@@ -20,22 +20,17 @@ function jump(keyword: string) {
     <layout>
         <div class="content">
             <div class="find ">
-                <find @confirm="jump"></find>
+                <find @onKeydown="jump2search"></find>
                 <div class="recent">
                     <div class="title">
                         最近搜索
                     </div>
-                    <div class="user-list">
-                        用户{{  }}
-                    </div>
                     <div class="text">
-                        词条
                         {{  }}
                     </div>
                 </div>
             </div>
             <div class="category">
-                <course-category></course-category>
             </div>
             <div id="recommend">
 

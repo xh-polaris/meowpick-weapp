@@ -6,17 +6,30 @@ const props = defineProps<{
     id: string
 }>()
 
-const {list, like, next} = useCourseComment(props)
+const {list, like, next, fetch, page} = useCourseComment(props)
+const show = ref(false)
 
 function format(time: string): string {
     return dayjs(time).format()
 }
+
+function onComment() {
+    page.value = 0
+    list.value = {}
+    fetch(props.id, page.value);
+    show.value = false
+}
+
 </script>
 
 <template>
     <div class="index">
+        <nut-popup v-model:visible="show" position="bottom" round>
+            <course-comment :id="id" @commit="onComment"/>
+        </nut-popup>
+
         <div class="new-box">
-            <div class="new-comment" @click="next">
+            <div class="new-comment" @click="show = true">
                 +
             </div>
         </div>
@@ -25,7 +38,8 @@ function format(time: string): string {
                 <div class="item">
                     <header class="header">
                         <div class="avatar">
-                            <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">{{item.uid[0]}}</nut-avatar>
+                            <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">{{ item.uid[0] }}
+                            </nut-avatar>
                         </div>
                         <div class="user-time">
                             <div class="name">name</div>

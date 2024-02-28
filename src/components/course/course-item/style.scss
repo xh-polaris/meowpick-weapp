@@ -1,0 +1,51 @@
+$card: #ffffffb3;
+$main: #191919;
+$second: #818181;
+.index {
+  @apply
+  relative
+  mb-2 p-2 pl-4 rounded
+  bg-white
+  overflow-hidden
+  ;
+
+  &::before {
+    content: "";
+    @apply
+    absolute
+    h-full  w-2
+    left-0 top-0
+    bg-red-400
+    ;
+  }
+}
+
+.info-wrapper {
+  @apply
+  flex
+
+  h-28
+  ;
+
+}
+
+.img {
+  @apply
+  rounded-lg
+  mr-4 h-full;
+
+  image {
+    @apply
+    w-24 h-full
+    ;
+  }
+}
+
+.title {
+  @apply
+  text-gray-800 font-bold;
+}
+
+.des {
+  color: $second;
+}

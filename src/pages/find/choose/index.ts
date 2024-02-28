@@ -10,7 +10,13 @@ type choose = {
 export function useChoose() {
     const keyword = shallowRef('')
     const type = shallowRef<"course" | "teacher" | "comment" | "post">('course')
-    const rows = ref<choose>({})
+    const rows = ref<choose>({
+        "course": [],
+        "teacher": [],
+        "comment": [],
+        "post": []
+    })
+    const page = ref(0)
 
     function jump(id: string) {
         uni.navigateTo({
@@ -18,19 +24,27 @@ export function useChoose() {
         })
     }
 
-    watchEffect(() => {
+    function search(page: number) {
         if (keyword.value.length > 0) {
             http.SearchController.search({
-                keyword: keyword.value, type: type.value
+                keyword: keyword.value, type: type.value, page, size: 5
             }).then(res => {
-                console.log(res.data.payload)
-                rows.value[type.value] = res.data.payload.rows
+                rows.value[type.value] = [
+                    ...rows.value[type.value]!,
+                    ...res.data.payload.rows!
+                ]
             })
         }
+    }
+
+    watch([page], () => search(page.value))
+    watch([keyword, type], () => {
+        rows.value[type.value] = []
+        search(0)
     })
 
     return {
-        keyword, type, rows,
+        keyword, type, rows, page,
         jump
     }
 }

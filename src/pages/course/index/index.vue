@@ -6,10 +6,6 @@ const {fetch, id, course, score, teachers} = useCourse()
 onLoad((options: { id: string }) => {
     fetch(options.id)
 })
-
-function render_des(ls: any[]): string {
-    return ls.join(' / ')
-}
 </script>
 
 <template>
@@ -17,21 +13,7 @@ function render_des(ls: any[]): string {
         <div class="course-box">
             <div>
                 <div class="info">
-                    <div class="info-wrapper">
-                        <div class="img">
-<!--                            <img v-if="item.avatar != 'avatar'" :src="item.avatar" alt="">-->
-                            <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)" >{{course.data.name[0]}}</nut-avatar>
-                        </div>
-                        <div class="msg">
-                            <div class="title">
-                                {{ course.data.name }}
-                            </div>
-                            <div class="des">
-                                {{render_des([course.data.point, course.data.category, course.data.campuses]) }}
-                            </div>
-
-                        </div>
-                    </div>
+                    <course-item :data="course.data"/>
                     <div class="action">
                         <!--                        btn-->
                     </div>

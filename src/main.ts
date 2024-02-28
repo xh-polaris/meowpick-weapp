@@ -4,6 +4,7 @@ import * as Pinia from 'pinia';
 import { createUnistorage } from 'pinia-plugin-unistorage'
 
 // import "tailwindcss/tailwind.css"
+import './main.scss'
 
 export function createApp() {
   const app = createSSRApp(App);

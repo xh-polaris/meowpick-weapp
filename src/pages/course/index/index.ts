@@ -1,16 +1,6 @@
 import api from "@/config/utils/http";
-import type {CourseVO, Course, TeacherVO} from "@/api/data-contracts";
+import type { Course, TeacherVO} from "@/api/data-contracts";
 import {useCourseStore} from "@/config";
-
-
-type Instance = {
-    id: string
-    course: Course
-    score: number[]
-    teachers: TeacherVO[]
-}
-
-
 
 export function useCourse() {
     const id = ref('')

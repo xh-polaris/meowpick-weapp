@@ -3,10 +3,6 @@ import type {CommentVO} from "@/api/data-contracts";
 type Props = {
     id: string
 }
-type Instance = {
-    data: CommentVO[]
-    page: number
-}
 
 export function useCourseComment(p: Props) {
     const page = shallowRef(0)
@@ -37,6 +33,6 @@ export function useCourseComment(p: Props) {
 
     return {
         list, page,
-        like, next
+        like, next,fetch
     }
 }

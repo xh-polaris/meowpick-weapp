@@ -1,44 +1,21 @@
-import Index from "@/pages/find/choose/index.vue";
+import type {SearchHistoryVO} from "@/api/data-contracts";
 
-function getText(input: InPut): string {
-    return input.searchText.length ? input.searchText : input.placeHolder
-}
+export const useInput = () => {
+    const searchText = shallowRef('')
+    const placeHolder = shallowRef('搜索')
+    const list = shallowRef<any[]>([])
+    const searchHistory = shallowRef<SearchHistoryVO[]>([])
 
-function getPlaceholder(input: InPut) {
-    http.SearchController.guess().then(res => {
-        input.placeHolder = res.data.payload
+    const text = computed(() => {
+        if (searchText.value != undefined && searchText.value.length > 0) {
+            return searchText.value
+        } else {
+            return placeHolder.value
+        }
     })
-}
 
-function getSearchHistory(input: InPut) {
-    http.SearchController.recent().then(res => {
-        input.searchHistory = res.data.payload
-    })
-}
-
-export default class InPut implements InitializeComponent {
-    init(): void {
-        getPlaceholder(this);
-        getSearchHistory(this);
-    }
-
-    public searchText: string
-    public placeHolder: string
-    public list: any[]
-    public searchHistory: any[]
-
-    constructor() {
-        this.searchText = ''
-        this.placeHolder = ''
-        this.list = []
-        this.searchHistory = []
-    }
-
-    query() {
-        return getText(this)
-    }
-
-    suggest() {
-        console.log('suggest', this.searchText)
+    return {
+        searchText, placeHolder, list, searchHistory,
+        text
     }
 }
