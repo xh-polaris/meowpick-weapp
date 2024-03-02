@@ -1,137 +1,57 @@
+<style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
-import User from '../index'
+type Props = {}
+const props = defineProps<Props>()
 
-const user = reactive(new User())
-
-function onLogin(){
-  uni.login({
-    provider: 'weixin',
-    success: res => {
-      console.log("user.code: " + user.code)
-      console.log(res)
-      user.code = res.code //获得code
-      console.log("user.code: " + user.code)
-
-      uni.request({
-        url: "https://meowchat.xhpolaris.com/auth/sign_in",
-        method: "POST",
-        data: {
-          "authId": "wxdffc445bde3313aa",
-          "authType": "wechat",
-          "verifyCode": res.code,
-        },
-        success: function (res) {
-          console.log(res)
-
-          if (res.statusCode == 200) {
-            uni.setStorageSync("userId", res.data.userId)
-            //uni.setStorageSync("accessToken", res.data.accessToken)
-            //uni.setStorageSync("accessExpire", res.data.accessExpire)
-
-            useTokenStore().setData(res.data.accessToken)
-
-            uni.switchTab({
-              url: "/pages/index/index/index"
-            })
-          }
-
+function LoginDL() {
+    // 传用户名和信息的接口
+    uni.getUserProfile({ //获取微信信息
+        desc: '用于获取您的个人信息', // 声明获取用户个人信息后的用途，不超过30个字符
+        success: res1 => {  //接口调用成功的回调
+            console.log(res1);
         }
-      })
-    }
-  })
-
+    })
 }
 
-onShow(() => {
-  console.log(user.getName())
+function login() {
+    uni.getUserProfile({
+        desc: '你的授权信息',
+        success: (res) => {
+            console.log(res)
+        },
+        fail: (res) => {
+            return uni.$showMsg('您取消了登录授权')
+        }
+    })//在methods节点中定义login
+}
 
-  // uni.login({
-  //   provider: 'weixin',
-  //   success: res => {
-  //     console.log("user.code: " + user.code)
-  //     console.log(res)
-  //     user.code = res.code //获得code
-  //     console.log("user.code: " + user.code)
-  //
-  //     uni.request({
-  //       url: "https://meowchat.xhpolaris.com/auth/sign_in",
-  //       method:"POST",
-  //       data: {
-  //         "authId": "wxdffc445bde3313aa",
-  //         "authType": "wechat",
-  //         "verifyCode": res.code,
-  //       },
-  //       success: function (res){
-  //         console.log(res)
-  //
-  //         if(res.statusCode == 200){
-  //           uni.setStorageSync("userId", res.data.userId)
-  //           //uni.setStorageSync("accessToken", res.data.accessToken)
-  //           //uni.setStorageSync("accessExpire", res.data.accessExpire)
-  //
-  //           useTokenStore().setData(res.data.accessToken)
-  //
-  //           uni.switchTab({
-  //             url: "/pages/index/index/index"
-  //           })
-  //
-  //           // uni.setStorage({
-  //           //   key: "userId",
-  //           //   data: res.userId,
-  //           // }).then(r => {
-  //           //   uni.setStorage({
-  //           //     key: "accessToken",
-  //           //     data: res.accessToken,
-  //           //   })
-  //           // }).then(r => {
-  //           //   uni.setStorage({
-  //           //     key: "accessExpire",
-  //           //     data: res.accessExpire,
-  //           //   })
-  //           // }).then(r => {
-  //           //   console.log("store success")
-  //           // })
-  //         }
-  //
-  //       }
-  //
-  //     })
-  //
-  //
-  //   }
-  // })
+function click() {
+//漫路h
+    uni.showLoading({
+        title: '登录中'
+    })
+    uni.login({
+        success: res => {
+            http.ActionController.weappOpenid(res.code).then((res) => {
+                http.login({
+                    'wx-openid': res.data.payload.openid,
+                    'key': res.data.payload.key
+                }).then(res => {
+                    uni.hideLoading()
+                    uni.switchTab({
+                        url: uni.getStorageSync('URL')
+                    })
+                })
+            })
+        }
+    });
 
-
-
-})
-
+}
 </script>
 
 <template>
-  <layout>
-    <view class="containar">
-      <view class="avatarUrl">
-        <button type="balanced" open-type="chooseAvatar" @chooseavatar="onChooseavatar">
-          <image :src="avatarUrl" class="refreshIcon"></image>
-        </button>
-      </view>
-
-      <view class="userName">
-        <text>昵称：</text>
-        <input type="nickName" class="weui-input" :value="userName" @blur="bindblur" placeholder="请输入昵称"
-               @input="bindinput" />
-      </view>
-
-<!--      <nut-input-->
-<!--          placeholder="请输入文本"-->
-<!--          v-model="user.code"-->
-<!--      />-->
-
-      <nut-button class="loginBtn" plain type="info" @click="onLogin()">登录</nut-button>
-    </view>
-  </layout>
+    <div class="index">
+        <button open-type="getUserInfo" @click="click">点击获取头像信息</button>
+    </div>
 </template>
 
-<style scoped>
-
-</style>
