@@ -6,10 +6,14 @@ const {fetch, id, course, score, teachers} = useCourse()
 onLoad((options: { id: string }) => {
     fetch(options.id)
 })
+
+function handleBottom() {
+    console.log('课程触底')
+}
 </script>
 
 <template>
-    <layout :color="'#F2F0ED'">
+    <layout :color="'#F2F0ED'" @onBottom="handleBottom">
         <div class="course-box">
             <div>
                 <div class="info">

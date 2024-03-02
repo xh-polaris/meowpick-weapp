@@ -15,27 +15,28 @@ function handleInputChange(input: string) {
 function handleScrollBottom() {
     page.value++
 }
+
 </script>
 
 <template>
     <layout :color="'#F2F0ED'">
         <div class="box">
             <div class="find">
-                <find @onKeydown="handleInputChange" :Text="keyword"/>
+                <find @onKeydown="handleInputChange" :keyword="keyword"/>
             </div>
             <div class="wrapper">
                 <div>
                     <nut-tabs v-model="type" swipeable type="smile" auto-height>
                         <nut-tab-pane title="课程" pane-key="course">
                             <div class="container">
-                                <scroll-view scroll-y @scrolltolower="handleScrollBottom" style="height: 100%">
+                                <scroll @bottom="handleScrollBottom">
                                     <ul>
                                         <li v-for="item in rows.course"
                                             @click="jump(item.id!)">
                                             <course-item :data="item" show-teacher/>
                                         </li>
                                     </ul>
-                                </scroll-view>
+                                </scroll>
                             </div>
                         </nut-tab-pane>
                         <nut-tab-pane title="教师" pane-key="teacher" disabled></nut-tab-pane>

@@ -27,7 +27,7 @@ function clear() {
             <nut-textarea v-model="text" />
         </div>
         <div>
-            <nut-button type="success" @click="commit">发布</nut-button>
+            <nut-button type="success" color="#67C23A" @click="commit">发布</nut-button>
         </div>
     </div>
 </template>

@@ -9,6 +9,15 @@ class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
     public CommentController = new CommentApi(this)
     public TeacherController = new TeacherApi(this)
     public ActionController = new ActionApi(this)
+
+    login(data: any) {
+        return this.request<JsonRet<{ token: string }>, any>({
+            path: `/account/login`,
+            method: "POST",
+            body: data,
+            type: ContentType.Json,
+        })
+    }
 }
 
 const api = new HttpRequest({
@@ -32,11 +41,19 @@ api.instance.interceptors.request.use(
 api.instance.interceptors.response.use(
     res => {
         const code = res.data.state.code
-        const msg = res.data.state.msg || '系统未知错误，请反馈给管理员'
+        const msg = res.data.state.errMsg || '系统未知错误，请反馈给管理员'
+        if (code === 1403) {
+            PubSub.publish("un_login")
+            return Promise.reject(new Error(msg))
+        }
+
         if (code !== 0) {
             console.error(msg)
             return Promise.reject(new Error(msg))
         } else {
+            if (res.data.payload.token != undefined) {
+                useTokenStore().store(res.data.payload.token)
+            }
             return res
         }
     },

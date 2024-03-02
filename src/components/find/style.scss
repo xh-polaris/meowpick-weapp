@@ -1,27 +1,41 @@
 .wrapper {
+  background-color: #F5F5F5;
   @apply
-  bg-green-200
+  rounded-tl-lg rounded-tr-lg
+  shadow overflow-hidden
   ;
 
   .input-box {
     @apply
     flex
-    rounded-lg shadow
-    bg-blue-200
     ;
 
     .icon {
       @apply
+      relative
       flex justify-center items-center
       w-14 h-14
       text-gray-700
       ;
+
+      &::after {
+        content: "";
+        width: 1px;
+        height: 30%;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        @apply
+        absolute
+        bg-gray-400
+        ;
+      }
     }
   }
 
   .search-text {
     @apply
-    w-full h-14 px-3 rounded
+    flex-1 h-14 px-3 rounded
     text-gray-700
     ;
   }

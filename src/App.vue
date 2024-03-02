@@ -1,8 +1,5 @@
 <script setup lang="ts">
 onLaunch(() => {
-    uni.getSystemInfo().then(res => {
-        console.log(res)
-    })
     uni.addInterceptor('navigateTo', {
         invoke(e: { url: string }) {
             useRouteStore().setUrl(e.url)

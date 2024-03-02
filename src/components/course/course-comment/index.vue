@@ -23,14 +23,14 @@ function commit() {
 <template>
     <div class="index">
         <div>
-            <nut-textarea v-model="text" placeholder="写回复"/>
+            <nut-textarea v-model="text" placeholder="短评一下"/>
         </div>
         <div class="footer">
             <div>
 
             </div>
             <div>
-                <nut-button type="success" @click="commit" :disabled="text.length == 0">发布</nut-button>
+                <nut-button type="success" size="mini" color="#67C23A" @click="commit" :disabled="text.length == 0">发布</nut-button>
             </div>
         </div>
     </div>

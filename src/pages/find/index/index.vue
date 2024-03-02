@@ -1,5 +1,7 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
+import type {SearchHistoryVO} from "@/api/data-contracts";
+
 onShow(() => {
     const curPages: any = getCurrentPages()[0];  // 获取当前页面实例
     if (typeof curPages.getTabBar === 'function' && curPages.getTabBar()) {
@@ -9,31 +11,53 @@ onShow(() => {
     }
 })
 
+const recent = shallowRef<SearchHistoryVO[]>([])
+const keyword = ref('')
+onMounted(() => {
+    // http.login('123456').then(res => {
+    //     console.log(res.data.payload)
+    // })
+    http.SearchController.recent().then(res => {
+        recent.value = res.data.payload
+    })
+})
+
 function jump2search(keyword: string) {
     uni.navigateTo({
         url: `/pages/find/choose/index?keyword=${keyword}`
     })
 }
+PubSub.subscribe('un_login', () => {
+    console.log('un login')
+})
 </script>
 
 <template>
     <layout>
         <div class="content">
             <div class="find ">
-                <find @onKeydown="jump2search"></find>
+                <find @onKeydown="jump2search" :keyword="keyword"></find>
                 <div class="recent">
                     <div class="title">
                         最近搜索
                     </div>
                     <div class="text">
-                        {{  }}
+                        <ul>
+                            <li class="item" v-for="item in recent">
+                                <div class="txt" @click="jump2search(item.text!)">
+                                    {{ item.text }}
+                                </div>
+                                <div class="icon" @click="keyword = item.text!">
+                                    ↖
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="category">
             </div>
             <div id="recommend">
-
             </div>
         </div>
     </layout>

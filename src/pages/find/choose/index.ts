@@ -6,6 +6,12 @@ type choose = {
     "comment"?: CommentVO[],
     "post"?: any[]
 }
+const map = {
+    'course': useCourseStore(),
+    'teacher': useCourseStore(),
+    'comment': useCourseStore(),
+    'post': useCourseStore(),
+}
 
 export function useChoose() {
     const keyword = shallowRef('')
@@ -19,6 +25,7 @@ export function useChoose() {
     const page = ref(0)
 
     function jump(id: string) {
+        // map[type.value].setData(item)
         uni.navigateTo({
             url: `/pages/${type.value}/index/index?id=${id}`
         })

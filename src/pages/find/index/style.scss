@@ -2,7 +2,6 @@
   @apply
   relative
   min-h-full
-  bg-red-100
   ;
 
   .recent {
@@ -17,6 +16,29 @@
       ;
     }
 
+    .text {
+
+      .item {
+        @apply
+        my-3
+        flex justify-between
+        ;
+      }
+
+      .txt {
+        @apply
+        flex-1;
+      }
+
+      .icon {
+        @apply
+        flex justify-center items-center
+        w-8
+        text-red-800 font-bold
+        ;
+      }
+    }
+
     .user-list {
       @apply
       flex
@@ -24,10 +46,5 @@
       bg-green-200
       ;
     }
-  }
-
-  .item {
-    @apply
-    bg-green-400;
   }
 }

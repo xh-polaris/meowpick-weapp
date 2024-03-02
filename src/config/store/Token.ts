@@ -6,7 +6,7 @@ export default defineStore('token-store', {
         }
     },
     actions: {
-        setData(token: any) {
+        store(token: string) {
             this.token = token
         }
     }

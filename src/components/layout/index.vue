@@ -22,9 +22,9 @@ function bottom() {
         backgroundColor: `${color}`,
         height: `calc(100vh - env(safe-area-inset-bottom) - ${bottomHeight?50:0}px)`,
         maxHeight: `calc(100vh - env(safe-area-inset-bottom) - ${bottomHeight?50:0}px)`}">
-        <scroll-view scroll-y  @scrolltolower="bottom" style="height: 100%">
+        <scroll @bottom="bottom">
             <slot/>
-        </scroll-view>
+        </scroll>
     </div>
 </template>
 

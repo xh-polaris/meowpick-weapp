@@ -31,9 +31,6 @@ function render_des(ls: any[]): string {
                 <div class="des">
                     {{ render_des([data.point, data.category, data.campuses]) }}
                 </div>
-                <div>
-                    <!--                    {{data}}-->
-                </div>
                 <div v-if="showTeacher">
                     <ul>
                         <li v-for="item in data.teachers">
