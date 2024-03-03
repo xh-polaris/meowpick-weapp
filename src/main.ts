@@ -8,8 +8,7 @@ import './main.scss'
 
 function hasPermission(url: string) {
     for (let open of ['/pages/user/Login/index']) {
-        console.log(url, open)
-        if (open === url) {
+        if (url.startsWith(open)) {
             return true;
         }
     }
@@ -21,15 +20,11 @@ function hasPermission(url: string) {
     uni.addInterceptor(item, {
         // 页面跳转前进行拦截, invoke根据返回值进行判断是否继续执行跳转
         invoke(e) {
+            console.log(e)
             if (!hasPermission(e.url)) {
-
-                // 将用户的目标路径保存下来
-                // 这样可以实现 用户登录之后，直接跳转到目标页面
-                uni.setStorageSync("URL", e.url)
-
                 uni.hideHomeButton()
                 uni.redirectTo({
-                    url: "/pages/user/Login/index",
+                    url: `/pages/user/Login/index?url=${e.url}`,
                 });
 
                 return false;

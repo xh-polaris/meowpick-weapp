@@ -14,9 +14,6 @@ onShow(() => {
 const recent = shallowRef<SearchHistoryVO[]>([])
 const keyword = ref('')
 onMounted(() => {
-    // http.login('123456').then(res => {
-    //     console.log(res.data.payload)
-    // })
     http.SearchController.recent().then(res => {
         recent.value = res.data.payload
     })
@@ -28,7 +25,7 @@ function jump2search(keyword: string) {
     })
 }
 PubSub.subscribe('un_login', () => {
-    console.log('un login')
+    uni.clearStorage()
 })
 </script>
 

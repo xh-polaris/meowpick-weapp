@@ -7,13 +7,20 @@ type Props = {
 export function useCourseComment(p: Props) {
     const page = shallowRef(0)
     const list = ref<{ [key: string]: CommentVO }>({})
+    let query = true
 
     function fetch(id: string, page: number) {
-        http.CommentController.query({id, page}).then(res => {
-            res.data.payload.rows?.forEach(comment => {
-                list.value[comment.id!] = comment
+        if (page == 0) {
+            query = true
+        }
+        if (query) {
+            http.CommentController.query({id, page}).then(res => {
+                res.data.payload.rows?.forEach(comment => {
+                    list.value[comment.id!] = comment
+                })
+                query = Object.values(list.value).length < res.data.payload.total!
             })
-        })
+        }
     }
 
     function like(target: string) {
@@ -26,13 +33,14 @@ export function useCourseComment(p: Props) {
         page.value++
     }
 
-    // () => [p.id, ins.page],
     watchEffect(() => {
-        fetch(p.id, page.value);
+        if (p.id != '') {
+            fetch(p.id, page.value);
+        }
     })
 
     return {
         list, page,
-        like, next,fetch
+        like, next, fetch
     }
 }

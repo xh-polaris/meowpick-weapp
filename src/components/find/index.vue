@@ -19,7 +19,7 @@ function notify() {
 }
 
 function suggest() {
-    console.log(text.value)
+
 }
 
 </script>

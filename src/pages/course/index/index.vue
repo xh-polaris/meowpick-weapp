@@ -2,24 +2,47 @@
 <script setup lang="ts">
 import {useCourse} from "./index";
 
+let course_id = ''
 const {fetch, id, course, score, teachers} = useCourse()
 onLoad((options: { id: string }) => {
-    fetch(options.id)
+    course_id = options.id
+})
+onShow(() => {
+    console.log(course_id)
+    fetch(course_id)
 })
 
 function handleBottom() {
-    console.log('课程触底')
+    PubSub.publish("comment-next")
+}
+
+function notifyCourse() {
+    PubSub.publish("comment-open")
+}
+
+function jump2score(code: number) {
+    uni.navigateTo({
+        url: `/pages/course/comment/index?id=${id.value}&code=${code}`
+    })
 }
 </script>
 
 <template>
     <layout :color="'#F2F0ED'" @onBottom="handleBottom">
         <div class="course-box">
+            <div class="new-box" @click="notifyCourse">
+                +
+            </div>
             <div>
                 <div class="info">
                     <course-item :data="course.data"/>
                     <div class="action">
-                        <!--                        btn-->
+                        <div class="action_btn" @click="jump2score(0)">
+                            想学
+                        </div>
+                        <div class="action_btn" @click="jump2score(1)">
+                            学过
+                        </div>
                     </div>
                 </div>
                 <div class="score">
@@ -60,7 +83,7 @@ function handleBottom() {
                     </div>
                 </div>
                 <div>
-                    <course-comment-list :id="id"/>
+                    <course-comment-list :id="id" :show="show"/>
                 </div>
             </div>
         </div>

@@ -8,15 +8,31 @@ $second: #818181;
   ;
 }
 
+.new-box {
+  position: sticky;
+  top: 95%;
+  left: 90%;
+  z-index: 1;
+
+  @apply
+  flex justify-center items-center
+  w-9 h-9
+  rounded-full
+  bg-blue-200
+  ;
+}
 .action {
   @apply
-  ml-24;
+  ml-24
+  flex justify-between
+  my-4
+  ;
 
-  .action-btn {
+  .action_btn {
     @apply
-    py-2 px-6
-    rounded-lg
-    bg-white
+    py-2 px-8
+    rounded
+    bg-white shadow
     text-sm font-bold;
   }
 }

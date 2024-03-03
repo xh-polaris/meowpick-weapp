@@ -1,0 +1,50 @@
+.tags {
+  @apply
+  flex
+  ;
+
+  .add_tag {
+    @apply
+    mr-3
+    ;
+  }
+
+  .tag_list {
+    @apply
+    flex
+    ;
+  }
+
+  .tag {
+    @apply
+    mx-2
+    ;
+  }
+}
+
+.score {
+  @apply
+  mb-4
+  ;
+
+  .title {
+    font-size: .75rem;
+    @apply
+    my-2
+    text-gray-300
+    flex justify-center
+    ;
+  }
+
+  .rate {
+    @apply
+    flex justify-center
+    ;
+  }
+}
+
+.button {
+  @apply
+  flex justify-center
+  ;
+}
