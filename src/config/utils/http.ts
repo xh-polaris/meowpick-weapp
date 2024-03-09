@@ -22,7 +22,7 @@ class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
 
 const api = new HttpRequest({
     // paramsSerializer: (params) => qs.stringify(params, { indices: false }),
-    baseURL: process.env.VITE_SERVER_HOST_PORT,
+    baseURL: import.meta.env.VITE_SERVER_HOST_PORT,
     adapter: UniAdapter, // 指定适配器
     timeout: 3000
 })

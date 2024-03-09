@@ -7,7 +7,7 @@ const props = defineProps<Props>()
 
 const id = ref('')
 
-onLoad((options: { id: string, code: string }) => {
+onLoad((options: any) => {
     code.value = options.code
     id.value = options.id
 })
@@ -31,6 +31,9 @@ function cancel() {
 }
 
 function confirm() {
+    if (areaTxt.value == '') {
+        return;
+    }
     if (tags.value.includes(areaTxt.value)) {
         areaShow.value = false
         areaTxt.value = ''
@@ -40,13 +43,17 @@ function confirm() {
     areaShow.value = false
     areaTxt.value = ''
 }
+
+function drop(text: string) {
+    tags.value = tags.value.filter(i => i != text)
+}
 </script>
 
 <template>
-    <modal v-if="areaShow" title="新增空间" confirm-text="保存" cancel-text="取消" @cancel="cancel"
-           @confirm="confirm">
-        <input type="text" v-model="areaTxt" placeholder="标签" maxlength="5"/>
-    </modal>
+    <nut-dialog v-model:visible="areaShow" @cancel="cancel" @ok="confirm">
+        <nut-input placeholder="标签" v-model="areaTxt" show-word-limit :max-length="5"/>
+    </nut-dialog>
+
     <div class="index">
         <nut-collapse>
             <nut-collapse-item title="为课程打标签">
@@ -55,16 +62,19 @@ function confirm() {
                         +新标签
                     </div>
                     <div class="tag_list">
-                        <div class="tag" v-for="tag in tags">
-                            <nut-tag color="#FA2400" plain closeable @close="close(tag)">
+                        <span class="tag" v-for="tag in tags">
+                            <span>
                                 {{ tag }}
-                            </nut-tag>
-                        </div>
+                            </span>
+                            <span class="close" @click="drop(tag)">
+                                x
+                            </span>
+                        </span>
                     </div>
                 </div>
             </nut-collapse-item>
         </nut-collapse>
-        <div class="score">
+        <div class="score" v-if="code == '1'">
             <div class="title">
                 为课程评分
             </div>

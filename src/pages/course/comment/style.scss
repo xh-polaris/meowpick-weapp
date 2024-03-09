@@ -1,25 +1,30 @@
 .tags {
   @apply
-  flex
+  flex items-center
   ;
 
   .add_tag {
+    width: 20%;
     @apply
-    mr-3
+    py-1.5
     ;
   }
 
   .tag_list {
     @apply
-    flex
+    flex flex-1
     ;
   }
+}
 
-  .tag {
-    @apply
-    mx-2
-    ;
-  }
+.tag {
+  @apply
+  mx-2 px-2 py-1 inline-block
+  rounded
+  text-white
+  ;
+  background-color: #FA685D;
+
 }
 
 .score {

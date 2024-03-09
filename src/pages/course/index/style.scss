@@ -44,6 +44,7 @@ $second: #818181;
   ;
 }
 
+
 .action {
   @apply
   ml-28
@@ -58,9 +59,32 @@ $second: #818181;
     rounded-lg
     bg-white
     text-sm font-bold;
+
+    &.active {
+      color: white;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, .23);
+    }
   }
 }
 
+.action-show {
+  @apply
+  ml-28
+  flex justify-between items-center
+  my-4 py-1.5 px-1.5 rounded
+  ;
+
+  color: $card;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, .23);
+}
+
+.action-score {
+  @apply
+  flex justify-between items-center
+  ;
+}
 
 .score {
   @apply

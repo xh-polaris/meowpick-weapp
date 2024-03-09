@@ -26,7 +26,7 @@ function like() {
                     <image :src="data.user?.avatar"></image>
                 </div>
                 <div class="name">
-                    {{ data.user.name }}
+                    {{ data.user?.name }}
                 </div>
             </div>
             <div class="time">
@@ -39,9 +39,9 @@ function like() {
         <div class="operations">
             <div class="actions">
                 <div class="item like" :class="{active: data.relation?.like}" @click="like">
-                    <span>{{ data.relation.like_cnt }}</span>
+                    <span>{{ data.relation?.like_cnt }}</span>
                     <div class="icon">
-                        icon
+                        ❤
                     </div>
                 </div>
             </div>

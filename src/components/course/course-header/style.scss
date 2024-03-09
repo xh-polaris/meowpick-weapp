@@ -1,6 +1,4 @@
-$card: #ffffffb3;
-$main: #191919;
-$second: #818181;
+@import "src/main";
 .index {
   @apply
   relative text-white
@@ -19,8 +17,9 @@ $second: #818181;
   @apply
   rounded-lg
   w-24 h-36 mr-5
-  bg-red-200
   ;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.23);
 
   image {
     @apply

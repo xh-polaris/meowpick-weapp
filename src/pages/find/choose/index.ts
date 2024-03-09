@@ -1,7 +1,7 @@
-import type {CommentVO, CourseVO, TeacherVO} from "@/api/data-contracts";
+import type {CommentVO, Course, TeacherVO} from "@/api/data-contracts";
 
 type choose = {
-    "course"?: CourseVO[],
+    "course"?: Course[],
     "teacher"?: TeacherVO[],
     "comment"?: CommentVO[],
     "post"?: any[]

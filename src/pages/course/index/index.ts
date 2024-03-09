@@ -3,8 +3,7 @@ import {useCourseStore} from "@/config";
 
 export function useCourse() {
     const id = ref('')
-    const score = shallowRef<number[]>([])
-    const course = shallowRef<Course>({data: useCourseStore().course, leaned: 0, wanted: 0, want: false, learn: false})
+    const course = shallowRef<Course>({data: useCourseStore().course})
     const teachers = shallowRef<TeacherVO[]>([])
 
     function fetch(data: string) {
@@ -17,14 +16,10 @@ export function useCourse() {
                 teachers.value = res.data.payload
             })
         })
-        http.CoureLearnController.courseScoreList(data).then(res => {
-            // ins.score = res.data.payload
-            score.value = res.data.payload
-        })
     }
 
     return {
-        id, score, course, teachers,
+        id, course, teachers,
         fetch
     }
 }

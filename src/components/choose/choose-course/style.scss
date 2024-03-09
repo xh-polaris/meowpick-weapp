@@ -1,22 +1,9 @@
+@import "src/main";
 .index {
   @apply
   relative
   p-3 mb-5
   ;
-
-  &::after {
-    content: "";
-    height: 1px;
-    width: 60%;
-    background-color: #81818140;
-    left: 50%;
-    transform: translateX(-50%);
-
-    @apply
-    absolute
-    -bottom-1
-    ;
-  }
 }
 
 .imgs {
@@ -29,16 +16,20 @@
     @apply
     w-28 h-36 rounded-xl
     overflow-hidden
-    bg-red-200
     ;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 
   .course-time {
     @apply
     flex-1 rounded-xl overflow-hidden
     ml-5
-    bg-orange-200
     ;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 }
 
@@ -62,4 +53,9 @@
     mr-2
     ;
   }
+}
+
+.desc {
+  color: $second;
+  font-size: .84rem;
 }

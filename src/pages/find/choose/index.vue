@@ -4,7 +4,7 @@ import {useChoose} from './index'
 
 // const choose = reactive(new Choose())
 const {type, keyword, jump, rows, page} = useChoose()
-onLoad((options: { keyword: string }) => {
+onLoad((options: any) => {
     keyword.value = options.keyword
     PubSub.publish('commit_input', options.keyword)
 })
@@ -32,7 +32,7 @@ function handleScrollBottom() {
                             <div class="container">
                                 <scroll @bottom="handleScrollBottom">
                                     <ul>
-                                        <li v-for="item in rows.course" @click="jump(item.id!)">
+                                        <li v-for="item in rows.course" @click="jump(item.data?.id!)">
                                             <choose-course :data="item"/>
                                         </li>
                                     </ul>

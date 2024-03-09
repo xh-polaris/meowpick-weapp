@@ -25,10 +25,13 @@ export default defineConfig(({command, mode}) => {
             },
         },
         plugins: [
-            // VComponents(),
             Components({
-                resolvers: [NutResolver()],
+                resolvers: [
+                    NutResolver(),
+                ],
             }),
+            uni(),
+            // UnoCSS(),
             AutoImport({
                 imports: [
                     'vue',
@@ -40,7 +43,6 @@ export default defineConfig(({command, mode}) => {
                     'src/api/*.ts'
                 ],
             }),
-            uni(),
         ],
     }
 });
