@@ -6,6 +6,7 @@ import {useChoose} from './index'
 const {type, keyword, jump, rows, page} = useChoose()
 onLoad((options: { keyword: string }) => {
     keyword.value = options.keyword
+    PubSub.publish('commit_input', options.keyword)
 })
 
 function handleInputChange(input: string) {
@@ -19,10 +20,10 @@ function handleScrollBottom() {
 </script>
 
 <template>
-    <layout :color="'#F2F0ED'">
+    <layout>
         <div class="box">
             <div class="find">
-                <find @onKeydown="handleInputChange" :keyword="keyword"/>
+                <find @onKeydown="handleInputChange"/>
             </div>
             <div class="wrapper">
                 <div>
@@ -31,15 +32,14 @@ function handleScrollBottom() {
                             <div class="container">
                                 <scroll @bottom="handleScrollBottom">
                                     <ul>
-                                        <li v-for="item in rows.course"
-                                            @click="jump(item.id!)">
-                                            <course-item :data="item" show-teacher/>
+                                        <li v-for="item in rows.course" @click="jump(item.id!)">
+                                            <choose-course :data="item"/>
                                         </li>
                                     </ul>
                                 </scroll>
                             </div>
                         </nut-tab-pane>
-                        <nut-tab-pane title="教师" pane-key="teacher" disabled></nut-tab-pane>
+<!--                        <nut-tab-pane title="教师" pane-key="teacher" disabled></nut-tab-pane>-->
                         <nut-tab-pane title="小组" pane-key="group" disabled></nut-tab-pane>
                         <nut-tab-pane title="话题" pane-key="post" disabled></nut-tab-pane>
                         <nut-tab-pane title="用户" pane-key="user" disabled></nut-tab-pane>

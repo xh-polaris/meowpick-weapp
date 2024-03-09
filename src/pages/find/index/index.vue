@@ -12,8 +12,7 @@ onShow(() => {
 })
 
 const recent = shallowRef<SearchHistoryVO[]>([])
-const keyword = ref('')
-onMounted(() => {
+onShow(() => {
     http.SearchController.recent().then(res => {
         recent.value = res.data.payload
     })
@@ -27,13 +26,19 @@ function jump2search(keyword: string) {
 PubSub.subscribe('un_login', () => {
     uni.clearStorage()
 })
+
+function commitInput(value: string) {
+    PubSub.publish('commit_input', value)
+}
 </script>
 
 <template>
     <layout>
         <div class="content">
             <div class="find ">
-                <find @onKeydown="jump2search" :keyword="keyword"></find>
+                <div class="input">
+                    <find @onKeydown="jump2search"></find>
+                </div>
                 <div class="recent">
                     <div class="title">
                         最近搜索
@@ -44,7 +49,7 @@ PubSub.subscribe('un_login', () => {
                                 <div class="txt" @click="jump2search(item.text!)">
                                     {{ item.text }}
                                 </div>
-                                <div class="icon" @click="keyword = item.text!">
+                                <div class="icon" @click="commitInput(item.text!)">
                                     ↖
                                 </div>
                             </li>

@@ -18,8 +18,7 @@ const props = defineProps<Props>()
                  @click="console.log(item.id)"
             >
                 <div class="img">
-                    <img v-if="item.avatar != 'avatar'" :src="item.avatar" alt="">
-                    <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)" v-else>{{ item.name[0]}}</nut-avatar>
+                    <img :src="item.avatar" alt="">
                 </div>
                 <div class="info">
                     <div class="name">{{ item.name }}</div>

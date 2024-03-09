@@ -1,8 +1,7 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
 const props = defineProps<{
-    id: string,
-    show: boolean
+    id: string
 }>()
 
 const {list, like, next, fetch, page} = useCourseComment(props)
@@ -26,7 +25,7 @@ PubSub.subscribe("comment-open", () => {
 
 <template>
     <nut-popup v-model:visible="show" position="bottom" round>
-        <course-comment :id="id" @commit="onComment"/>
+        <course-comment-publish :id="id" @commit="onComment"/>
     </nut-popup>
     <div class="index">
         <ul>

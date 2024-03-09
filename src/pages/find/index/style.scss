@@ -1,13 +1,19 @@
 .content {
   @apply
   relative
-  min-h-full
+  min-h-full px-3 pt-2
   ;
+
+  .input {
+    @apply
+    rounded-lg
+    overflow-hidden
+    ;
+  }
 
   .recent {
     @apply
     py-2 mt-2
-
     ;
 
     .title {

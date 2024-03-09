@@ -8,6 +8,28 @@ $second: #818181;
   ;
 }
 
+.course-box {
+  @apply
+  px-2 pt-2 text-white
+  ;
+
+  .title {
+    @apply
+    text-white
+    font-bold mb-2
+    ;
+  }
+}
+
+.course_bottom {
+  @apply
+  bg-white
+  p-3
+  rounded-tl-xl rounded-tr-xl
+
+  ;
+}
+
 .new-box {
   position: sticky;
   top: 95%;
@@ -21,29 +43,33 @@ $second: #818181;
   bg-blue-200
   ;
 }
+
 .action {
   @apply
-  ml-24
+  ml-28
   flex justify-between
   my-4
   ;
 
   .action_btn {
+    color: $main;
     @apply
-    py-2 px-8
-    rounded
-    bg-white shadow
+    py-2.5 px-14
+    rounded-lg
+    bg-white
     text-sm font-bold;
   }
 }
 
 
 .score {
-  background-color: $card;
   @apply
+  relative
   my-2 p-2
-  rounded-lg
-  text-neutral-400;
+  rounded-lg;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.23);
+
 
   .no-score {
     @apply
@@ -52,9 +78,9 @@ $second: #818181;
     ;
   }
 
-  .title {
-    @apply
-    mb-2 ;
+  .score-number {
+    color: $card;
+    font-size: .83rem;
   }
 
   .line {
@@ -65,7 +91,6 @@ $second: #818181;
   }
 
   .tips {
-    color: $second;
     @apply
     flex
     text-sm;
@@ -89,7 +114,7 @@ $second: #818181;
 
 .teacher {
   @apply
-  mb-5;
+  mt-8 mb-5;
   .teacher-list {
     @apply
     min-h-24 my-2;
@@ -100,8 +125,7 @@ $second: #818181;
   background-color: $card;
   @apply
   py-3 px-2 my-3
-  rounded-lg
-  text-white;
+  rounded-lg;
 
   .title {
     @apply font-bold;

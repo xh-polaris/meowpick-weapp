@@ -28,14 +28,11 @@ function jump2score(code: number) {
 </script>
 
 <template>
-    <layout :color="'#F2F0ED'" @onBottom="handleBottom">
+    <layout :color="'linear-gradient(to bottom right, #A39688, #7F746A)'" @onBottom="handleBottom">
         <div class="course-box">
-            <div class="new-box" @click="notifyCourse">
-                +
-            </div>
             <div>
                 <div class="info">
-                    <course-item :data="course.data"/>
+                    <course-header :data="course.data"/>
                     <div class="action">
                         <div class="action_btn" @click="jump2score(0)">
                             想学
@@ -46,8 +43,8 @@ function jump2score(code: number) {
                     </div>
                 </div>
                 <div class="score">
-                    <div class="title">
-                        评分 ({{ score.length }}人)
+                    <div class="score-number">
+                        {{ score.length }} 人评分
                     </div>
                     <div class="star">
                         <Star :score="score" v-if="score.length"/>
@@ -56,7 +53,7 @@ function jump2score(code: number) {
                     <div class="line"/>
                     <div class="tips">
                         <div class="tips-label">{{ course.leaned }}人学过</div>
-                        <div class="tips-label">{{ course.wanted }}人想选</div>
+                        <div class="tips-label">{{ course.wanted }}人想学</div>
                     </div>
                 </div>
                 <div class="intro">
@@ -76,15 +73,19 @@ function jump2score(code: number) {
                     </div>
                 </div>
             </div>
+
+            <div class="new-box" @click="notifyCourse">
+                +
+            </div>
+        </div>
+        <div class="course_bottom">
             <div>
                 <div>
-                    <div>
-                        课评
-                    </div>
+                    课评
                 </div>
-                <div>
-                    <course-comment-list :id="id" :show="show"/>
-                </div>
+            </div>
+            <div>
+                <course-comment-list :id="id"/>
             </div>
         </div>
     </layout>

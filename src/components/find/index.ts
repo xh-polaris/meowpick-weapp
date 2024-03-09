@@ -1,7 +1,7 @@
 import type {SearchHistoryVO} from "@/api/data-contracts";
 import type {ToRefs} from 'vue'
 
-export const useInput = (props: ToRefs<{ keyword: string }>) => {
+export const useInput = () => {
     const searchText = ref('')
     const placeHolder = shallowRef('搜索')
     const list = shallowRef<any[]>([])

@@ -3,13 +3,13 @@ const props = defineProps<{
   percent: number
 }>()
 const spanStyle = computed(() => ({
-  'width': `${120 * props.percent / 100}px`,
+  'width': `${150 * props.percent / 100}px`,
   'position': 'absolute',
   'left': 0,
-  'top': '-1px',
-  'height': '6px',
+  'top': '0px',
+  'height': '8px',
   'background-color': 'orange',
-  'border-radius': '6px'
+  'border-radius': '2px'
 }))
 </script>
 
@@ -23,10 +23,10 @@ const spanStyle = computed(() => ({
 .index {
   position: relative;
   margin-left: 10px;
-  width: 120px;
-  height: 4px;
-  background: rgba(0, 0, 0, .15);
-  border-radius: 4px;
+  width: 150px;
+  height: 8px;
+  background: rgba(233,233,235,.33);
+  border-radius: 2px;
 }
 </style>
 

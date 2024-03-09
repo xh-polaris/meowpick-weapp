@@ -1,6 +1,9 @@
+$card: #ffffffb3;
+$main: #191919;
+$second: #818181;
 .index {
   @apply
-  w-full
+  w-full text-white
   flex justify-center items-center
   ;
 
@@ -17,7 +20,7 @@
 
     .item {
       @apply
-      mr-2
+      mr-5
       ;
 
       .img {
@@ -26,6 +29,7 @@
         w-20 h-28
         rounded
         overflow-hidden
+        bg-red-200
         ;
 
         image {
@@ -41,7 +45,7 @@
 
       .position {
         font-size: .8rem;
-        color: #909399;
+        color: $card;
       }
     }
   }

@@ -3,8 +3,7 @@
 import type {CourseVO} from "@/api/data-contracts";
 
 type Props = {
-    data: CourseVO,
-    showTeacher: boolean
+    data: CourseVO
 }
 const props = defineProps<Props>()
 
@@ -17,26 +16,23 @@ function render_des(ls: any[]): string {
     <div class="index">
         <div class="info-wrapper">
             <div class="img">
-                <div>
-                    <img src="" alt="">
-                </div>
-                <div>
-                    <nut-avatar color="rgb(245, 106, 0)" bg-color="rgb(253, 227, 207)">{{ data.name[0] }}</nut-avatar>
-                </div>
+                <img src="" alt="">
             </div>
             <div class="msg">
-                <div class="title">
-                    {{ data.name }}
+                <div>
+                    <div class="title">
+                        {{ data.name }}
+                    </div>
+                    <div class="name">
+                        fajsiputptewtqqwesafet gfasre
+                    </div>
+                </div>
+                <div class="rank">
+                    <div class="rank-no">No.?</div>
+                    <div class="rank-name">敬请期待</div>
                 </div>
                 <div class="des">
                     {{ render_des([data.point, data.category, data.campuses]) }}
-                </div>
-                <div v-if="showTeacher">
-                    <ul>
-                        <li v-for="item in data.teachers">
-                            {{item}}
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

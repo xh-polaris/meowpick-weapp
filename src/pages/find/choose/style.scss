@@ -15,13 +15,11 @@
   max-height: calc(100vh - 126px - env(safe-area-inset-bottom));
   @apply
   overflow-y-scroll
-  pt-2
   ;
 }
 
-.item {
+.course_item {
   @apply
-  my-2
-  bg-green-200
+  bg-white
   ;
 }

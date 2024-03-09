@@ -8,11 +8,11 @@ const props = defineProps<{
 const emit = defineEmits<{
     onKeydown: string
 }>()
-const ref = toRefs(props)
+
 const {
     searchText, placeHolder, list, searchHistory,
     text
-} = useInput(ref)
+} = useInput()
 
 function notify() {
     emit('onKeydown', text.value)
@@ -22,6 +22,9 @@ function suggest() {
 
 }
 
+PubSub.subscribe("commit_input", (value) => {
+    searchText.value = value
+})
 </script>
 
 <template>
