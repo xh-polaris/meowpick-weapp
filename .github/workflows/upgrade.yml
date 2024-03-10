@@ -30,7 +30,7 @@ jobs:
         with:
           version: 8.12.1
       - name: Build Mini Program
-        run: pnpm install && pnpm build:mp-weixin
+        run: pnpm install && pnpm api && pnpm build:mp-weixin
       - name: Upload artifact
         run: node scripts/upload.mjs
 #      - name: Send Change Log

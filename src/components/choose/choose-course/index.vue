@@ -44,9 +44,8 @@ function render_des(ls: any[]): string {
         <div class="infos">
             <nut-cell>
                 <nut-ellipsis :content="data?.data!.describe" direction="end" expand-text="展开" collapse-text="收起"
-                              rows="3" symbol="…"/>
+                              rows="3" symbol="..."/>
             </nut-cell>
         </div>
     </div>
 </template>
-
