@@ -1,5 +1,12 @@
 
 
+### [3.0.5](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.4...v3.0.5) (2024-03-10)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* rm tagapi ([25df524](https://github.com/xh-polaris/meowpick-weapp/commit/25df524637738d3bf2371b07d1aa885242ce8b98))
+
 ### [3.0.4](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.3...v3.0.4) (2024-03-10)
 
 ### [3.0.3](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.2...v3.0.3) (2024-03-10)
