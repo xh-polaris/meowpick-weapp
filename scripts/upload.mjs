@@ -25,7 +25,10 @@ async function upload() {
     try {
         const result = await ci.upload({
             project,
-            version: versionTag
+            version: versionTag,
+            setting: {
+                es7: true
+            }
         });
         console.log("上传成功");
         console.log(JSON.stringify(result));

@@ -7,8 +7,6 @@ type Props = {
 }
 const props = defineProps<Props>()
 
-const emit = defineEmits<{}>()
-
 const score = props.data.score?.avg ?? 0
 function render_des(ls: any[]): string {
     return ls.join(' / ')
