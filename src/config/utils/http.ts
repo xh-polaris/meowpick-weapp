@@ -3,7 +3,6 @@ import {UniAdapter} from "uniapp-axios-adapter";
 class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
     public CourseController = new CourseApi(this)
     public SearchController = new SearchController(this)
-    public TagController = new TagApi(this)
     public CoureLearnController = new CourseLearnApi(this)
     public UserController = new UserApi(this)
     public CommentController = new CommentApi(this)
