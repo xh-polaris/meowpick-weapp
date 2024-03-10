@@ -17,7 +17,7 @@ const project = new ci.Project({
     type: "miniProgram",
     projectPath: "dist/build/mp-weixin",
     privateKeyPath: "upload.key",
-    ignores: ["node_modules/**/*"]
+    // ignores: ["node_modules/**/*"]
 });
 
 // 上传模式
