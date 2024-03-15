@@ -27,23 +27,24 @@ function handleScrollBottom() {
             </div>
             <div class="wrapper">
                 <div>
-                    <nut-tabs v-model="type" swipeable type="smile" auto-height>
-                        <nut-tab-pane title="课程" pane-key="course">
-                            <div class="container">
-                                <scroll @bottom="handleScrollBottom">
-                                    <ul>
-                                        <li v-for="item in rows.course" @click="jump(item.data?.id!)">
-                                            <choose-course :data="item"/>
-                                        </li>
-                                    </ul>
-                                </scroll>
-                            </div>
-                        </nut-tab-pane>
+                    <div class="container course-container">
+                        <scroll @bottom="handleScrollBottom">
+                            <ul>
+                                <li class="course-li" v-for="item in rows.course" @click="jump(item.data?.id!)">
+                                    <choose-course :data="item"/>
+                                </li>
+                            </ul>
+                        </scroll>
+                    </div>
+<!--                    <nut-tabs v-model="type" swipeable type="smile" auto-height>-->
+<!--                        <nut-tab-pane title="课程" pane-key="course">-->
+<!--                            -->
+<!--                        </nut-tab-pane>-->
 <!--                        <nut-tab-pane title="教师" pane-key="teacher" disabled></nut-tab-pane>-->
-                        <nut-tab-pane title="小组" pane-key="group" disabled></nut-tab-pane>
-                        <nut-tab-pane title="话题" pane-key="post" disabled></nut-tab-pane>
-                        <nut-tab-pane title="用户" pane-key="user" disabled></nut-tab-pane>
-                    </nut-tabs>
+<!--                        <nut-tab-pane title="小组" pane-key="group" disabled></nut-tab-pane>-->
+<!--                        <nut-tab-pane title="话题" pane-key="post" disabled></nut-tab-pane>-->
+<!--                        <nut-tab-pane title="用户" pane-key="user" disabled></nut-tab-pane>-->
+<!--                    </nut-tabs>-->
                 </div>
             </div>
         </div>

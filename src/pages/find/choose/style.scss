@@ -23,3 +23,24 @@
   bg-white
   ;
 }
+
+.course-container {
+  .course-li:not(:last-child) {
+    @apply
+    relative border-b-2
+    ;
+
+    &::after {
+      content: "";
+      width: 95%;
+      height: 1px;
+      background: rgba(0, 0, 0, .13);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      @apply
+      absolute
+      ;
+    }
+  }
+}

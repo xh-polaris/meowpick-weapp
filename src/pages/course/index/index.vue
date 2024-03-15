@@ -92,14 +92,14 @@ function format(time: string) {
                         <div class="tips-label">{{ course.want_cnt }}人想学</div>
                     </div>
                 </div>
-                <div class="intro">
-                    <div class="title">
-                        课程简介
-                    </div>
-                    <div class="content">
-                        {{ course.data?.describe }}
-                    </div>
-                </div>
+<!--                <div class="intro">-->
+<!--                    <div class="title">-->
+<!--                        课程简介-->
+<!--                    </div>-->
+<!--                    <div class="content">-->
+<!--                        {{ course.data?.describe }}-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="teacher">
                     <div class="title">
                         任课教师

@@ -8,7 +8,7 @@
 
 .info-wrapper {
   @apply
-  flex
+  flex h-14
   ;
 
 }
@@ -16,7 +16,7 @@
 .img {
   @apply
   rounded-lg
-  w-24 h-36 mr-5
+  w-24 mr-5
   ;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.23);

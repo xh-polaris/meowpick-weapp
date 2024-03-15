@@ -15,10 +15,10 @@ uni.switchTab({
 </script>
 
 <template>
-    <div>
-        发帖按钮
-    </div>
-    <div>
-        帖子列表
-    </div>
+<!--    <div>-->
+<!--        发帖按钮-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        帖子列表-->
+<!--    </div>-->
 </template>

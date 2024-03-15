@@ -15,14 +15,17 @@
         "types": [
             "@dcloudio/types",
             "node",
+            "@types/node",
             "@types/wechat-miniprogram",
             "@uni-helper/uni-app-types",
-            "nutui-uniapp/global.d.ts"
+            "nutui-uniapp/global.d.ts",
+            "vite/client"
         ]
     },
     //  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
     "include": [
         "src/**/*",
         "*.d.ts"
-    ]
+    ],
+    "suppressImplicitAnyIndexErrors": true
 }

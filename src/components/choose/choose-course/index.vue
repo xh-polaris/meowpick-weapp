@@ -15,14 +15,14 @@ function render_des(ls: any[]): string {
 
 <template>
     <div class="index">
-        <div class="imgs">
-            <div class="page-photo">
+<!--        <div class="imgs">-->
+<!--            <div class="page-photo">-->
 
-            </div>
-            <div class="course-time">
+<!--            </div>-->
+<!--            <div class="course-time">-->
 
-            </div>
-        </div>
+<!--            </div>-->
+<!--        </div>-->
         <div class="header">
             <div class="name">
                 {{ data?.data!.name }}
@@ -41,8 +41,9 @@ function render_des(ls: any[]): string {
         </div>
         <div class="infos">
             <nut-cell>
-                <nut-ellipsis :content="data?.data!.describe" direction="end" expand-text="展开" collapse-text="收起"
-                              rows="3" symbol="..."/>
+<!--                <nut-ellipsis :content="data?.data!.describe" direction="end" expand-text="展开" collapse-text="收起"-->
+<!--                              rows="3" symbol="..."/>-->
+                任课教师，校区，
             </nut-cell>
         </div>
     </div>
