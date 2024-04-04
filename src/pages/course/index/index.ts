@@ -1,10 +1,11 @@
-import type {Course, TeacherVO} from "@/api/data-contracts";
+import type {Course, CourseVO, TeacherVO} from "@/api/data-contracts";
 import {useCourseStore} from "@/config";
 
 export function useCourse() {
     const id = ref('')
     const course = shallowRef<Course>({data: useCourseStore().course})
     const teachers = shallowRef<TeacherVO[]>([])
+    const trends = shallowRef<CourseVO[]>([])
 
     function fetch(data: string) {
         // ins.id = data
@@ -15,11 +16,21 @@ export function useCourse() {
             http.TeacherController.getBatch(res.data.payload.data?.teachers!).then(res => {
                 teachers.value = res.data.payload
             })
+
+            let _link = course.value.data?.link ?? [];
+            let link: string[] = []
+            _link.forEach(ln => {
+                link.push(ln[0])
+            })
+
+            http.CourseController.list(link).then(res => {
+                trends.value = res.data.payload
+            })
         })
     }
 
     return {
-        id, course, teachers,
+        id, course, teachers, trends,
         fetch
     }
 }

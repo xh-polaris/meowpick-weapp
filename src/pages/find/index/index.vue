@@ -35,6 +35,7 @@ function commitInput(value: string) {
 <template>
     <layout>
         <div class="content">
+            <img src="../../../images/cat.png"/>
             <div class="find ">
                 <div class="input">
                     <find @onKeydown="jump2search"></find>
@@ -59,7 +60,7 @@ function commitInput(value: string) {
             </div>
             <div class="category">
             </div>
-            <div id="recommend">
+            <div class="recommend">
             </div>
         </div>
     </layout>

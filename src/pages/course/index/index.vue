@@ -3,12 +3,11 @@
 import {useCourse} from "./index";
 
 let course_id = ''
-const {fetch, id, course, teachers} = useCourse()
+const {fetch, id, course, teachers, trends} = useCourse()
 onLoad((options: any) => {
     course_id = options.id
 })
 onShow(() => {
-    console.log(course_id)
     fetch(course_id)
 })
 
@@ -21,7 +20,7 @@ function notifyCourse() {
 }
 
 function jump2score(code: number) {
-    if (code == 0 && self_want) {
+    if (code == 0 && self_want.value) {
         return
     }
     uni.navigateTo({
@@ -35,10 +34,11 @@ const self_learn = computed(() => {
 
     return (history?.enums ?? '') == 'end'
 })
-
 const self_want = computed(() => {
     let histories = course.value.notes?.histories ?? [];
     let history = histories[0];
+
+    console.log(history)
 
     return (history?.enums ?? '') == 'start'
 })
@@ -108,6 +108,14 @@ function format(time: string) {
                         <course-teacher-list :teachers="teachers"/>
                     </div>
                 </div>
+            </div>
+
+            <div class="trend">
+                <ul>
+                    <li class="course-li" v-for="item in trends" @click="">
+                        <choose-course :data="item"/>
+                    </li>
+                </ul>
             </div>
 
             <div class="new-box" @click="notifyCourse">

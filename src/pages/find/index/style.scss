@@ -2,7 +2,19 @@
   @apply
   relative
   min-h-full px-3 pt-2
+  bg-transparent
   ;
+
+  image {
+    top: 35%;
+    right: 0;
+    transform: translatey(-50%);
+
+    @apply
+    z-10
+    absolute
+    ;
+  }
 
   .input {
     @apply
@@ -53,4 +65,10 @@
       ;
     }
   }
+}
+
+.find, .category, .recommend {
+  @apply
+  relative z-30
+  ;
 }
