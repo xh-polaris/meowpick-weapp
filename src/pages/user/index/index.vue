@@ -1,11 +1,14 @@
 <style scoped lang="scss" src="./style.scss"/>
 <script setup lang="ts">
+import {useCourseComment} from "@/pages/user/index/index";
+
 type Props = {}
 const props = defineProps<Props>()
 
 const value = ref('1')
 
 const {list, like, next, fetch, page} = useCourseComment(props)
+fetch(page.value)
 </script>
 
 <template>
@@ -28,8 +31,8 @@ const {list, like, next, fetch, page} = useCourseComment(props)
                         </li>
                     </ul>
                 </nut-tab-pane>
-                <nut-tab-pane title="" pane-key="2" disabled>  </nut-tab-pane>
-                <nut-tab-pane title="" pane-key="3" disabled>  </nut-tab-pane>
+                <nut-tab-pane title="" pane-key="2" disabled></nut-tab-pane>
+                <nut-tab-pane title="" pane-key="3" disabled></nut-tab-pane>
             </nut-tabs>
         </div>
     </div>

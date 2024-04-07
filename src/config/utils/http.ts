@@ -1,4 +1,5 @@
 import {UniAdapter} from "uniapp-axios-adapter";
+import {ContentType} from "@/api/http-client";
 
 class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
     public CourseController = new CourseApi(this)
@@ -9,12 +10,13 @@ class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
     public TeacherController = new TeacherApi(this)
     public ActionController = new ActionApi(this)
 
-    login(data: any) {
-        return this.request<JsonRet<{ token: string }>, any>({
-            path: `/account/login`,
-            method: "POST",
+    sign_in(data: any) {
+        return this.request({
+            path: `/sign_in`,
+            method: 'POST',
             body: data,
             type: ContentType.Json,
+            baseURL: 'https://meowchat.xhpolaris.com/auth'
         })
     }
 }
@@ -39,6 +41,10 @@ api.instance.interceptors.request.use(
 
 api.instance.interceptors.response.use(
     res => {
+        if (res.data.accessToken != undefined) {
+            useTokenStore().store(res.data.accessToken)
+        }
+
         const code = res.data.state.code
         const msg = res.data.state.errMsg || '系统未知错误，请反馈给管理员'
         if (code === 1403) {
@@ -49,12 +55,9 @@ api.instance.interceptors.response.use(
         if (code !== 0) {
             console.error(msg)
             return Promise.reject(new Error(msg))
-        } else {
-            if (res.data.payload.token != undefined) {
-                useTokenStore().store(res.data.payload.token)
-            }
-            return res
         }
+
+        return res
     },
     error => {
         let {errMsg: msg} = error

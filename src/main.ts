@@ -32,7 +32,9 @@ function hasPermission(url: string) {
         }
     });
 })
-
+PubSub.subscribe('un_login', () => {
+    uni.clearStorage()
+})
 export function createApp() {
     const app = createSSRApp(App);
     const pinia = Pinia.createPinia()

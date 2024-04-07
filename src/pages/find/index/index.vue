@@ -23,9 +23,6 @@ function jump2search(keyword: string) {
         url: `/pages/find/choose/index?keyword=${keyword}`
     })
 }
-PubSub.subscribe('un_login', () => {
-    uni.clearStorage()
-})
 
 function commitInput(value: string) {
     PubSub.publish('commit_input', value)

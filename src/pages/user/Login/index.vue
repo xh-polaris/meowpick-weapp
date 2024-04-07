@@ -14,15 +14,15 @@ function click() {
     })
     uni.login({
         success: res => {
-            http.ActionController.weappOpenid(res.code).then((res) => {
-                http.login({
-                    'wx-openid': res.data.payload.openid,
-                    'key': res.data.payload.key
-                }).then(res => {
-                    uni.hideLoading()
-                    uni.switchTab({
-                        url: from
-                    })
+            http.sign_in({
+                "authId": "wxdffc445bde3313aa",
+                "authType": "wechat",
+                "verifyCode": res.code,
+                "appId": 100
+            }).then(rse => {
+                uni.hideLoading()
+                uni.switchTab({
+                    url: from
                 })
             })
         }
