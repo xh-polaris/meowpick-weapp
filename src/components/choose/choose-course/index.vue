@@ -1,50 +1,94 @@
-<style scoped lang="scss" src="./style.scss"/>
-<script setup lang="ts">
-import type {Course} from "@/api/data-contracts";
-
-type Props = {
-    data: Course
-}
-const props = defineProps<Props>()
-
-const score = props.data.score?.avg ?? 0
-function render_des(ls: any[]): string {
-    return ls.join(' / ')
-}
-</script>
-
 <template>
-    <div class="index">
-<!--        <div class="imgs">-->
-<!--            <div class="page-photo">-->
+    <div class="search-result-box">
+        <!--        <div class="imgs">-->
+        <!--            <div class="page-photo">-->
 
-<!--            </div>-->
-<!--            <div class="course-time">-->
+        <!--            </div>-->
+        <!--            <div class="course-time">-->
 
-<!--            </div>-->
-<!--        </div>-->
-        <div class="header">
-            <div class="name">
-                {{ data?.data!.name }}
-            </div>
-            <div class="score">
-                <div class="rate">
-                    <nut-rate size="11" spacing="0" v-model="score" active-color="orange" void-color="#ccc" allow-half readonly/>
-                </div>
-                <div class="num" v-if="score != 0">
-                    {{ parseFloat(data.score?.score!.toFixed(1) ?? '0') }}
-                </div>
-            </div>
-            <div class="desc">
-                {{ render_des([data?.data?.point, data?.data?.category, data?.data?.campuses]) }}
-            </div>
-        </div>
-        <div class="infos">
-            <nut-cell>
-<!--                <nut-ellipsis :content="data?.data!.describe" direction="end" expand-text="展开" collapse-text="收起"-->
-<!--                              rows="3" symbol="..."/>-->
-                任课教师，校区，
-            </nut-cell>
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="search-result">
+            <view class="title">
+                <view class="name">
+                    {{ props.data.data?.name }}
+                </view>
+                <view class="dept-name">{{ props.data.data?.category }}</view>
+            </view>
+            <view class="information">
+                <view class="circle"></view>
+                <view class="department">{{ props.data.data?.department }}</view>
+                <view class="circle"></view>
+                <view class="instructor">{{ data?.teachers }}</view>
+            </view>
+            <view class="tip"></view>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import type { Course } from '@/api/data-contracts';
+
+type Props = {
+    data: Course;
+};
+const props = defineProps<Props>();
+
+function render_des(ls: any[]): string {
+    return ls.join(' / ');
+}
+</script>
+
+<style scoped lang="scss">
+.search-result-box {
+    background-color: #b70030;
+    width: 89vw;
+    height: 34.13vw;
+    margin-top: 5vw;
+    border-radius: 3vw;
+    .search-result {
+        background-color: #ffffff;
+        width: 87vw;
+        height: 34.13vw;
+        margin-left: 1vw;
+        border-radius: 3vw;
+        box-shadow: 4px 4px 16px 0px #0000001f;
+        .title {
+            display: flex;
+            flex-direction: row;
+            .name {
+                margin-left: 4vw;
+                margin-top: 4vw;
+                font-size: 3.8vw;
+                font-weight: bold;
+            }
+            .dept-name {
+                margin-left: 2.5vw;
+                margin-top: 4.5vw;
+                font-size: 3.2vw;
+                color: #545454;
+            }
+        }
+        .information {
+            display: flex;
+            flex-direction: row;
+            margin-top: 3vw;
+            .circle {
+                width: 2vw;
+                height: 2vw;
+                border-radius: 50%;
+                background-color: #b70030;
+                margin-left: 4vw;
+                margin-top: 1.5vw;
+            }
+            .department {
+                margin-left: 1.5vw;
+                font-size: 3.5vw;
+            }
+            .instructor {
+                margin-left: 1.5vw;
+            }
+        }
+    }
+}
+</style>

@@ -1,20 +1,18 @@
-<style scoped lang="scss" src="./style.scss"/>
+<style scoped lang="scss" src="./style.scss" />
 <script setup lang="ts">
-type Props = {}
-const props = defineProps<Props>()
+type Props = {};
+const props = defineProps<Props>();
 const emit = defineEmits<{
-    bottom
-}>()
+    bottom;
+}>();
 
 function bottom() {
-    emit('bottom')
+    emit('bottom');
 }
-
 </script>
 
 <template>
-    <scroll-view scroll-y  @scrolltolower="bottom" style="height: 100%">
-        <slot/>
+    <scroll-view scroll-y @scrolltolower="bottom" style="height: 100%">
+        <slot />
     </scroll-view>
 </template>
-

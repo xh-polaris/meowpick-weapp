@@ -1,46 +1,36 @@
-import type {Ref} from "vue";
-
-const map = {
-    '0': http.CoureLearnController.start,
-    '1': http.CoureLearnController.end
-}
+import type { Ref } from 'vue';
 
 export function useComment(id: Ref<string>) {
-    const title = ref('')
-    const text = ref('')
-    const score = ref(0)
-    const tags = shallowRef<string[]>([])
-    const code = ref<'0' | '1'>('1')
+    const text = ref('');
+    const tags = ref<string[]>([]);
 
     function commit() {
         console.log(id.value, {
-            title: title.value,
             text: text.value,
-            score: score.value,
             tags: tags.value
-        })
-
-        map[`${code.value}`](id.value, {
-            title: title.value,
-            text: text.value,
-            score: score.value,
-            tags: tags.value
-        }).then(() => {
-            uni.navigateBack()
-        })
-
-        // http.CoureLearnController.start(id.value, {
-        //     title: title.value,
-        //     text: text.value,
-        //     score: score.value,
-        //     tags: tags.value
-        // }).then(() => {
-        //     uni.navigateBack()
-        // })
+        });
+        if (text.value) {
+            http.CommentController.add({
+                target: id.value,
+                text: text.value,
+                tags: tags.value
+            }).then((res) => {
+                uni.navigateBack();
+                console.log('tag', tags.value);
+                console.log('uid', res.data.payload.uid);
+            });
+        } else {
+            uni.showToast({
+                title: '未填写吐槽',
+                duration: 2000,
+                icon: 'none'
+            });
+        }
     }
 
     return {
-        title, text, score, tags, code,
+        text,
+        tags,
         commit
-    }
+    };
 }

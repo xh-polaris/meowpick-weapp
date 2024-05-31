@@ -1,71 +1,28 @@
 {
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "花狮选课猫",
+    "navigationBarTitleText": "",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "usingComponents": {
-      "van-icon": "/wxcomponents/vant-weapp/dist/icon/index",
-      "van-tabbar": "/wxcomponents/vant-weapp/dist/tabbar/index",
-      "van-tabbar-item": "/wxcomponents/vant-weapp/dist/tabbar-item/index"
-    }
-  },
-  "tabBar": {
-    "custom": true,
-    "list": [
-      {
-        "pagePath": "pages/index/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/group/index/index",
-        "text": "群组"
-      },
-      {
-        "pagePath": "pages/find/index/index",
-        "text": "搜索"
-      },
-      {
-        "pagePath": "pages/message/index/index",
-        "text": "消息"
-      },
-      {
-        "pagePath": "pages/user/index/index",
-        "text": "个人"
-      }
-    ]
+    "backgroundColor": "#F8F8F8"
   },
   "pages": [
+//    {
+//      "path": "pages/user/Login/index",
+//      "style": {
+//        "navigationBarTitleText": "登录"
+//      }
+//    },
+    {
+		"path": "pages/home/home",
+		"style": {
+			"navigationStyle": "custom"
+		}
+	},
     {
       "path": "pages/index/index/index",
       "style": {
         "navigationBarTitleText": "首页"
-      }
-    },
-    {
-      "path": "pages/index/post/index",
-      "style": {}
-    },
-    {
-      "path": "pages/error/index/index",
-      "style": {}
-    },
-    {
-      "path": "pages/user/index/index",
-      "style": {
-        "navigationBarTitleText": "个人中心"
-      }
-    },
-    {
-      "path": "pages/user/Logout/index",
-      "style": {
-        "navigationBarTitleText": "退出"
-      }
-    },
-    {
-      "path": "pages/user/Login/index",
-      "style": {
-        "navigationBarTitleText": "登录"
       }
     },
     {
@@ -74,7 +31,9 @@
     },
     {
       "path": "pages/course/comment/index",
-      "style": {}
+      "style": {
+        "enablePullDownRefresh": true
+      }
     },
     {
       "path": "pages/find/index/index",
@@ -82,15 +41,15 @@
     },
     {
       "path": "pages/find/choose/index",
-      "style": {}
+      "style": {
+        "navigationStyle": "custom"
+      }
     },
     {
-      "path": "pages/group/index/index",
-      "style": {}
-    },
-    {
-      "path": "pages/message/index/index",
-      "style": {}
+      "path": "pages/my-comments/my-comments",
+      "style": {
+        "enablePullDownRefresh": true
+      }
     }
   ]
 }

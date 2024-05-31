@@ -1,137 +1,133 @@
-<style scoped lang="scss" src="./style.scss"/>
-<script setup lang="ts">
-import {useCourse} from "./index";
-
-let course_id = ''
-const {fetch, id, course, teachers, trends} = useCourse()
-onLoad((options: any) => {
-    course_id = options.id
-})
-onShow(() => {
-    fetch(course_id)
-})
-
-function handleBottom() {
-    PubSub.publish("comment-next")
-}
-
-function notifyCourse() {
-    PubSub.publish("comment-open")
-}
-
-function jump2score(code: number) {
-    if (code == 0 && self_want.value) {
-        return
-    }
-    uni.navigateTo({
-        url: `/pages/course/comment/index?id=${id.value}&code=${code}`
-    })
-}
-
-const self_learn = computed(() => {
-    let histories = course.value.notes?.histories ?? [];
-    let history = histories[0];
-
-    return (history?.enums ?? '') == 'end'
-})
-const self_want = computed(() => {
-    let histories = course.value.notes?.histories ?? [];
-    let history = histories[0];
-
-    console.log(history)
-
-    return (history?.enums ?? '') == 'start'
-})
-const step = computed(() => (course.value.notes?.histories ?? [])[0])
-
-function format(time: string) {
-    return useTime(parseInt(time))
-}
-</script>
-
 <template>
-    <layout :color="'linear-gradient(to bottom right, #A39688, #7F746A)'" @onBottom="handleBottom">
-        <div class="course-box">
-            <div>
-                <div class="info">
-                    <course-header :data="course.data"/>
-                    <div class="action" v-if="!self_learn">
-                        <div class="action_btn" :class="{active: self_want}" @click="jump2score(0)">
-                            <span v-if="self_want">
-                                已想学
-                            </span>
-                            <span v-else>
-                                想学
-                            </span>
-                        </div>
-                        <div class="action_btn" @click="jump2score(1)">
-                            学过
-                        </div>
-                    </div>
-                    <div class="action-show" v-else>
-                        <div class="action-score">
-                            <span style="color: white">已学过</span>
-                            <nut-rate size="11" spacing="0" v-model="course.notes!.score" active-color="orange" void-color="#ccc" allow-half readonly/>
-                        </div>
-                        <div class="time">
-                            {{ format(step.crateAt!) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="score">
-                    <div class="score-number">
-                        {{ course.score?.total }} 人评分
-                    </div>
-                    <div class="star">
-                        <Star :score="course.score" v-if="course.score?.total! > 0"/>
-                        <div class="no-score" v-else>暂无评分</div>
-                    </div>
-                    <div class="line"/>
-                    <div class="tips">
-                        <div class="tips-label">{{ course.learn_cnt }}人学过</div>
-                        <div class="tips-label">{{ course.want_cnt }}人想学</div>
-                    </div>
-                </div>
-<!--                <div class="intro">-->
-<!--                    <div class="title">-->
-<!--                        课程简介-->
-<!--                    </div>-->
-<!--                    <div class="content">-->
-<!--                        {{ course.data?.describe }}-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="teacher">
-                    <div class="title">
-                        任课教师
-                    </div>
-                    <div class="teacher-list">
-                        <course-teacher-list :teachers="teachers"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="trend">
-                <ul>
-                    <li class="course-li" v-for="item in trends" @click="">
-                        <choose-course :data="item"/>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="new-box" @click="notifyCourse">
-                +
-            </div>
-        </div>
-        <div class="course_bottom">
-            <div>
-                <div>
-                    课评
-                </div>
-            </div>
-            <div>
-                <course-comment-list :id="id"/>
-            </div>
-        </div>
+    <layout @onBottom="handleBottom()" class="background">
+        <view class="top-bar">
+            <view class="go-back" @click="goBack">
+                <image src="../../..//images/go-back.png" class="icon"></image>
+                <view class="txt">{{ course.data.name }}</view>
+            </view>
+        </view>
+        <view class="ellipse"></view>
+        <course-header :data="course.data" :teachers="teachers" class="information" />
+        <view class="line"></view>
+        <view class="comment-box">
+            <view class="title">课程吐槽</view>
+            <CommentList class="comment-item" :id="id"></CommentList>
+        </view>
+        <view class="comment-button">
+            <image class="new-box" src="../../..//images/comment-button.png" @click="jump2comment()"></image>
+        </view>
     </layout>
 </template>
 
+<script setup lang="ts">
+import { useCourse } from './index';
+import CommentList from '@/pages/course/index/CommentList.vue';
+
+let course_id = '';
+const { fetch, id, course, teachers, trends } = useCourse();
+onLoad((options: any) => {
+    course_id = options.id;
+});
+onShow(() => {
+    fetch(course_id);
+});
+
+function handleBottom() {
+    PubSub.publish('comment-next');
+}
+
+function jump2comment() {
+    uni.navigateTo({
+        url: `/pages/course/comment/index?id=${id.value}`
+    });
+}
+
+function format(time: string) {
+    return useTime(parseInt(time));
+}
+
+const goBack = () => {
+    uni.navigateBack({
+        delta: 1
+    });
+};
+</script>
+
+<style scoped lang="scss">
+.background {
+    display: flex;
+    flex-direction: column;
+}
+.top-bar {
+    position: absolute;
+    top: 0;
+    background-color: #b70030;
+    width: 100vw;
+    height: 26vw;
+    z-index: 2;
+    .go-back {
+        position: absolute;
+        top: 15vw;
+        left: 5vw;
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        .txt {
+            color: #ffffff;
+            width: 100vw;
+            font-size: 5vw;
+            margin-left: 2vw;
+            margin-top: 0.5vw;
+            letter-spacing: 0.2vw;
+            font-weight: bold;
+        }
+        .icon {
+            width: 5vw;
+            height: 8.53vw;
+        }
+    }
+}
+.ellipse {
+    position: absolute;
+    top: 22vw;
+    background-color: #b70030;
+    width: 100vw;
+    height: 8vw;
+    border-radius: 50%;
+}
+.information {
+    position: relative;
+    top: 30vw;
+}
+.line {
+    width: 89vw;
+    height: 0.3vw;
+    background-color: #e9e9e9;
+    margin-top: 35vw;
+    margin-left: 5vw;
+}
+.comment-box {
+    margin-top: 10vw;
+    display: flex;
+    flex-direction: column;
+    .title {
+        font-size: 4.5vw;
+        margin-left: 40vw;
+        font-weight: bold;
+        letter-spacing: 0.3vw;
+    }
+    .comment-item {
+        margin-top: 5vw;
+    }
+}
+.comment-button {
+    position: fixed;
+    top: 178.4vw;
+    left: 74.4vw;
+    z-index: 99;
+    .new-box {
+        width: 20vw;
+        height: 20vw;
+    }
+}
+</style>

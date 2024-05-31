@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import { Init } from '@/utils/Init';
+
 onLaunch(() => {
+    Init();
     uni.addInterceptor('navigateTo', {
         invoke(e: { url: string }) {
-            useRouteStore().setUrl(e.url)
+            useRouteStore().setUrl(e.url);
         }
-    })
+    });
 });
-onShow(() => {
-});
-onHide(() => {
-});
+onShow(() => {});
+onHide(() => {});
 </script>
 <style lang="scss">
 @import 'nutui-uniapp/styles/index';

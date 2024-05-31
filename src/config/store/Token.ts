@@ -2,12 +2,16 @@ export default defineStore('token-store', {
     unistorage: true,
     state() {
         return {
-            token: ""
-        }
+            token: '',
+            userId: ''
+        };
     },
     actions: {
         store(token: string) {
-            this.token = token
+            this.token = token;
+        },
+        setUserId(userId: string) {
+            this.userId = userId;
         }
     }
-})
+});

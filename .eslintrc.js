@@ -7,14 +7,18 @@ module.exports = {
     },
     // 这里是 vue插件
     extends: ['eslint:recommended', 'plugin:prettier/recommended', 'prettier'],
+    // parser: 'vue-eslint-parser',
     globals: {
         //忽略全局的变量
         $: true
     },
+    // parser: '@typescript-eslint/parser',
     parserOptions: {
-        parser: '@babel/eslint-parser'
+        parser: 'prettier-eslint',
+        ecmaVersion: 12,
+        sourceType: 'module'
     },
-    plugins: ['vue', 'prettier'],
+    plugins: ['vue', 'prettier']
     // 0 代表关闭  1 代表警告  2 代表开启
     // rules: {
     //     'no-async-promise-executor': 1, //禁止使用异步函数作为 Promise executor

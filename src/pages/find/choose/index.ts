@@ -1,57 +1,60 @@
-import type {CommentVO, Course, TeacherVO} from "@/api/data-contracts";
+import type { CommentVO, Course, TeacherVO } from '@/api/data-contracts';
 
 type choose = {
-    "course"?: Course[],
-    "teacher"?: TeacherVO[],
-    "comment"?: CommentVO[],
-    "post"?: any[]
-}
+    course?: Course[];
+    teacher?: TeacherVO[];
+    comment?: CommentVO[];
+    post?: any[];
+};
 const map = {
-    'course': useCourseStore(),
-    'teacher': useCourseStore(),
-    'comment': useCourseStore(),
-    'post': useCourseStore(),
-}
+    course: useCourseStore(),
+    teacher: useCourseStore(),
+    comment: useCourseStore(),
+    post: useCourseStore()
+};
 
 export function useChoose() {
-    const keyword = shallowRef('')
-    const type = shallowRef<"course" | "teacher" | "comment" | "post">('course')
+    const keyword = shallowRef('');
+    const type = shallowRef<'course' | 'teacher' | 'comment' | 'post'>('course');
     const rows = ref<choose>({
-        "course": [],
-        "teacher": [],
-        "comment": [],
-        "post": []
-    })
-    const page = ref(0)
+        course: [],
+        teacher: [],
+        comment: [],
+        post: []
+    });
+    const page = ref(0);
 
     function jump(id: string) {
         // map[type.value].setData(item)
         uni.navigateTo({
             url: `/pages/${type.value}/index/index?id=${id}`
-        })
+        });
     }
 
     function search(page: number) {
         if (keyword.value.length > 0) {
             http.SearchController.search({
-                keyword: keyword.value, type: type.value, page, size: 5
-            }).then(res => {
-                rows.value[type.value] = [
-                    ...rows.value[type.value]!,
-                    ...res.data.payload.rows!
-                ]
-            })
+                keyword: keyword.value,
+                type: type.value,
+                page,
+                size: 5
+            }).then((res) => {
+                rows.value[type.value] = [...rows.value[type.value]!, ...res.data.payload.rows!];
+            });
         }
     }
 
-    watch([page], () => search(page.value))
+    watch([page], () => search(page.value));
     watch([keyword, type], () => {
-        rows.value[type.value] = []
-        search(0)
-    })
+        rows.value[type.value] = [];
+        search(page.value);
+    });
 
     return {
-        keyword, type, rows, page,
+        keyword,
+        type,
+        rows,
+        page,
         jump
-    }
+    };
 }
