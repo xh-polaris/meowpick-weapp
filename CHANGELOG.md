@@ -1,5 +1,21 @@
 
 
+## [3.1.0](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.5...v3.1.0) (2024-06-05)
+
+
+### ✨ Features | 新功能
+
+* 个人历史评论 ([aa7fa7b](https://github.com/xh-polaris/meowpick-weapp/commit/aa7fa7bfb2f6736ee151b59f63acfd1a2053b380))
+* 修改1 ([dcaa810](https://github.com/xh-polaris/meowpick-weapp/commit/dcaa810f90a41e7ca1d31f445fd276d306ea78d6))
+* 完善搜索和标签功能 ([147c87e](https://github.com/xh-polaris/meowpick-weapp/commit/147c87e91e187e5dd8c2a926296a3c5a24086db2))
+* 搜索背景图，课程推荐 ([cf4e8e9](https://github.com/xh-polaris/meowpick-weapp/commit/cf4e8e9ddb06261937cd793b5a59c2959fb6b5e7))
+* 选课喵新页面 ([a100353](https://github.com/xh-polaris/meowpick-weapp/commit/a100353c92b69af779052fa02c8d322ce2605608))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 删除错误显示的评论 ([0915878](https://github.com/xh-polaris/meowpick-weapp/commit/091587878c2c02ce8dc21e52c97b44f2b8885b07))
+
 ### [3.0.5](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.4...v3.0.5) (2024-03-10)
 
 
