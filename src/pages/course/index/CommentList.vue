@@ -14,12 +14,6 @@ const props = defineProps<{
     id: string;
 }>();
 const { list, like, next, fetch, page } = useCourseComment(props);
-onShow(() => {
-    fetch(props.id, page.value);
-});
-watchEffect(() => {
-    fetch(props.id, 0);
-});
 PubSub.subscribe('comment-next', () => {
     next();
 });
