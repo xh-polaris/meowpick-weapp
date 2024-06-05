@@ -26,11 +26,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8.12.1
       - name: Build Mini Program
-        run: pnpm install && pnpm api && pnpm build:mp-weixin
+        run: yarn install && yarn api && yarn build:mp-weixin
       - name: Upload artifact
         run: node scripts/upload.mjs
 #      - name: Send Change Log
