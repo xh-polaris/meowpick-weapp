@@ -9,7 +9,7 @@
                         <text class="tag-txt">{{ item }}</text>
                     </view>
                 </view>
-                <view class="time">{{ data.createAt }}</view>
+                <view class="time">{{ format(data.crateAt) }}</view>
             </view>
             <view class="content">{{ data.text }}</view>
             <view class="like">
@@ -22,12 +22,12 @@
 
 <script setup lang="ts">
 import type { CommentVO } from '@/api/data-contracts';
-import { caculateTimeago } from './index';
 import { useTokenStore } from '@/config';
 import { InitTags } from '@/utils/tags';
 import { TotalTags } from '@/utils/tags';
 import Like from '/src/images/like-icon.png';
 import Liked from '/src/images/like_active.png';
+import { format } from '@/pages/course/index/utils';
 
 type Props = {
     data: CommentVO;
@@ -56,8 +56,13 @@ function Emoji(text: string): string {
     return emojiUrl.value;
 }
 
-function format(time: string) {
-    return useTime(parseInt(time));
+function format(timeStamp: string): string {
+    const date = new Date(timeStamp);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
 }
 </script>
 
@@ -105,10 +110,12 @@ function format(time: string) {
                 position: absolute;
                 right: 4vw;
                 top: 4vw;
+                font-size: 3.5vw;
+                margin-bottom: 1vw;
             }
         }
         .content {
-            margin-top: 5vw;
+            margin-top: 6vw;
             width: 82.93vw;
             margin-left: 3.5vw;
             letter-spacing: 0.3vw;

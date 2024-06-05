@@ -2,9 +2,9 @@ import type { CommentVO, Course, TeacherVO } from '@/api/data-contracts';
 
 type choose = {
     course?: Course[];
-    teacher?: TeacherVO[];
-    comment?: CommentVO[];
-    post?: any[];
+    teacher?: Course[];
+    depart?: Course[];
+    category?: any[];
 };
 const map = {
     course: useCourseStore(),
@@ -15,19 +15,19 @@ const map = {
 
 export function useChoose() {
     const keyword = shallowRef('');
-    const type = shallowRef<'course' | 'teacher' | 'comment' | 'post'>('course');
+    const type = shallowRef<'course' | 'teacher' | 'depart' | 'category'>('course');
     const rows = ref<choose>({
         course: [],
         teacher: [],
-        comment: [],
-        post: []
+        depart: [],
+        category: []
     });
     const page = ref(0);
 
     function jump(id: string) {
         // map[type.value].setData(item)
         uni.navigateTo({
-            url: `/pages/${type.value}/index/index?id=${id}`
+            url: `/pages/course/index/index?id=${id}`
         });
     }
 
@@ -40,6 +40,7 @@ export function useChoose() {
                 size: 5
             }).then((res) => {
                 rows.value[type.value] = [...rows.value[type.value]!, ...res.data.payload.rows!];
+                console.log('搜索信息：', rows.value[type.value]);
             });
         }
     }

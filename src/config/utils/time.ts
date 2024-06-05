@@ -1,6 +1,6 @@
-export default function useTime(dateTimeStamp: number) {
+export function useTime(dateTimeStamp: number) {
     if (isNaN(dateTimeStamp)) {
-        return 'now'
+        return 'now';
     }
     const minute = 1000 * 60; // 把分，时，天，周，半个月，一个月用毫秒表示
 

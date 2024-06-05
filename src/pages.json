@@ -20,12 +20,6 @@
 		}
 	},
     {
-      "path": "pages/index/index/index",
-      "style": {
-        "navigationBarTitleText": "首页"
-      }
-    },
-    {
       "path": "pages/course/index/index",
       "style": {}
     },
@@ -46,10 +40,33 @@
       }
     },
     {
+      "path": "pages/find/choose/teacher",
+      "style": {
+      }
+    },
+    {
       "path": "pages/my-comments/my-comments",
       "style": {
         "enablePullDownRefresh": true
       }
+    },
+    {
+      "path": "pages/home/letter",
+      "style": {
+        "navigationBarTitleText": "给用户的一封信",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/home/update-log",
+      "style": {
+        "navigationBarTitleText": "版本更新日志",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/web-frame/web-frame"
     }
+
   ]
 }

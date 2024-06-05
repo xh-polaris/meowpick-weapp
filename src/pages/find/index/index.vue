@@ -10,8 +10,8 @@
                 <text class="title">热搜</text>
                 <view class="text">
                     <view class="box">
-                        <view class="item">
-                            <view class="txt" @click="jump2search('思政')">思政</view>
+                        <view class="item" v-for="item of hot">
+                            <view class="txt" @click="jump2search(item)">{{ item }}</view>
                         </view>
                     </view>
                 </view>
@@ -19,13 +19,13 @@
             <view class="recent">
                 <view class="history">
                     <text class="title">搜索历史</text>
-                    <image src="../../..//images/delete-icon.png" class="delete" @click="deleteHistory"></image>
+                    <!--                    <image src="../../..//images/delete-icon.png" class="delete" @click="deleteHistory"></image>-->
                 </view>
 
-                <view class="text" v-if="isShow">
+                <view class="text">
                     <view class="box">
                         <view class="item" v-for="item in recent">
-                            <view class="txt" @click="jump2search(item.text!)">
+                            <view class="txt" @click="jump2Recent(item.text!)">
                                 {{ item.text }}
                             </view>
                             <!--                                <div class="icon" @click="commitInput(item.text!)">↖</div>-->
@@ -44,6 +44,8 @@ import type { SearchHistoryVO } from '@/api/data-contracts';
 import { useTokenStore } from '@/config';
 
 const tokenStore = useTokenStore();
+const recentText = ref('');
+const hot = ['思政类', '英语类', '体育类', '劳动与创造'];
 
 const recent = shallowRef<SearchHistoryVO[]>([]);
 onShow(() => {
@@ -58,6 +60,9 @@ function jump2search(keyword: string) {
     });
 }
 
+function jump2Recent(keyword: string) {
+    PubSub.publish('commit_input', keyword);
+}
 // function commitInput(value: string) {
 //     PubSub.publish('commit_input', value);
 // }
@@ -67,15 +72,14 @@ function handleKeydown(text: string) {
 
 const isShow = ref(true);
 const deleteHistory = () => {
-    http.SearchController.remove(tokenStore.userId).then((res) => {
-        isShow.value = res.data.payload;
-    });
+    recent.value = [];
+    http.SearchController.removeRecent(tokenStore.userId);
 };
 </script>
 
 <style scoped lang="scss">
 .content {
-    position: absolute;
+    position: fixed;
     top: 35vw;
     left: 5vw;
 

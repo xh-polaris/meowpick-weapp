@@ -1,41 +1,49 @@
 <template>
     <div class="search-result-box">
-        <!--        <div class="imgs">-->
-        <!--            <div class="page-photo">-->
-
-        <!--            </div>-->
-        <!--            <div class="course-time">-->
-
-        <!--            </div>-->
-        <!--        </div>-->
         <div class="search-result">
             <view class="title">
                 <view class="name">
-                    {{ props.data.data?.name }}
+                    {{ props.data?.data.name }}
                 </view>
-                <view class="dept-name">{{ props.data.data?.category }}</view>
+                <view class="dept-name">{{ props.data?.data.category }}</view>
             </view>
             <view class="information">
                 <view class="circle"></view>
-                <view class="department">{{ props.data.data?.department }}</view>
+                <view class="department">{{ props.data?.data.department }}</view>
                 <view class="circle"></view>
-                <view class="instructor">{{ data?.teachers }}</view>
+                <view class="instructor" v-for="item of props.data?.data?.teacherList">{{ item.name }}</view>
             </view>
-            <view class="tip"></view>
+            <view class="tip">
+                <view class="item" v-for="item of getTop3List(props.data.data?.tagCount!)">
+                    <image class="emoji" :src="Emoji(item.tag)"></image>
+                    <view class="text">{{ item.count }}</view>
+                </view>
+            </view>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { Course } from '@/api/data-contracts';
+import { Emoji } from '@/utils/tags';
 
 type Props = {
     data: Course;
 };
 const props = defineProps<Props>();
+const Top3Tags = ref<{ tag: string; count: number }[]>([]);
 
-function render_des(ls: any[]): string {
-    return ls.join(' / ');
+// 定义 getTop3List 函数
+function getTop3List(tags: Record<string, number>) {
+    // 将对象的键值对转换为数组
+    const tagsArray = Object.entries(tags).map(([tag, count]) => ({ tag, count }));
+
+    // 按照 count 降序排序
+    tagsArray.sort((a, b) => b.count - a.count);
+
+    // 取前三个元素
+    Top3Tags.value = tagsArray.slice(0, 3);
+    return Top3Tags.value;
 }
 </script>
 
@@ -43,21 +51,22 @@ function render_des(ls: any[]): string {
 .search-result-box {
     background-color: #b70030;
     width: 89vw;
-    height: 34.13vw;
+    height: auto;
     margin-top: 5vw;
     border-radius: 3vw;
     .search-result {
         background-color: #ffffff;
         width: 87vw;
-        height: 34.13vw;
+        height: auto;
         margin-left: 1vw;
         border-radius: 3vw;
         box-shadow: 4px 4px 16px 0px #0000001f;
+        padding: 1.5vw;
         .title {
             display: flex;
             flex-direction: row;
             .name {
-                margin-left: 4vw;
+                margin-left: 2vw;
                 margin-top: 4vw;
                 font-size: 3.8vw;
                 font-weight: bold;
@@ -72,13 +81,13 @@ function render_des(ls: any[]): string {
         .information {
             display: flex;
             flex-direction: row;
-            margin-top: 3vw;
+            margin-top: 2vw;
             .circle {
                 width: 2vw;
                 height: 2vw;
                 border-radius: 50%;
                 background-color: #b70030;
-                margin-left: 4vw;
+                margin-left: 2vw;
                 margin-top: 1.5vw;
             }
             .department {
@@ -87,6 +96,31 @@ function render_des(ls: any[]): string {
             }
             .instructor {
                 margin-left: 1.5vw;
+                font-size: 3.5vw;
+            }
+        }
+        .tip {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 3vw;
+            .item {
+                background: #f1f1f1;
+                display: flex;
+                flex-direction: row;
+                padding: 1.5vw;
+                border-radius: 4vw;
+                margin-left: 2vw;
+                margin-bottom: 2vw;
+                .emoji {
+                    width: 5.5vw;
+                    height: 5.5vw;
+                }
+                .text {
+                    margin-top: 0.5vw;
+                    margin-left: 1vw;
+                    color: #cf2600;
+                    font-size: 3.7vw;
+                }
             }
         }
     }

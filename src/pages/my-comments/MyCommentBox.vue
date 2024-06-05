@@ -2,14 +2,14 @@
     <view class="my-comment-box">
         <view class="comment-box">
             <view class="title">
-                <view class="name"> name </view>
-                <view class="dept-name">dept-name</view>
+                <view class="name">{{ props.data.course.name }}</view>
+                <view class="dept-name">{{ props.data.course.category }}</view>
             </view>
             <view class="information">
                 <view class="circle"></view>
-                <view class="department">department</view>
+                <view class="department">{{ props.data.course.department }}</view>
                 <view class="circle"></view>
-                <view class="instructor">instructor</view>
+                <view class="instructor" v-for="item of props.data.course?.teacherList">{{ item.name }}</view>
             </view>
             <view class="tag">
                 <view class="item" v-for="item of props.data.tags">
@@ -17,6 +17,7 @@
                     <text class="tag-txt">{{ item }}</text>
                 </view>
             </view>
+            <view class="time">{{ format(props.data.crateAt) }}</view>
             <view class="content">{{ props.data.text }}</view>
             <view class="like">
                 <image :src="data.relation?.like ? Liked : Like" class="like-icon" @click="like"></image>
@@ -42,6 +43,15 @@ const emit = defineEmits<{
 
 function like() {
     emit('like', props.data.id);
+}
+
+function format(timeStamp: string): string {
+    const date = new Date(timeStamp);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
 }
 </script>
 
@@ -82,8 +92,8 @@ function like() {
             flex-direction: row;
             margin-top: 3vw;
             .circle {
-                width: 2.13vw;
-                height: 2.13vw;
+                width: 2vw;
+                height: 2vw;
                 border-radius: 50%;
                 background-color: #b70030;
                 margin-left: 4vw;
@@ -91,9 +101,11 @@ function like() {
             }
             .department {
                 margin-left: 1.5vw;
+                font-size: 3.5vw;
             }
             .instructor {
                 margin-left: 1.5vw;
+                font-size: 3.5vw;
             }
         }
         .tag {
@@ -117,8 +129,13 @@ function like() {
                 .tag-txt {
                     margin-top: 1vw;
                     margin-left: 1vw;
+                    font-size: 3.8vw;
                 }
             }
+        }
+        .time {
+            margin-left: 65vw;
+            font-size: 3.5vw;
         }
         .content {
             margin-top: 3vw;
@@ -126,6 +143,7 @@ function like() {
             margin-left: 3.5vw;
             letter-spacing: 0.3vw;
             line-height: 1.5;
+            font-size: 3.9vw;
         }
         .like {
             display: flex;

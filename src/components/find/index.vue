@@ -2,21 +2,24 @@
     <view class="wrapper">
         <view class="input-box">
             <image class="go-back" src="../..//images/go-back2.png" @click="GoBack"></image>
-            <input
-                v-model="searchText"
-                class="search-text"
-                :placeholder="placeHolder"
-                @input="suggest"
-                @confirm="notify"
-            />
-            <image class="icon" @click="jump2List(keyword)" src="../../images/search-icon.png"></image>
+            <input v-model="searchText" class="search-text" :placeholder="placeHolder" />
+            <!--                @input="suggest"-->
+            <!--                @confirm="notify"-->
+
+            <image class="icon" @click="jump2List(keyword, 'course')" src="../../images/search-icon.png"></image>
         </view>
         <scroll class="search-list" v-if="searchText" @bottom="bottom">
             <ul>
-                <li v-for="item in rows.course" :key="item.data?.id" @click="jump(item.data?.id!)" class="search-item">
+                <li
+                    v-for="item in suggestList"
+                    :key="item.data?.id"
+                    @click="jump2List(item.data?.name ? item.data?.name : item.data, item['type'])"
+                    class="search-item"
+                >
                     <view class="content">
-                        <view class="type">{{ SearchTypeMap(type) }}</view>
-                        <view class="name">{{ item.data?.name }}</view>
+                        <view :class="`type-${item['type']}`">{{ SearchTypeMap(item['type']) }}</view>
+                        <view class="name" v-if="item.data?.name">{{ item.data?.name }}</view>
+                        <view class="name" v-else>{{ item.data }}</view>
                     </view>
                     <view class="line"></view>
                 </li>
@@ -36,8 +39,9 @@ const emit = defineEmits<{
 }>();
 
 const { searchText, placeHolder, list, searchHistory, text } = useInput();
-const { keyword, type, rows, page, jump } = useChoose();
+const { keyword, type, rows, page, jump, suggestList } = useChoose();
 
+// const isSearch = computed(() => searchText.value.trim() !== '');
 function notify() {
     emit('onKeydown', searchText.value);
 }
@@ -45,10 +49,13 @@ function notify() {
 function suggest() {
     keyword.value = searchText.value;
 }
-
+watch([searchText], () => {
+    keyword.value = searchText.value;
+});
 PubSub.subscribe('commit_input', (value) => {
     searchText.value = value;
 });
+
 onLoad((options: any) => {
     keyword.value = options.keyword;
     PubSub.publish('commit_input', options.keyword);
@@ -64,10 +71,16 @@ const bottom = () => {
     page.value++;
 };
 
-const jump2List = (keyword: string) => {
-    uni.navigateTo({
-        url: `/pages/find/choose/index?keyword=${keyword}`
-    });
+const jump2List = (keyword: string, type: string) => {
+    if (type === 'teacher') {
+        uni.navigateTo({
+            url: `/pages/find/choose/teacher?keyword=${keyword}`
+        });
+    } else {
+        uni.navigateTo({
+            url: `/pages/find/choose/index?keyword=${keyword}`
+        });
+    }
 };
 </script>
 
@@ -78,6 +91,7 @@ const jump2List = (keyword: string) => {
     width: 89.33vw;
     height: 13.86vw;
     border: 0.45vw solid #e61e1e;
+    z-index: 100;
     //border-image-source: linear-gradient(95.1deg, #e61e1e -3.97%, #ee9563 86.14%);
     //border-image-slice: 1;
     border-radius: 6vw;
@@ -113,10 +127,38 @@ const jump2List = (keyword: string) => {
             margin-top: 5vw;
             display: flex;
             flex-direction: row;
-            .type {
+            .type-course {
                 background-color: #ffe4d5;
                 padding: 1vw 2vw 1vw 2vw;
                 border-radius: 4vw;
+                font-size: 3.3vw;
+                .txt {
+                    font-size: 3.3vw;
+                }
+            }
+            .type-teacher {
+                background-color: #fff6d5;
+                padding: 1vw 2vw 1vw 2vw;
+                border-radius: 4vw;
+                font-size: 3.3vw;
+                .txt {
+                    font-size: 3.3vw;
+                }
+            }
+            .type-depart {
+                background-color: #d5eeff;
+                padding: 1vw 2vw 1vw 2vw;
+                border-radius: 4vw;
+                font-size: 3.3vw;
+                .txt {
+                    font-size: 3.3vw;
+                }
+            }
+            .type-category {
+                background-color: #e5ffd5;
+                padding: 1vw 2vw 1vw 2vw;
+                border-radius: 4vw;
+                font-size: 3.3vw;
                 .txt {
                     font-size: 3.3vw;
                 }

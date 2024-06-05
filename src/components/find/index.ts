@@ -5,13 +5,19 @@ export const useInput = () => {
     const placeHolder = shallowRef('搜索课程类别、名称、院系或任课教师');
     const list = shallowRef<any[]>([]);
     const searchHistory = shallowRef<SearchHistoryVO[]>([]);
+    const isSearch = ref(false);
 
     watchEffect(() => {
         console.log(searchText.value);
     });
 
+    if (searchText) {
+        isSearch.value = true;
+    }
+
     const text = computed(() => {
         if (searchText.value != undefined && searchText.value?.length > 0) {
+            isSearch.value = true;
             return searchText.value;
         } else {
             return placeHolder.value;
@@ -23,7 +29,8 @@ export const useInput = () => {
         placeHolder,
         list,
         searchHistory,
-        text
+        text,
+        isSearch
     };
 };
 
@@ -51,6 +58,7 @@ export function useChoose() {
         comment: [],
         post: []
     });
+    const suggestList = ref<object[]>([]);
     const page = ref(0);
 
     function jump(id: string) {
@@ -60,23 +68,35 @@ export function useChoose() {
         });
     }
 
-    function search(page: number) {
-        if (keyword.value.length > 0) {
-            http.SearchController.search({
-                keyword: keyword.value,
-                type: type.value,
-                page,
-                size: 15
+    // function search(page: number) {
+    //     if (keyword.value.length > 0) {
+    //         http.SearchController.search({
+    //             keyword: keyword.value,
+    //             type: type.value,
+    //             page,
+    //             size: 15
+    //         }).then((res) => {
+    //             rows.value[type.value] = [...rows.value[type.value]!, ...res.data.payload.rows!];
+    //         });
+    //     }
+    // }
+
+    function suggestContent(page: number) {
+        if (keyword.value) {
+            http.SearchController.suggest({
+                search: keyword.value,
+                pageNum: page,
+                pageSize: 15
             }).then((res) => {
-                rows.value[type.value] = [...rows.value[type.value]!, ...res.data.payload.rows!];
+                suggestList.value = [...suggestList.value, ...res.data.payload];
             });
         }
     }
 
-    watch([page], () => search(page.value));
+    watch([page], () => suggestContent(page.value));
     watch([keyword, type], () => {
-        rows.value[type.value] = [];
-        search(page.value);
+        suggestList.value = [];
+        suggestContent(page.value);
     });
 
     return {
@@ -84,11 +104,20 @@ export function useChoose() {
         type,
         rows,
         page,
-        jump
+        jump,
+        suggestList
     };
 }
 
 export const SearchTypeMap = (type: string) => {
-    if (type === 'course') return '课程';
-    else if (type === 'teacher') return '教师';
+    switch (type) {
+        case 'course':
+            return '课程';
+        case 'teacher':
+            return '教师';
+        case 'depart':
+            return '院系';
+        case 'category':
+            return '类别';
+    }
 };

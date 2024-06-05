@@ -11,6 +11,9 @@ export function Init() {
                 appId: 100
             }).then((rse) => {
                 uni.hideLoading();
+                // uni.navigateTo({
+                //     url: '/pages/home/home'
+                // });
             });
             console.log('login:', res);
         }

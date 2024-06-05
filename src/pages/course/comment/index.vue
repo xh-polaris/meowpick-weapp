@@ -6,11 +6,20 @@
         </view>
     </view>
     <view class="ellipse"></view>
-    <view class="title">课程吐槽</view>
+    <view class="title">
+        <image src="/src/images/comment-icon.png" class="icon"></image>
+        <text class="tip">课程吐槽</text>
+    </view>
     <view class="add-tag">
-        <view class="tag-title">添加标签</view>
+        <view class="tag-title">
+            <image src="/src/images/addTag-icon.png" class="icon"></image>
+            <text class="tip">添加标签</text>
+        </view>
         <view class="tag-box-chosen">
-            <view class="chosen-title">已选择</view>
+            <view class="chosen-title">
+                <image src="/src/images/chosen-icon.png" class="icon"></image>
+                <text class="tip">已选择</text>
+            </view>
             <view class="selected-box">
                 <view class="tag-item" v-for="item of SelectedTags" @click="RemoveTags(item.text)">
                     <image :src="item.icon" class="emoji"></image>
@@ -19,7 +28,10 @@
             </view>
         </view>
         <view class="tag-box">
-            <view class="box-title">可选择</view>
+            <view class="box-title">
+                <image src="/src/images/choose-icon.png" class="icon"></image>
+                <text class="tip">可选择</text>
+            </view>
             <view class="chosen-box">
                 <view
                     class="tag-item"
@@ -34,7 +46,10 @@
         </view>
     </view>
     <view class="add-comment">
-        <view class="comment-title">添加吐槽</view>
+        <view class="comment-title">
+            <image src="/src/images/addTag-icon.png" class="icon"></image>
+            <text class="tip">添加吐槽</text>
+        </view>
         <view class="comment-box">
             <textarea
                 placeholder="请客观评价，不得发表涉及广告、时政、色情、辱骂、违法犯罪、欺诈等违规内容"
@@ -153,20 +168,40 @@ function RemoveTags(text: String) {
 .title {
     position: absolute;
     top: 35vw;
-    left: 36vw;
+    left: 32vw;
     font-size: 5.86vw;
-    font-weight: bold;
-    letter-spacing: 0.3vw;
+    display: flex;
+    flex-direction: row;
+    .icon {
+        width: 6vw;
+        height: 5.5vw;
+        margin-top: 1.5vw;
+    }
+    .tip {
+        font-weight: bold;
+        letter-spacing: 0.3vw;
+        margin-left: 2vw;
+    }
 }
 .add-tag {
     position: absolute;
     top: 45vw;
     .tag-title {
         margin-top: 8vw;
-        margin-left: 15vw;
-        font-size: 4.8vw;
-        font-weight: bold;
-        letter-spacing: 0.3vw;
+        margin-left: 5vw;
+        display: flex;
+        flex-direction: row;
+        .icon {
+            width: 5.5vw;
+            height: 5.5vw;
+            margin-top: 0.6vw;
+        }
+        .tip {
+            font-size: 4.8vw;
+            font-weight: bold;
+            letter-spacing: 0.3vw;
+            margin-left: 2vw;
+        }
     }
     .tag-box-chosen {
         border: 0.5vw solid;
@@ -181,8 +216,19 @@ function RemoveTags(text: String) {
         .chosen-title {
             font-size: 4.2vw;
             letter-spacing: 0.3vw;
-            margin-top: 5vw;
-            margin-left: 10vw;
+            margin-top: 4vw;
+            margin-left: 3vw;
+            display: flex;
+            flex-direction: row;
+            .icon {
+                width: 5vw;
+                height: 5vw;
+            }
+            .tip {
+                font-size: 4.2vw;
+                letter-spacing: 0.3vw;
+                margin-left: 2vw;
+            }
         }
         .selected-box {
             display: flex;
@@ -219,10 +265,17 @@ function RemoveTags(text: String) {
         margin-left: 5vw;
         margin-top: 4vw;
         .box-title {
-            font-size: 4.2vw;
-            letter-spacing: 0.3vw;
-            margin-top: 5vw;
-            margin-left: 10vw;
+            margin-top: 4vw;
+            margin-left: 3vw;
+            .icon {
+                width: 5vw;
+                height: 5vw;
+            }
+            .tip {
+                font-size: 4.2vw;
+                letter-spacing: 0.3vw;
+                margin-left: 2vw;
+            }
         }
         .chosen-box {
             display: flex;
@@ -255,11 +308,21 @@ function RemoveTags(text: String) {
     top: 135vw;
 
     .comment-title {
-        margin-top: 2vw;
-        margin-left: 15vw;
-        font-size: 4.8vw;
-        font-weight: bold;
-        letter-spacing: 0.3vw;
+        margin-top: 5vw;
+        margin-left: 5vw;
+        display: flex;
+        flex-direction: row;
+        .icon {
+            width: 5.5vw;
+            height: 5.5vw;
+            margin-top: 0.6vw;
+        }
+        .tip {
+            font-size: 4.8vw;
+            font-weight: bold;
+            letter-spacing: 0.3vw;
+            margin-left: 2vw;
+        }
     }
     .comment-box {
         border: 0.5vw solid;

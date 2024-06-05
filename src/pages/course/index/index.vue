@@ -10,7 +10,11 @@
         <course-header :data="course.data" :teachers="teachers" class="information" />
         <view class="line"></view>
         <view class="comment-box">
-            <view class="title">课程吐槽</view>
+            <view class="comment-title">
+                <image class="icon" src="/src/images/comment-icon.png"></image>
+                <view class="title">课程吐槽</view>
+            </view>
+
             <CommentList class="comment-item" :id="id"></CommentList>
         </view>
         <view class="comment-button">
@@ -110,12 +114,22 @@ const goBack = () => {
     margin-top: 10vw;
     display: flex;
     flex-direction: column;
-    .title {
-        font-size: 4.5vw;
-        margin-left: 40vw;
-        font-weight: bold;
-        letter-spacing: 0.3vw;
+    .comment-title {
+        display: flex;
+        flex-direction: row;
+        .icon {
+            width: 8vw;
+            height: 6.5vw;
+            margin-left: 30vw;
+        }
+        .title {
+            font-size: 4.5vw;
+            margin-left: 3vw;
+            font-weight: bold;
+            letter-spacing: 0.3vw;
+        }
     }
+
     .comment-item {
         margin-top: 5vw;
     }

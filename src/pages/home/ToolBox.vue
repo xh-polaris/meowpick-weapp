@@ -1,8 +1,8 @@
 <template>
     <view class="tool-box">
         <view class="to-users">
-            <image src="../../images/to-users.png" class="picture" @click="showLetterPanel"></image>
-            <image src="../../images/update-log.png" class="picture" @click="showVersionPanel"></image>
+            <image src="../../images/to-users.png" class="picture" @click="goToLetter"></image>
+            <image src="../../images/update-log.png" class="picture" @click="goToUpdate"></image>
         </view>
         <view class="total-comments">
             <view class="box">
@@ -17,17 +17,11 @@
                 <view class="cat-title">MewoChat 小程序</view>
                 <view class="cat-tool">
                     <view class="go-app" @click="goToMewoChat">进入程序</view>
-                    <view class="introduction">查看介绍</view>
+                    <view class="introduction" @click="getInstruction">查看介绍</view>
                 </view>
             </view>
             <image src="/src/images/mewochat-icon.jpg" class="mewo-chat"></image>
         </view>
-    </view>
-    <view class="shadow" @click="hideLetterPanel" v-if="showPanel1">
-        <view class="panel" v-if="showPanel1" @click.stop.prevent> 给用户的一封信 </view>
-    </view>
-    <view class="shadow" @click="hideVersionPanel" v-if="showPanel2">
-        <view class="panel" v-if="showPanel2" @click.stop.prevent> 版本更新日志 </view>
     </view>
 </template>
 
@@ -47,18 +41,22 @@ const goToMewoChat = () => {
     });
 };
 
-const showLetterPanel = () => {
-    showPanel1.value = !showPanel1.value;
+const goToLetter = () => {
+    uni.navigateTo({
+        url: '/pages/home/letter'
+    });
 };
-const showVersionPanel = () => {
-    showPanel2.value = !showPanel1.value;
+const goToUpdate = () => {
+    uni.navigateTo({
+        url: '/pages/home/update-log'
+    });
 };
 
-const hideLetterPanel = () => {
-    showPanel1.value = false;
-};
-const hideVersionPanel = () => {
-    showPanel2.value = false;
+const getInstruction = () => {
+    const Url = 'https://mp.weixin.qq.com/s/HCwy-C7lFVyOBf5qUOhtSA';
+    uni.navigateTo({
+        url: `/pages/web-frame/web-frame?url=${Url}`
+    });
 };
 </script>
 
@@ -172,6 +170,9 @@ const hideVersionPanel = () => {
         left: 7.5vw;
         border-radius: 3vw;
         box-shadow: 2px 2px 16px 0px #0000001f;
+        .title {
+            font-weight: bold;
+        }
     }
 }
 </style>
