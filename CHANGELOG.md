@@ -1,5 +1,7 @@
 
 
+### [3.1.1](https://github.com/xh-polaris/meowpick-weapp/compare/v3.1.0...v3.1.1) (2024-06-05)
+
 ## [3.1.0](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.5...v3.1.0) (2024-06-05)
 
 
