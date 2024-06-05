@@ -4,7 +4,6 @@ import { ContentType } from '@/api/http-client';
 class HttpRequest<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
     public CourseController = new CourseApi(this);
     public SearchController = new SearchController(this);
-    public CoureLearnController = new CourseLearnApi(this);
     public UserController = new UserApi(this);
     public CommentController = new CommentApi(this);
     public TeacherController = new TeacherApi(this);

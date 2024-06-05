@@ -7,12 +7,6 @@
     "backgroundColor": "#F8F8F8"
   },
   "pages": [
-//    {
-//      "path": "pages/user/Login/index",
-//      "style": {
-//        "navigationBarTitleText": "登录"
-//      }
-//    },
     {
 		"path": "pages/home/home",
 		"style": {
