@@ -4,10 +4,12 @@
     <view class="box">
       <view class="top-bar">
         <view class="tag">
-          <view v-for="item of data.tags" class="item">
-            <image :src="Emoji(item)" class="emoji" />
-            <text class="tag-txt">{{ item }}</text>
-          </view>
+          <template v-for="item of data.tags">
+            <view v-if="Emoji(item)" class="item" >
+              <image :src="Emoji(item)" class="emoji" />
+              <text class="tag-txt">{{ item }}</text>
+            </view>
+          </template>
         </view>
         <view class="time">{{ format(data.crateAt) }}</view>
       </view>
@@ -30,7 +32,7 @@ import { useTokenStore } from "@/config";
 import Like from "@/images/like-icon.png";
 import Liked from "@/images/like_active.png";
 import { format } from "@/pages/course/index/utils";
-import {TotalTags} from "@/utils/tags";
+import {Emoji} from "@/utils/tags";
 
 type Props = {
   data: CommentVO;
@@ -44,15 +46,6 @@ const emit = defineEmits<{
 
 function like() {
   emit("like", props.data.id);
-}
-function Emoji(text: string): string {
-  const emojiUrl = ref("");
-  for (const tag of TotalTags.value) {
-    if (tag.text === text) {
-      emojiUrl.value = tag.icon;
-    }
-  }
-  return emojiUrl.value;
 }
 </script>
 

@@ -25,9 +25,8 @@ export const TotalTags = ref<Tags[]>([
 ]);
 
 export function Emoji(text: string) {
-  const TotalTag = ref<Tags[]>([]);
   const emojiUrl = ref("");
-  for (const tag of TotalTag.value) {
+  for (const tag of TotalTags.value) {
     if (tag.text === text) {
       emojiUrl.value = tag.icon;
     }

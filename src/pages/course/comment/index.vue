@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import { useComment } from "@/pages/course/comment/index";
 import { useCourse } from "@/pages/course/index/index";
-import {Tags} from "@/utils/tags";
+import {Tags, TotalTags} from "@/utils/tags";
 
 type Props = {};
 const props = defineProps<Props>();
