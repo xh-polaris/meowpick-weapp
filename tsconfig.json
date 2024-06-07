@@ -1,31 +1,26 @@
 {
-    "extends": "@vue/tsconfig/tsconfig.json",
     "compilerOptions": {
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "jsx": "preserve",
         "sourceMap": true,
-        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "lib": ["esnext", "dom"],
+        "types": ["@dcloudio/types", "node"],
         "paths": {
-            "@/*": [
-                "./src/*"
-            ]
-        },
-        "lib": [
-            "esnext",
-            "dom"
-        ],
-        "types": [
-            "@dcloudio/types",
-            "node",
-            "@types/node",
-            "@types/wechat-miniprogram",
-            "@uni-helper/uni-app-types",
-            "nutui-uniapp/global.d.ts",
-            "vite/client"
-        ]
+            "@/*": ["./src/*"]
+        }
     },
-    //  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
     "include": [
-        "src/**/*",
-        "*.d.ts"
-    ],
-    "suppressImplicitAnyIndexErrors": true
+        "./**/*.ts",
+        "./**.js",
+        "./**/*.json",
+        "./**/*.d.ts",
+        "./**/*.tsx",
+        "./**/*.vue"
+    ]
 }
