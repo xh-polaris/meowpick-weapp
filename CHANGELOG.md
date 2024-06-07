@@ -1,5 +1,13 @@
 
 
+## [3.1.2](https://github.com/xh-polaris/meowpick-weapp/compare/v3.1.1...v3.1.2) (2024-06-07)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复emoji ([4d22520](https://github.com/xh-polaris/meowpick-weapp/commit/4d225202c6a5354d5250b6bee4d421013a2640d5))
+* 修改页面样式、顶部导航栏 ([a46b6e8](https://github.com/xh-polaris/meowpick-weapp/commit/a46b6e8cca4007e6367a8e186249db23d3f07ee0))
+
 ### [3.1.1](https://github.com/xh-polaris/meowpick-weapp/compare/v3.1.0...v3.1.1) (2024-06-05)
 
 ## [3.1.0](https://github.com/xh-polaris/meowpick-weapp/compare/v3.0.5...v3.1.0) (2024-06-05)
