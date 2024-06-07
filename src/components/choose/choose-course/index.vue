@@ -70,12 +70,17 @@ function getTop3List(tags: Record<string, number>) {
                 margin-top: 4vw;
                 font-size: 3.8vw;
                 font-weight: bold;
+                max-width: 50vw;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .dept-name {
-                margin-left: 2.5vw;
                 margin-top: 4.5vw;
+                margin-left: 2vw;
                 font-size: 3.2vw;
                 color: #545454;
+                white-space: nowrap;
             }
         }
         .information {

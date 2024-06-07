@@ -73,7 +73,7 @@ function format(timeStamp: string): string {
         width: 89.33vw;
         height: auto;
         background-color: #ffffff;
-        box-shadow: 4px 4px 16px 0px #0000001f;
+        box-shadow: 2px 2px 10px 0px #0000001f;
         border-radius: 3vw;
         margin-left: 5vw;
         margin-top: 2.5vw;

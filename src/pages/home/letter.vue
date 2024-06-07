@@ -42,9 +42,9 @@ const goToMewoChat = () => {
 .background {
     position: relative;
     .background-image {
-        position: absolute;
-        width: 80vw;
-        height: 90vw;
+        position: fixed;
+        width: 70vw;
+        height: 105vw;
         left: 25vw;
         top: 10vw;
         z-index: 0;

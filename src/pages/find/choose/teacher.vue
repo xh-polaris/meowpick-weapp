@@ -1,6 +1,6 @@
 <template>
     <scroll @bottom="handleScrollBottom">
-        <top-bar class="top-bar" />
+        <top-bar class="top-bar" :selected="0" />
         <view v-for="item of rows" class="content">
             <view v-for="course of item.courses" @click="jump(course.id)">
                 <div class="search-result-box">

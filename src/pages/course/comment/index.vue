@@ -168,14 +168,14 @@ function RemoveTags(text: String) {
 .title {
     position: absolute;
     top: 35vw;
-    left: 32vw;
+    left: 30vw;
     font-size: 5.86vw;
     display: flex;
     flex-direction: row;
     .icon {
-        width: 6vw;
-        height: 5.5vw;
-        margin-top: 1.5vw;
+        width: 8vw;
+        height: 7vw;
+        margin-top: 1vw;
     }
     .tip {
         font-weight: bold;

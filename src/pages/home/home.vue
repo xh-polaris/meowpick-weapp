@@ -4,7 +4,7 @@
             <view class="tap-bar">
                 <view class="search">
                     <text class="content" @click="goToSearch">搜索</text>
-                    <!--                <image class="chosen-search" src="../../images/chosen_line.png"></image>-->
+                    <image class="chosen-search" src="../../images/chosen_line.png"></image>
                 </view>
                 <view class="my-comment" @click="goToMyComments">我的吐槽</view>
             </view>
@@ -24,12 +24,12 @@ import ToolBox from '@/pages/home/ToolBox.vue';
 import Logo from '/src/images/logo.png';
 
 const goToSearch = () => {
-    uni.navigateTo({
+    uni.switchTab({
         url: '/pages/find/index/index'
     });
 };
 const goToMyComments = () => {
-    uni.navigateTo({
+    uni.switchTab({
         url: '/pages/my-comments/my-comments'
     });
 };
@@ -45,6 +45,7 @@ const goToMyComments = () => {
         background-color: #b70030;
         width: 100vw;
         height: 25vw;
+        z-index: 20;
         .tap-bar {
             display: flex;
             flex-direction: row;
@@ -53,7 +54,8 @@ const goToMyComments = () => {
             left: 8vw;
             .search {
                 color: #ffffff;
-                font-size: 4vw;
+                font-size: 4.5vw;
+                font-weight: bold;
                 letter-spacing: 0.6vw;
                 display: flex;
                 flex-direction: column;
@@ -67,8 +69,9 @@ const goToMyComments = () => {
             .my-comment {
                 color: #ffffff;
                 font-size: 4vw;
-                margin-left: 10vw;
+                margin-left: 11.2vw;
                 letter-spacing: 0.3vw;
+                margin-top: 0.3vw;
             }
         }
     }

@@ -63,12 +63,12 @@ const goBack = () => {
     flex-direction: column;
 }
 .top-bar {
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: #b70030;
     width: 100vw;
     height: 26vw;
-    z-index: 2;
+    z-index: 4;
     .go-back {
         position: absolute;
         top: 15vw;
@@ -77,27 +77,35 @@ const goBack = () => {
         display: flex;
         flex-direction: row;
         .txt {
+            display: flex;
+            align-items: center;
             color: #ffffff;
-            width: 100vw;
-            font-size: 5vw;
+            max-width: 80vw;
+            font-size: 4.8vw;
             margin-left: 2vw;
             margin-top: 0.5vw;
             letter-spacing: 0.2vw;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: scroll;
+            text-overflow: ellipsis;
         }
         .icon {
+            display: flex;
+            align-items: center;
             width: 5vw;
             height: 8.53vw;
         }
     }
 }
 .ellipse {
-    position: absolute;
+    position: fixed;
     top: 22vw;
     background-color: #b70030;
     width: 100vw;
     height: 8vw;
     border-radius: 50%;
+    z-index: 2;
 }
 .information {
     position: relative;
@@ -119,8 +127,8 @@ const goBack = () => {
         flex-direction: row;
         .icon {
             width: 8vw;
-            height: 6.5vw;
-            margin-left: 30vw;
+            height: 7vw;
+            margin-left: 32vw;
         }
         .title {
             font-size: 4.5vw;

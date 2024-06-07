@@ -1,6 +1,6 @@
 <template>
     <scroll @bottom="handleScrollBottom">
-        <top-bar class="top-bar" />
+        <top-bar class="top-bar" :selected="0" />
         <view class="box">
             <ul>
                 <li class="course-li" v-for="item in rows.course" @click="jump(item.data?.id!)">

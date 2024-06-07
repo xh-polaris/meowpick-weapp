@@ -1,16 +1,5 @@
 <template>
-    <view class="top-bar">
-        <view class="tap-bar">
-            <view class="search">
-                <text class="content" @click="goToSearch">搜索</text>
-            </view>
-            <view class="my-comment" @click="goToMyComments">
-                <text class="content">我的吐槽</text>
-                <image class="chosen-search" src="../../images/chosen_line.png"></image>
-            </view>
-        </view>
-    </view>
-    <view class="ellipse"></view>
+    <top-bar :selected="1" />
     <view class="comment">
         <scroll @bottom="handleBottom">
             <view v-for="item of list" :key="item.id" class="item">
@@ -27,6 +16,7 @@ import MyCommentBox from '@/pages/my-comments/MyCommentBox.vue';
 
 onShow(() => {
     fetch(page.value);
+    uni.hideTabBar();
 });
 
 type Props = {};

@@ -1,25 +1,53 @@
 <template>
     <view class="top-bar">
         <view class="tap-bar">
-            <view class="search">
-                <text class="content" @click="goToSearch">搜索</text>
-                <image class="chosen-search" src="../../images/chosen_line.png"></image>
+            <view
+                v-for="(item, index) of tabBarList"
+                :key="index"
+                :class="{ 'tab-bar-item': true, currentTar: selected == item.id }"
+                @click="switchTab(item.pagePath)"
+            >
+                <view
+                    class="tab_text"
+                    :style="{
+                        fontWeight: selected == index ? 'bold' : 'normal',
+                        fontSize: selected == index ? '4.5vw' : '4vw',
+                        letterSpacing: selected == index ? '0.6vw' : '0.3vw'
+                    }"
+                >
+                    <view>{{ item.text }}</view>
+                </view>
             </view>
-            <view class="my-comment" @click="goToMyComment">我的吐槽</view>
         </view>
+        <image
+            class="chosen-search"
+            src="../../images/chosen_line.png"
+            :style="{ marginLeft: selected === 0 ? '9vw' : '34vw' }"
+        ></image>
     </view>
     <view class="ellipse"></view>
 </template>
 
 <script setup lang="ts">
-const goToSearch = () => {
-    uni.navigateTo({
-        url: '/pages/find/index/index'
-    });
-};
-const goToMyComment = () => {
-    uni.navigateTo({
-        url: '/pages/my-comments/my-comments'
+const props = defineProps<{
+    selected: number;
+}>();
+
+const tabBarList = ref([
+    {
+        id: 0,
+        pagePath: '/pages/find/index/index',
+        text: '搜索'
+    },
+    {
+        id: 1,
+        pagePath: '/pages/my-comments/my-comments',
+        text: '我的吐槽'
+    }
+]);
+const switchTab = (page: string) => {
+    uni.switchTab({
+        url: page
     });
 };
 </script>
@@ -31,34 +59,30 @@ const goToMyComment = () => {
     background-color: #b70030;
     width: 100vw;
     height: 25vw;
+    z-index: 20;
     .tap-bar {
-        display: flex;
-        flex-direction: row;
-        position: fixed;
-        top: 14vw;
-        left: 8vw;
-        .search {
-            color: #ffffff;
-            font-size: 4.5vw;
-            font-weight: bold;
-            letter-spacing: 0.6vw;
-            margin-top: -1.5vw;
-            display: flex;
-            flex-direction: column;
-            .chosen-search {
-                width: 6.4vw;
-                height: 1vw;
-                margin-top: 2vw;
-                margin-left: 1.5vw;
-                z-index: 1;
-            }
-        }
-        .my-comment {
+        margin-top: 14vw;
+        margin-left: 3vw;
+        display: grid;
+        width: 50vw;
+        grid-template-columns: 20vw 30vw;
+        align-items: end;
+        .tab-bar-item {
             color: #ffffff;
             font-size: 4vw;
-            margin-left: 10vw;
-            letter-spacing: 0.3vw;
+            transition: all 1s ease-in-out;
+            margin: auto;
+            letter-spacing: 0.5vw;
         }
+    }
+    .chosen-search {
+        position: absolute;
+        width: 6.4vw;
+        height: 1vw;
+        z-index: 99;
+        margin-top: 2vw;
+        margin-left: 6vw;
+        transition: all 0.5s ease-in-out;
     }
 }
 .ellipse {
@@ -68,5 +92,6 @@ const goToMyComment = () => {
     width: 100vw;
     height: 8vw;
     border-radius: 50%;
+    z-index: 10;
 }
 </style>
