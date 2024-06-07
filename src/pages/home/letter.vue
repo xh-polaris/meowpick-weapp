@@ -1,18 +1,18 @@
 <template>
-    <view class="background">
-        <image src="/src/images/cat.png" class="background-image"></image>
-        <view class="box">
-            <!--            <view class="title">给用户的一封信</view>-->
-            <p class="text">{{ text1 }}</p>
-            <p class="text">{{ text2 }}</p>
-            <p class="text">{{ text3 }}</p>
-            <p class="text">{{ text4 }}</p>
-            <p class="text">{{ text5 }}</p>
-            <view class="goto-mewoChat" @click="goToMewoChat">点击传送</view>
-            <!--            <p class="text">{{ text6 }}</p>-->
-            <!--            <view class="getID" @click="copyWeChatID">点我复制微信号</view>-->
-        </view>
+  <view class="background">
+    <image src="@/images/cat.png" class="background-image" />
+    <view class="box">
+      <!--            <view class="title">给用户的一封信</view>-->
+      <p class="text">{{ text1 }}</p>
+      <p class="text">{{ text2 }}</p>
+      <p class="text">{{ text3 }}</p>
+      <p class="text">{{ text4 }}</p>
+      <p class="text">{{ text5 }}</p>
+      <view class="goto-mewoChat" @click="goToMewoChat">点击传送</view>
+      <!--            <p class="text">{{ text6 }}</p>-->
+      <!--            <view class="getID" @click="copyWeChatID">点我复制微信号</view>-->
     </view>
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -23,9 +23,9 @@ const text4 = `我们也尝试在平台内接入广告，但广告带来的收�
 const text5 = `>我们团队的新项目也已经上线啦!新项目将长期致力于城市流浪猫的救助和治理，欢迎大家支持!`;
 const text6 = `>选课猫项目也招募小伙伴来重构，团队有服务器可以部署。`;
 const goToMewoChat = () => {
-    uni.navigateToMiniProgram({
-        appId: 'wxd7e995c7b9d793b8'
-    });
+  uni.navigateToMiniProgram({
+    appId: "wxd7e995c7b9d793b8"
+  });
 };
 // const weChatID = ref('你的微信号');
 // const copyWeChatID = async () => {
@@ -40,51 +40,51 @@ const goToMewoChat = () => {
 
 <style scoped lang="scss">
 .background {
-    position: relative;
-    .background-image {
-        position: fixed;
-        width: 70vw;
-        height: 105vw;
-        left: 25vw;
-        top: 10vw;
-        z-index: 0;
+  position: relative;
+  .background-image {
+    position: fixed;
+    width: 70vw;
+    height: 105vw;
+    left: 25vw;
+    top: 10vw;
+    z-index: 0;
+  }
+  .box {
+    position: absolute;
+    left: 2vw;
+    top: 5vw;
+    width: 96vw;
+    height: auto;
+    padding: 5vw;
+    background: #ffffff;
+    box-shadow: 1vw 1vw 6vw 3vw #0000001f;
+    z-index: 1;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1vw;
+    word-wrap: break-word; /* 允许长单词或URL地址换行 */
+    overflow-wrap: break-word; /* 允许在单词内部换行以避免溢出 */
+    .title {
+      display: flex;
+      font-weight: bold;
+      justify-content: center;
     }
-    .box {
-        position: absolute;
-        left: 2vw;
-        top: 5vw;
-        width: 96vw;
-        height: auto;
-        padding: 5vw;
-        background: #ffffff;
-        box-shadow: 1vw 1vw 6vw 3vw #0000001f;
-        z-index: 1;
-        opacity: 0.8;
-        display: flex;
-        flex-direction: column;
-        border-radius: 1vw;
-        word-wrap: break-word; /* 允许长单词或URL地址换行 */
-        overflow-wrap: break-word; /* 允许在单词内部换行以避免溢出 */
-        .title {
-            display: flex;
-            font-weight: bold;
-            justify-content: center;
-        }
-        .text {
-            white-space: pre-wrap;
-            margin-top: 2vw;
-        }
-        .goto-mewoChat {
-            color: #3399ff;
-            font-weight: bold;
-            margin-top: 2vw;
-        }
-        .getID {
-            color: #3399ff;
-            border-bottom: 0.5vw solid #3399ff;
-            margin-top: 2vw;
-            width: 29vw;
-        }
+    .text {
+      white-space: pre-wrap;
+      margin-top: 2vw;
     }
+    .goto-mewoChat {
+      color: #3399ff;
+      font-weight: bold;
+      margin-top: 2vw;
+    }
+    .getID {
+      color: #3399ff;
+      border-bottom: 0.5vw solid #3399ff;
+      margin-top: 2vw;
+      width: 29vw;
+    }
+  }
 }
 </style>

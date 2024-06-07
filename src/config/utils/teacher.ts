@@ -1,3 +1,3 @@
 export {};
 
-import type { TeacherVO } from '@/api/data-contracts';
+import type { TeacherVO } from "@/api/data-contracts";

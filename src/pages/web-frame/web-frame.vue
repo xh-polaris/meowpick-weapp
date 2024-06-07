@@ -1,10 +1,10 @@
 <template>
-    <web-view :src="props.url"></web-view>
+  <web-view :src="props.url" />
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-    url: string;
+  url: string;
 }>();
 </script>
 

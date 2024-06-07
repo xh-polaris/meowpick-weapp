@@ -1,3 +1,3 @@
 export function caculateTimeago(dateTimeStamp: any) {
-    return useTime(dateTimeStamp)
+  return useTime(dateTimeStamp);
 }

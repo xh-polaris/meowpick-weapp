@@ -7,15 +7,12 @@
     "backgroundColor": "#F8F8F8"
   },
   "pages": [
-//    {
-//      "path": "pages/first-page/first-page"
-//    },
     {
-		"path": "pages/home/home",
-		"style": {
-			"navigationStyle": "custom"
-		}
-	},
+      "path": "pages/home/home",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
     {
       "path": "pages/course/index/index",
       "style": {}
@@ -38,8 +35,7 @@
     },
     {
       "path": "pages/find/choose/teacher",
-      "style": {
-      }
+      "style": {}
     },
     {
       "path": "pages/my-comments/my-comments",
@@ -64,19 +60,20 @@
     {
       "path": "pages/web-frame/web-frame"
     }
-
   ],
   "tabBar": {
     "color": "#ffffff",
     "selectedColor": "#ffffff",
     "backgroundColor": "#ffffff",
-    "list": [{
-      "pagePath": "pages/find/index/index",
-      "text": "搜索"
-    },{
-      "pagePath": "pages/my-comments/my-comments",
-      "text": "我的吐槽"
-    }
+    "list": [
+      {
+        "pagePath": "pages/find/index/index",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/my-comments/my-comments",
+        "text": "我的吐槽"
+      }
     ]
   }
 }

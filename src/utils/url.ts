@@ -1,9 +1,9 @@
-import Logo from '/src/images/logo.png';
+import Logo from "@/images/logo.png";
 
 export const enum Icons {
-    Logo = '/src/images/logo.png'
+  Logo = "@/images/logo.png"
 }
 
 export const enum Pages {
-    Search = '/pages/find/index/index'
+  Search = "/pages/find/index/index"
 }
