@@ -37,7 +37,7 @@ export function useChoose() {
                 keyword: keyword.value,
                 type: type.value,
                 page,
-                size: 5
+                size: 10
             }).then((res) => {
                 rows.value[type.value] = [...rows.value[type.value]!, ...res.data.payload.rows!];
                 console.log('搜索信息：', rows.value[type.value]);

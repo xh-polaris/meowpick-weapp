@@ -1,5 +1,5 @@
 <template>
-    <top-bar />
+    <top-bar :selected="0" />
     <view class="content">
         <!--        <img src="../../../images/cat.png" />-->
         <view class="find">
@@ -52,6 +52,7 @@ onShow(() => {
     http.SearchController.recent().then((res) => {
         recent.value = res.data.payload;
     });
+    uni.hideTabBar();
 });
 
 function jump2search(keyword: string) {
@@ -62,15 +63,13 @@ function jump2search(keyword: string) {
 
 function jump2Recent(keyword: string) {
     PubSub.publish('commit_input', keyword);
+    PubSub.publish('get_recent');
 }
-// function commitInput(value: string) {
-//     PubSub.publish('commit_input', value);
-// }
+
 function handleKeydown(text: string) {
     console.log('Received text from ChildComponent:', text);
 }
 
-const isShow = ref(true);
 const deleteHistory = () => {
     recent.value = [];
     http.SearchController.removeRecent(tokenStore.userId);
@@ -148,10 +147,14 @@ const deleteHistory = () => {
                     margin-top: 3vw;
                     padding: 2vw;
                     border-radius: 3vw;
+                    max-width: 30vw;
 
                     .txt {
                         color: #181818;
                         font-size: 3.2vw;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                 }
             }

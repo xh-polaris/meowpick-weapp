@@ -2,13 +2,13 @@
     <view class="wrapper">
         <view class="input-box">
             <image class="go-back" src="../..//images/go-back2.png" @click="GoBack"></image>
-            <input v-model="searchText" class="search-text" :placeholder="placeHolder" />
+            <input v-model="searchText" class="search-text" :placeholder="placeHolder" @input="handleInput()" />
             <!--                @input="suggest"-->
             <!--                @confirm="notify"-->
 
             <image class="icon" @click="jump2List(keyword, 'course')" src="../../images/search-icon.png"></image>
         </view>
-        <scroll class="search-list" v-if="searchText" @bottom="bottom">
+        <scroll class="search-list" v-if="isVisible && searchText" @bottom="bottom">
             <ul>
                 <li
                     v-for="item in suggestList"
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { useInput, useChoose, SearchTypeMap } from './index';
+import { useRoute } from 'vue-router';
 
 const props = defineProps<{
     keyword: string;
@@ -41,7 +42,16 @@ const emit = defineEmits<{
 const { searchText, placeHolder, list, searchHistory, text } = useInput();
 const { keyword, type, rows, page, jump, suggestList } = useChoose();
 
-// const isSearch = computed(() => searchText.value.trim() !== '');
+const isVisible = ref(false);
+function handleInput() {
+    if (suggestList.value.length > 0) {
+        isVisible.value = true;
+    }
+}
+const route = useRoute();
+watch(route, () => {
+    isVisible.value = false;
+});
 function notify() {
     emit('onKeydown', searchText.value);
 }
@@ -52,8 +62,12 @@ function suggest() {
 watch([searchText], () => {
     keyword.value = searchText.value;
 });
+
 PubSub.subscribe('commit_input', (value) => {
     searchText.value = value;
+});
+PubSub.subscribe('get_recent', () => {
+    isVisible.value = true;
 });
 
 onLoad((options: any) => {
@@ -62,8 +76,8 @@ onLoad((options: any) => {
 });
 
 const GoBack = () => {
-    uni.navigateBack({
-        delta: 1
+    uni.navigateTo({
+        url: '/pages/home/home'
     });
 };
 

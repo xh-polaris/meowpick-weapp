@@ -106,6 +106,7 @@ const getInstruction = () => {
 }
 .to-chat {
     margin-left: 6.5vw;
+    margin-top: 2vw;
     .cat-box {
         width: 85vw;
         height: 24.53vw;
