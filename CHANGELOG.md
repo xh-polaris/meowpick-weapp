@@ -1,5 +1,12 @@
 
 
+## [3.1.3](https://github.com/xh-polaris/meowpick-weapp/compare/v3.1.2...v3.1.3) (2024-06-08)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复bug ([cb67ae8](https://github.com/xh-polaris/meowpick-weapp/commit/cb67ae8f72a1e4d96f71dc78a4b533fb94b75e27))
+
 ## [3.1.2](https://github.com/xh-polaris/meowpick-weapp/compare/v3.1.1...v3.1.2) (2024-06-07)
 
 
