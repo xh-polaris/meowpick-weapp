@@ -2,7 +2,7 @@
   <view class="comment-box">
     <view v-if="data.user?.id === tokenStore.userId" class="my-box" />
     <view class="box">
-      <view class="top-bar">
+      <view class="comment-header">
         <view class="tag">
           <template v-for="item of data.tags">
             <view v-if="Emoji(item)" class="item" >
@@ -64,7 +64,7 @@ function like() {
     display: flex;
     flex-direction: column;
     z-index: 1;
-    .top-bar {
+    .comment-header {
       position: relative;
       display: flex;
       flex-direction: row;

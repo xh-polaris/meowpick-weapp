@@ -1,19 +1,17 @@
 <template>
   <view class="wrapper">
     <view class="input-box">
-      <image class="go-back" src="../..//images/go-back2.png" @click="GoBack" />
+      <image class="go-back" src="@/images/go-back2.png" @click="GoBack" />
       <input
         v-model="searchText"
         class="search-text"
         :placeholder="placeHolder"
         @input="handleInput()"
       />
-      <!--                @input="suggest"-->
-      <!--                @confirm="notify"-->
 
       <image
         class="icon"
-        src="../../images/search-icon.png"
+        src="@/images/search-icon.png"
         @click="jump2List(keyword, 'course')"
       />
     </view>
@@ -82,14 +80,14 @@ watch([searchText], () => {
 });
 
 PubSub.subscribe("commit_input", (value) => {
-  searchText.value = value;
+  searchText.value = value || "";
 });
 PubSub.subscribe("get_recent", () => {
   isVisible.value = true;
 });
 
 onLoad((options: any) => {
-  keyword.value = options.keyword;
+  keyword.value = options.keyword || "";
   PubSub.publish("commit_input", options.keyword);
 });
 

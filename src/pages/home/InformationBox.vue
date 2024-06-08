@@ -19,16 +19,17 @@ const text3 = `* 新增统计课程标签数量`;
 <style scoped lang="scss">
 .background {
   .box {
-    margin-left: 2vw;
-    margin-top: 2vw;
+    margin: 2vw 0;
     width: 96vw;
     height: auto;
     padding: 3vw;
     background: #ffffff;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     z-index: 99;
     opacity: 0.8;
     display: flex;
+    position: relative;
+    left: 2vw;
     flex-direction: column;
     border-radius: 2vw;
     word-wrap: break-word; /* 允许长单词或URL地址换行 */

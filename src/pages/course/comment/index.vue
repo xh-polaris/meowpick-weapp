@@ -1,7 +1,7 @@
 <template>
   <view class="top-bar">
     <view class="go-back" @click="goBack">
-      <image src="../../..//images/go-back.png" class="icon" />
+      <image src="@/images/go-back.png" class="icon" />
       <view class="txt">{{ course.data.name }}</view>
     </view>
   </view>
@@ -130,35 +130,6 @@ function RemoveTags(text: string) {
 </script>
 
 <style scoped lang="scss">
-.top-bar {
-  position: absolute;
-  top: 0;
-  background-color: #b70030;
-  width: 100vw;
-  height: 26vw;
-  z-index: 2;
-  .go-back {
-    position: absolute;
-    top: 15vw;
-    left: 5vw;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    .txt {
-      color: #ffffff;
-      width: 100vw;
-      font-size: 5vw;
-      margin-left: 2vw;
-      margin-top: 0.5vw;
-      letter-spacing: 0.2vw;
-      font-weight: bold;
-    }
-    .icon {
-      width: 5vw;
-      height: 8.53vw;
-    }
-  }
-}
 .ellipse {
   position: absolute;
   top: 22vw;
