@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import type { Course } from "@/api/data-contracts";
-import { Emoji } from "@/utils/tags";
+import { Emoji, TotalTags } from "@/utils/tags";
 
 type Props = {
   data: Course;
@@ -40,18 +40,16 @@ type Props = {
 const props = defineProps<Props>();
 const Top3Tags = ref<{ tag: string; count: number }[]>([]);
 
-// 定义 getTop3List 函数
 function getTop3List(tags: Record<string, number>) {
-  // 将对象的键值对转换为数组
   const tagsArray = Object.entries(tags).map(([tag, count]) => ({
     tag,
     count
   }));
 
-  // 按照 count 降序排序
   tagsArray.sort((a, b) => b.count - a.count);
+  // const allowedTags = TotalTags.value.map((tag) => tag.text);
+  // tagsArray.filter((item) => allowedTags.includes(item.tag));
 
-  // 取前三个元素
   Top3Tags.value = tagsArray.slice(0, 3);
   return Top3Tags.value;
 }

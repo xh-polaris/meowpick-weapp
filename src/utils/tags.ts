@@ -33,3 +33,8 @@ export function Emoji(text: string) {
   }
   return emojiUrl.value;
 }
+
+export const limitedTags = (tags: string[]) => {
+  const allowedTags = TotalTags.value.map((tag) => tag.text);
+  return tags.filter((item) => allowedTags.includes(item)).slice(0, 4);
+};

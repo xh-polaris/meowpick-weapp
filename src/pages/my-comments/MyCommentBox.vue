@@ -16,7 +16,7 @@
         >
       </view>
       <view class="tag">
-        <view v-for="item of props.data.tags" class="item">
+        <view v-for="item of limitedTags(props.data.tags!)" class="item">
           <image :src="Emoji(item)" class="emoji" />
           <text class="tag-txt">{{ item }}</text>
         </view>
@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { CommentVO } from "@/api/data-contracts";
-import { Emoji } from "@/utils/tags";
+import { Emoji, limitedTags } from "@/utils/tags";
 import Liked from "@/images/like_active.png";
 import Like from "@/images/like-icon.png";
 type Props = {
@@ -78,7 +78,7 @@ function format(timeStamp: string): string {
     height: auto;
     margin-left: 1vw;
     border-radius: 3vw;
-    box-shadow: 4px 4px 16px 0px #0000001f;
+    box-shadow: 1px 1px 5px 0px #0000001f;
     .title {
       display: flex;
       flex-direction: row;
@@ -168,6 +168,7 @@ function format(timeStamp: string): string {
         top: 5.5vw;
         margin-left: 2vw;
         margin-top: 1vw;
+        font-size: 3.8vw;
       }
     }
   }

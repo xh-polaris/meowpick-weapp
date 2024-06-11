@@ -4,15 +4,15 @@
     <view class="box">
       <view class="comment-header">
         <view class="tag">
-          <template v-for="item of data.tags">
-            <view v-if="Emoji(item)" class="item" >
+          <template v-for="item of limitedTags(data.tags!)">
+            <view v-if="Emoji(item)" class="item">
               <image :src="Emoji(item)" class="emoji" />
               <text class="tag-txt">{{ item }}</text>
             </view>
           </template>
         </view>
-        <view class="time">{{ format(data.crateAt) }}</view>
       </view>
+      <view class="time">{{ format(data.crateAt) }}</view>
       <view class="content">{{ data.text }}</view>
       <view class="like">
         <image
@@ -32,7 +32,7 @@ import { useTokenStore } from "@/config";
 import Like from "@/images/like-icon.png";
 import Liked from "@/images/like_active.png";
 import { format } from "@/pages/course/index/utils";
-import {Emoji} from "@/utils/tags";
+import { Emoji, limitedTags } from "@/utils/tags";
 
 type Props = {
   data: CommentVO;
@@ -56,7 +56,7 @@ function like() {
     width: 89.33vw;
     height: auto;
     background-color: #ffffff;
-    box-shadow: 2px 2px 10px 0px #0000001f;
+    box-shadow: 1px 1px 5px 0px #0000001f;
     border-radius: 3vw;
     margin-left: 5vw;
     margin-top: 2.5vw;
@@ -86,23 +86,24 @@ function like() {
           .tag-txt {
             margin-top: 1vw;
             margin-left: 1vw;
+            font-size: 4vw;
           }
         }
       }
-      .time {
-        position: absolute;
-        right: 4vw;
-        top: 4vw;
-        font-size: 3.5vw;
-        margin-bottom: 1vw;
-      }
+    }
+    .time {
+      display: flex;
+      margin-left: 67vw;
+      font-size: 3.5vw;
+      margin-bottom: 1vw;
     }
     .content {
-      margin-top: 6vw;
+      margin-top: 2vw;
       width: 82.93vw;
       margin-left: 3.5vw;
       letter-spacing: 0.3vw;
       line-height: 1.5;
+      font-size: 4vw;
     }
     .like {
       display: flex;
@@ -119,6 +120,7 @@ function like() {
         top: 5.5vw;
         margin-left: 2vw;
         margin-top: 1vw;
+        font-size: 3.8vw;
       }
     }
   }

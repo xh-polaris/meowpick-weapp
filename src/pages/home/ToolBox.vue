@@ -98,6 +98,7 @@ const getInstruction = () => {
         margin-top: 7vw;
         font-weight: 550;
         letter-spacing: 0.1vw;
+        font-size: 4vw;
       }
       .number {
         display: flex;
@@ -130,6 +131,7 @@ const getInstruction = () => {
         margin-left: 4vw;
         margin-top: 4vw;
         font-weight: 550;
+        font-size: 4vw;
       }
       .cat-tool {
         display: flex;

@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import { useComment } from "@/pages/course/comment/index";
 import { useCourse } from "@/pages/course/index/index";
-import {Tags, TotalTags} from "@/utils/tags";
+import { Tags, TotalTags } from "@/utils/tags";
 
 type Props = {};
 const props = defineProps<Props>();
@@ -183,9 +183,10 @@ function RemoveTags(text: string) {
     border-color: #de3b3b;
     border-radius: 3.5vw;
     width: 89.33vw;
-    height: 25.6vw;
+    height: auto;
     margin-left: 5vw;
     margin-top: 5vw;
+    padding-bottom: 4vw;
     .chosen-title {
       font-size: 4.2vw;
       letter-spacing: 0.3vw;
@@ -224,6 +225,8 @@ function RemoveTags(text: string) {
         .tag-txt {
           margin-top: 1vw;
           margin-left: 1vw;
+          font-size: 4vw;
+          white-space: nowrap;
         }
       }
     }
@@ -234,9 +237,10 @@ function RemoveTags(text: string) {
     border-width: 2px; /* 设置边框宽度 */
     border-radius: 4vw;
     width: 89.33vw;
-    height: 35vw;
+    height: auto;
     margin-left: 5vw;
     margin-top: 4vw;
+    padding-bottom: 4vw;
     .box-title {
       margin-top: 4vw;
       margin-left: 3vw;
@@ -271,6 +275,8 @@ function RemoveTags(text: string) {
         .tag-txt {
           margin-top: 1vw;
           margin-left: 1vw;
+          font-size: 4vw;
+          white-space: nowrap;
         }
       }
     }
@@ -312,6 +318,7 @@ function RemoveTags(text: string) {
       height: 90%;
       padding: 3vw;
       text-align: left;
+      font-size: 4vw;
     }
   }
 }

@@ -7,6 +7,7 @@
         class="search-text"
         :placeholder="placeHolder"
         @input="handleInput()"
+        :style="{ color: searchText ? '#000000' : '#777777' }"
       />
 
       <image
