@@ -32,27 +32,12 @@
 
 <script setup lang="ts">
 import type { Course } from "@/api/data-contracts";
-import { Emoji, TotalTags } from "@/utils/tags";
+import { Emoji, getTop3List } from "@/utils/tags";
 
 type Props = {
   data: Course;
 };
 const props = defineProps<Props>();
-const Top3Tags = ref<{ tag: string; count: number }[]>([]);
-
-function getTop3List(tags: Record<string, number>) {
-  const tagsArray = Object.entries(tags).map(([tag, count]) => ({
-    tag,
-    count
-  }));
-
-  tagsArray.sort((a, b) => b.count - a.count);
-  // const allowedTags = TotalTags.value.map((tag) => tag.text);
-  // tagsArray.filter((item) => allowedTags.includes(item.tag));
-
-  Top3Tags.value = tagsArray.slice(0, 3);
-  return Top3Tags.value;
-}
 </script>
 
 <style scoped lang="scss">

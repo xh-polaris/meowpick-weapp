@@ -47,6 +47,7 @@ import { UpdateLog } from "./information";
     .text {
       white-space: pre-wrap;
       margin-top: 2vw;
+      font-size: 4vw;
     }
   }
 }

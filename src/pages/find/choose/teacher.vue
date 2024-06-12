@@ -33,7 +33,7 @@
 </template>
 <script setup lang="ts">
 import { useChoose } from "./teacher";
-import { Emoji } from "@/utils/tags";
+import { Emoji, getTop3List } from "@/utils/tags";
 
 const { keyword, rows, page, jump } = useChoose();
 onLoad((options: any) => {
@@ -43,21 +43,6 @@ onLoad((options: any) => {
 
 function handleScrollBottom() {
   page.value++;
-}
-const Top3Tags = ref<{ tag: string; count: number }[]>([]);
-function getTop3List(tags: Record<string, number>) {
-  // 将对象的键值对转换为数组
-  const tagsArray = Object.entries(tags).map(([tag, count]) => ({
-    tag,
-    count
-  }));
-
-  // 按照 count 降序排序
-  tagsArray.sort((a, b) => b.count - a.count);
-
-  // 取前三个元素
-  Top3Tags.value = tagsArray.slice(0, 3);
-  return Top3Tags.value;
 }
 </script>
 <style scoped lang="scss">

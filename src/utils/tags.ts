@@ -34,7 +34,16 @@ export function Emoji(text: string) {
   return emojiUrl.value;
 }
 
+const allowedTags = TotalTags.value.map((tag) => tag.text);
 export const limitedTags = (tags: string[]) => {
-  const allowedTags = TotalTags.value.map((tag) => tag.text);
   return tags.filter((item) => allowedTags.includes(item)).slice(0, 4);
 };
+
+export function getTop3List(tags: Record<string, number>) {
+  const tagsArray = Object.entries(tags).map(([tag, count]) => ({
+    tag,
+    count
+  }));
+  tagsArray.sort((a, b) => b.count - a.count);
+  return tagsArray.filter((item) => allowedTags.includes(item.tag)).slice(0, 3);
+}

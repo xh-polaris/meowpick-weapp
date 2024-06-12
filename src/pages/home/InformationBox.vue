@@ -42,6 +42,7 @@ const text3 = `* 新增统计课程标签数量`;
     .text {
       white-space: pre-wrap;
       margin-top: 2vw;
+      font-size: 4vw;
     }
   }
 }

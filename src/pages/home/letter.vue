@@ -73,11 +73,13 @@ const goToMewoChat = () => {
     .text {
       white-space: pre-wrap;
       margin-top: 2vw;
+      font-size: 4vw;
     }
     .goto-mewoChat {
       color: #3399ff;
       font-weight: bold;
       margin-top: 2vw;
+      font-size: 4vw;
     }
     .getID {
       color: #3399ff;
