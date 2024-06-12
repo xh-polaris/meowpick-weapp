@@ -62,31 +62,33 @@
       />
     </view>
   </view>
-  <view class="comment-button">
-    <text class="content" :disabled="text.length == 0" @click="commit"
-      >吐槽</text
-    >
+  <view class="comment-button" @click="commit" :disabled="isClicked">
+    <text class="content">吐槽</text>
   </view>
 </template>
 <script setup lang="ts">
-import { useComment } from "@/pages/course/comment/index";
 import { useCourse } from "@/pages/course/index/index";
-import { Tags, TotalTags } from "@/utils/tags";
+import { Tags, TotalTags, InitTags } from "@/utils/tags";
+import { Ref } from "vue";
 
 type Props = {};
 const props = defineProps<Props>();
 
 let course_id = "";
 const { fetch, id, course, teachers, trends } = useCourse();
-const { text, commit, tags } = useComment(id);
+const text = ref("");
+const tags = ref<string[]>([]);
 const SelectedTags = ref<Tags[]>([]);
+const isClicked = ref(false);
 onLoad((options: any) => {
   course_id = options.id;
 });
 onShow(() => {
   fetch(course_id);
 });
-
+onMounted(() => {
+  InitTags();
+});
 const goBack = () => {
   uni.navigateBack({
     delta: 1
@@ -127,6 +129,39 @@ function RemoveTags(text: string) {
     }
   }
 }
+
+const commit = async () => {
+  if (isClicked.value) return;
+  if (!text.value) {
+    uni.showToast({
+      title: "未填写吐槽",
+      duration: 2000,
+      icon: "none"
+    });
+    return;
+  }
+
+  isClicked.value = true;
+  try {
+    console.log(id.value, {
+      text: text.value,
+      tags: tags.value
+    });
+
+    const res = await http.CommentController.add({
+      target: id.value,
+      text: text.value,
+      tags: tags.value
+    });
+
+    uni.navigateBack({
+      delta: 1
+    });
+  } catch (error) {
+    console.error(error);
+    isClicked.value = false;
+  }
+};
 </script>
 
 <style scoped lang="scss">

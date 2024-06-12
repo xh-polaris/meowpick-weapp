@@ -23,6 +23,11 @@ export const TotalTags = ref<Tags[]>([
   { text: "幽默", icon: HumorCat, isSelected: false },
   { text: "枯燥", icon: BoringCat, isSelected: false }
 ]);
+export function InitTags() {
+  TotalTags.value.forEach((tag) => {
+    tag.isSelected = false;
+  });
+}
 
 export function Emoji(text: string) {
   const emojiUrl = ref("");

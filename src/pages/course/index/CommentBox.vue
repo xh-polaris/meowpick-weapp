@@ -86,7 +86,7 @@ function like() {
           .tag-txt {
             margin-top: 1vw;
             margin-left: 1vw;
-            font-size: 4vw;
+            font-size: 3.9vw;
           }
         }
       }
@@ -103,7 +103,7 @@ function like() {
       margin-left: 3.5vw;
       letter-spacing: 0.3vw;
       line-height: 1.5;
-      font-size: 4vw;
+      font-size: 3.9vw;
     }
     .like {
       display: flex;
