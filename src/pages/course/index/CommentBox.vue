@@ -12,8 +12,8 @@
           </template>
         </view>
       </view>
-      <view class="time">{{ format(data.crateAt) }}</view>
       <view class="content">{{ data.text }}</view>
+      <view class="time">{{ format(data.crateAt) }}</view>
       <view class="like">
         <image
           :src="data.relation?.like ? Liked : Like"
@@ -93,9 +93,9 @@ function like() {
     }
     .time {
       display: flex;
-      margin-left: 67vw;
+      margin-left: 3.5vw;
       font-size: 3.5vw;
-      margin-bottom: 1vw;
+      margin-top: 2vw;
     }
     .content {
       margin-top: 2vw;
