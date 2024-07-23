@@ -9,11 +9,6 @@ yarn install
 ```bash
 yarn run api
 ```
-**Start Developing**
-
-```bash
-yarn dev:h5
-```
 
 ## Preview in WeChat Mini Program
 
