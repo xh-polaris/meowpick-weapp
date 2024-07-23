@@ -3,7 +3,7 @@
   <view class="comment">
     <scroll @bottom="handleBottom">
       <view v-for="item of list" :key="item.id" class="item">
-        <MyCommentBox :data="item" @like="like" />
+        <MyCommentBox :data="item" :jump="jump" @like="like" />
       </view>
     </scroll>
   </view>
@@ -38,6 +38,12 @@ const goToMyComments = () => {
 
 function handleBottom() {
   next();
+}
+
+function jump(id: string) {
+  uni.navigateTo({
+    url: `/pages/course/index/index?id=${id}`
+  });
 }
 </script>
 

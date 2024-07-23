@@ -1,5 +1,5 @@
 <template>
-  <view class="my-comment-box">
+  <view class="my-comment-box" @click="handleClick()">
     <view class="comment-box">
       <view class="title">
         <view class="name">{{ props.data.course.name }}</view>
@@ -44,6 +44,7 @@ import Liked from "@/images/like_active.png";
 import Like from "@/images/like-icon.png";
 type Props = {
   data: CommentVO;
+  jump: (id:string) => void;
 };
 const props = defineProps<Props>();
 
@@ -53,6 +54,11 @@ const emit = defineEmits<{
 
 function like() {
   emit("like", props.data.id);
+}
+
+function handleClick() {
+  const courseId = props.data.course.id;
+  props.jump(courseId); // 使用传递的 jump 函数
 }
 
 function format(timeStamp: string): string {
