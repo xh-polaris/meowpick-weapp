@@ -21,15 +21,17 @@
           <text class="tag-txt">{{ item }}</text>
         </view>
       </view>
-      <view class="time">{{ format(props.data.crateAt) }}</view>
       <view class="content">{{ props.data.text }}</view>
-      <view class="like">
-        <image
-          :src="data.relation?.like ? Liked : Like"
-          class="like-icon"
-          @click="like"
-        />
-        <view class="like-num">{{ props.data.relation?.like_cnt }}</view>
+      <view class="time-and-like">
+        <view class="time">{{ format(props.data.crateAt) }}</view>
+        <view class="like">
+          <image
+            :src="data.relation?.like ? Liked : Like"
+            class="like-icon"
+            @click="like"
+          />
+          <view class="like-num">{{ props.data.relation?.like_cnt }}</view>
+        </view>
       </view>
     </view>
   </view>
@@ -141,10 +143,6 @@ function format(timeStamp: string): string {
         }
       }
     }
-    .time {
-      margin-left: 65vw;
-      font-size: 3.5vw;
-    }
     .content {
       margin-top: 3vw;
       width: 82.93vw;
@@ -153,24 +151,36 @@ function format(timeStamp: string): string {
       line-height: 1.5;
       font-size: 3.9vw;
     }
-    .like {
+    .time-and-like{
       display: flex;
       flex-direction: row;
-      margin-left: 75vw;
-      margin-top: 2vw;
-      margin-bottom: 3vw;
-      .like-icon {
-        top: 5vw;
-        width: 5.86vw;
-        height: 5.86vw;
+      width: 100%;
+      .time {
+        margin-left: 3.5vw;
+        font-size: 3.5vw;
+        margin-top: auto;
+        margin-bottom: 3vw;
       }
-      .like-num {
-        top: 5.5vw;
-        margin-left: 2vw;
-        margin-top: 1vw;
-        font-size: 3.8vw;
+      .like {
+        display: flex;
+        flex-direction: row;
+        margin-left: 50vw;
+        margin-top: 2vw;
+        margin-bottom: 3vw;
+        .like-icon {
+          top: 5vw;
+          width: 5.86vw;
+          height: 5.86vw;
+        }
+        .like-num {
+          top: 5.5vw;
+          margin-left: 2vw;
+          margin-top: 1vw;
+          font-size: 3.8vw;
+        }
       }
     }
+
   }
 }
 </style>
