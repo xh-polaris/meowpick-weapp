@@ -1,5 +1,5 @@
 <template>
-  <top-bar :selected="1" />
+  <top-bar :selected="2" />
   <view class="comment">
     <scroll @bottom="handleBottom">
       <view v-for="item of list" :key="item.id" class="item">

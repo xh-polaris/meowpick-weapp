@@ -1,5 +1,5 @@
 <template>
-  <top-bar :selected="0" />
+  <top-bar :selected="1" />
   <view class="content">
     <!--        <img src="../../../images/cat.png" />-->
     <view class="find">

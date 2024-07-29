@@ -1,43 +1,43 @@
 <template>
-    <view class="background">
-        <view class="top-bar">
-            <view class="tap-bar">
-                <view class="search">
-                    <text class="content" @click="goToSearch">搜索</text>
-                    <image class="chosen-search" src="../../images/chosen_line.png" />
-                </view>
-                <view class="my-comment" @click="goToMyComments">我的吐槽</view>
-            </view>
-        </view>
-        <view class="ellipse" />
-        <image :src="Logo" class="logo" />
-        <view class="search-table">
-            <image
-                    src="../../images/search_table.png"
-                    class="search-button"
-                    @click="goToSearch"
-            />
-        </view>
-        <view class="toolbox" />
-        <ToolBox class="toolbox" />
-        <DebugPanel class="debug-panel" />
+  <view class="background">
+<!--    <view class="top-bar">-->
+<!--      <view class="tap-bar">-->
+<!--        <view class="search">-->
+<!--          <text class="content" @click="goToSearch">搜索</text>-->
+<!--          <image class="chosen-search" src="../../images/chosen_line.png" />-->
+<!--        </view>-->
+<!--        <view class="my-comment" @click="goToMyComments">我的吐槽</view>-->
+<!--      </view>-->
+<!--    </view>-->
+    <top-bar :selected="0" />
+    <view class="ellipse" />
+    <image :src="Logo" class="logo" />
+    <view class="search-table">
+      <image
+        src="../../images/search_table.png"
+        class="search-button"
+        @click="goToSearch"
+      />
     </view>
+    <view class="toolbox" />
+    <ToolBox class="toolbox" />
+    <DebugPanel class="debug-panel" />
+  </view>
 </template>
 
 <script setup lang="ts">
 import ToolBox from "@/pages/home/ToolBox.vue";
 import Logo from "@/images/logo.png";
-import DebugPanel from "@/components/DebugPanel.vue";
 
 const goToSearch = () => {
-    uni.switchTab({
-        url: "/pages/find/index/index"
-    });
+  uni.switchTab({
+    url: "/pages/find/index/index"
+  });
 };
 const goToMyComments = () => {
-    uni.switchTab({
-        url: "/pages/my-comments/my-comments"
-    });
+  uni.switchTab({
+    url: "/pages/my-comments/my-comments"
+  });
 };
 </script>
 
