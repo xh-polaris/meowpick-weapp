@@ -1,5 +1,7 @@
 import { UniAdapter } from "uniapp-axios-adapter";
 import { ContentType } from "@/api/http-client";
+import { PopularityApi } from "@/api/PopularityApi";
+import { StorageKeys } from "@/utils/const";
 
 class HttpRequest<
   SecurityDataType = unknown
@@ -10,6 +12,7 @@ class HttpRequest<
   public CommentController = new CommentApi(this);
   public TeacherController = new TeacherApi(this);
   public ActionController = new ActionApi(this);
+  public PopularityController = new PopularityApi(this);
 
   async sign_in(data: any) {
     const resp = await this.request({
@@ -33,9 +36,12 @@ const api = new HttpRequest({
 
 api.instance.interceptors.request.use(
   (config) => {
+    const backendEnv = ref(uni.getStorageSync(StorageKeys.BackendEnv));
     config.headers![process.env.VITE_TOKEN_NAME] = `Berry ${
       useTokenStore().token
     }`;
+    config.headers!["X-Xh-Env"] = backendEnv.value;
+    console.log(config);
     return config;
   },
   (error) => {

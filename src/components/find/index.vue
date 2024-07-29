@@ -93,9 +93,12 @@ onLoad((options: any) => {
 });
 
 const GoBack = () => {
-  uni.navigateTo({
+  uni.switchTab({
     url: "/pages/home/home"
   });
+  // uni.navigateTo({
+  //   url: "/pages/home/home"
+  // });
 };
 
 const bottom = () => {

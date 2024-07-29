@@ -57,6 +57,12 @@
         "navigationStyle": "default"
       }
     },
+
+    {
+      "path": "pages/add-course/index",
+      "style": {}
+    },
+
     {
       "path": "pages/web-frame/web-frame"
     }
@@ -66,6 +72,10 @@
     "selectedColor": "#ffffff",
     "backgroundColor": "#ffffff",
     "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
       {
         "pagePath": "pages/find/index/index",
         "text": "搜索"

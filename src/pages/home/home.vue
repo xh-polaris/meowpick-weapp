@@ -1,14 +1,15 @@
 <template>
   <view class="background">
-    <view class="top-bar">
-      <view class="tap-bar">
-        <view class="search">
-          <text class="content" @click="goToSearch">搜索</text>
-          <image class="chosen-search" src="../../images/chosen_line.png" />
-        </view>
-        <view class="my-comment" @click="goToMyComments">我的吐槽</view>
-      </view>
-    </view>
+<!--    <view class="top-bar">-->
+<!--      <view class="tap-bar">-->
+<!--        <view class="search">-->
+<!--          <text class="content" @click="goToSearch">搜索</text>-->
+<!--          <image class="chosen-search" src="../../images/chosen_line.png" />-->
+<!--        </view>-->
+<!--        <view class="my-comment" @click="goToMyComments">我的吐槽</view>-->
+<!--      </view>-->
+<!--    </view>-->
+    <top-bar :selected="0" />
     <view class="ellipse" />
     <image :src="Logo" class="logo" />
     <view class="search-table">
@@ -20,6 +21,7 @@
     </view>
     <view class="toolbox" />
     <ToolBox class="toolbox" />
+    <DebugPanel class="debug-panel" />
   </view>
 </template>
 

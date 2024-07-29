@@ -1,5 +1,8 @@
 import type { CommentVO, Course, TeacherVO } from "@/api/data-contracts";
 
+import { ref, shallowRef, watch } from 'vue';
+import { result } from "lodash-es";
+
 type choose = {
   course?: Course[];
   teacher?: Course[];
@@ -26,6 +29,8 @@ export function useChoose() {
   });
   const page = ref(0);
 
+  const isModalVisible = ref(false); // 控制弹窗显示的变量
+
   function jump(id: string) {
     // map[type.value].setData(item)
     uni.navigateTo({
@@ -41,14 +46,35 @@ export function useChoose() {
         page,
         size: 10
       }).then((res) => {
-        rows.value[type.value] = [
-          ...rows.value[type.value]!,
-          ...res.data.payload.rows!
-        ];
-        console.log("搜索信息：", rows.value[type.value]);
+        if (res.data.payload && res.data.payload.rows) {
+          const newRows = res.data.payload.rows;
+          rows.value[type.value] = [
+            ...rows.value[type.value]!,
+            ...newRows
+          ];
+
+          // 检查是否有搜索结果
+          if (newRows.length === 0) {
+            isModalVisible.value = true; // 显示弹窗
+          } else {
+            isModalVisible.value = false; // 隐藏弹窗
+          }
+
+          console.log(isModalVisible)
+
+          console.log("搜索信息：", rows.value[type.value]);
+        } else {
+          // 如果没有有效的 payload 或 rows，显示弹窗
+          isModalVisible.value = true;
+        }
+      }).catch((error) => {
+        // 处理请求错误
+        console.error("搜索请求失败：", error);
+        isModalVisible.value = true; // 在错误情况下显示弹窗
       });
     }
   }
+
 
   watch([page], () => {
     search(page.value);
@@ -63,6 +89,7 @@ export function useChoose() {
     type,
     rows,
     page,
-    jump
+    jump,
+    isModalVisible // 返回弹窗状态
   };
 }
