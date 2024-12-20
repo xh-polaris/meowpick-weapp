@@ -20,7 +20,7 @@ class HttpRequest<
       method: "POST",
       body: data,
       type: ContentType.Json,
-      baseURL: "https://meowchat.xhpolaris.com/auth"
+      baseURL: "https://api.xhpolaris.com/platform/auth"
     });
     useTokenStore().store(resp.data.accessToken);
     console.log(resp.data.accessToken);
