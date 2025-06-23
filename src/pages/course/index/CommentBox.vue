@@ -15,6 +15,7 @@
       <view class="content">{{ data.text }}</view>
       <view class="time-and-like">
         <view class="time">{{ format(data.crateAt) }}</view>
+        <view class="reply-btn" @click="$emit('reply', data.id)">回复</view>
         <view class="like">
           <image
             :src="data.relation?.like ? Liked : Like"
@@ -24,12 +25,36 @@
           <view class="like-num">{{ data.relation?.like_cnt }}</view>
         </view>
       </view>
+      <view
+        v-if="data.replies?.length > 0"
+        class="toggle-replies"
+        @click="toggleReplies"
+      >
+        {{ showReplies ? "收起回复" : `展开 ${data.replies.length} 条回复` }}
+      </view>
+      <view v-if="showReplies" class="reply-list">
+        <view
+          v-for="reply in visibleReplies"
+          :key="reply.id"
+          class="reply-item"
+        >
+          <text class="reply-time">{{ format(reply.crateAt) }}</text>
+          <text class="reply-text">{{ reply.text }}</text>
+        </view>
+        <view
+          v-if="maxVisibleReplies < data.replies.length"
+          class="toggle-replies"
+          @click="loadMoreReplies"
+        >
+          展开更多回复
+        </view>
+      </view>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import type { CommentVO } from "@/api/data-contracts";
+import type { CommentVO, ReplyVO } from "@/api/data-contracts";
 import { useTokenStore } from "@/config";
 import Like from "@/images/like-icon.png";
 import Liked from "@/images/like_active.png";
@@ -44,10 +69,32 @@ const props = defineProps<Props>();
 const tokenStore = useTokenStore();
 const emit = defineEmits<{
   like: (id: string) => void;
+  reply: (id: string) => void;
 }>();
+
+const showReplies = ref(false);
+const maxVisibleReplies = ref(5); // 每次最多显示5条
+
+const visibleReplies = computed(() => {
+  return props.data.replies?.slice(0, maxVisibleReplies.value) || [];
+});
+
+const loadMoreReplies = () => {
+  maxVisibleReplies.value += 5;
+};
+
+// 展开/收起回复
+const toggleReplies = () => {
+  showReplies.value = !showReplies.value;
+  maxVisibleReplies.value = 5;
+};
 
 function like() {
   emit("like", props.data.id);
+}
+
+function reply() {
+  emit("reply", props.data.id);
 }
 </script>
 
@@ -101,7 +148,7 @@ function like() {
       line-height: 1.5;
       font-size: 3.9vw;
     }
-    .time-and-like{
+    .time-and-like {
       display: flex;
       flex-direction: row;
       width: 100%;
@@ -112,10 +159,21 @@ function like() {
         margin-top: auto;
         margin-bottom: 3vw;
       }
+      .reply-btn {
+        margin-left: 3vw;
+        font-size: 3.6vw;
+        color: #005bb5;
+        white-space: nowrap;
+        margin-top: auto;
+        margin-bottom: 3vw;
+      }
+      .reply-btn:hover {
+        text-decoration: underline;
+      }
       .like {
         display: flex;
         flex-direction: row;
-        margin-left: 50vw;
+        margin-left: 40vw;
         margin-top: 5vw;
         margin-bottom: 3vw;
         .like-icon {
@@ -130,6 +188,42 @@ function like() {
           font-size: 3.8vw;
         }
       }
+    }
+
+    .toggle-replies {
+      color: #007aff;
+      font-size: 3.5vw;
+      cursor: pointer;
+      margin-left: 3.5vw;
+      //margin-top: 1vw;
+      margin-bottom: 2vw;
+    }
+
+    .reply-list {
+      background: #ffffff;
+      padding: 2vw;
+    }
+
+    .reply-item {
+      margin-bottom: 2vw;
+      padding: 1vw;
+      background: #ffffff;
+      border-radius: 2vw;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .reply-time {
+      font-size: 3vw;
+      color: gray;
+    }
+
+    .reply-text {
+      margin-top: 1vw;
+      font-size: 3.6vw;
+      color: #302f2f;
+      line-height: 1.4;
+      display: block;
+      padding-left: 2vw;
     }
   }
   .my-box {
